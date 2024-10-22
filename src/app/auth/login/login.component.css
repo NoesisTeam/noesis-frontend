@@ -1,122 +1,102 @@
-.login-page {
-  background-color: #fff;
+.login-section {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(180deg, #64089c 0%, #eee1ff 32.1%, #dcd1e3 100%);
+  position: relative;
   overflow: hidden;
 }
-.login-container {
-  display: flex;
-  gap: 20px;
-}
-.login-image-column,
-.login-form-column {
+
+.background-container {
+  position: absolute;
   width: 50%;
-}
-.login-image {
-  aspect-ratio: 0.76;
-  object-fit: contain;
-  width: 100%;
+  height: 100%;
   border-radius: 50px;
+  mask-image: linear-gradient(to left, black 70%, transparent 80%);
+  -webkit-mask-image: linear-gradient(to left, black 98%, transparent 100%);
 }
-.login-form-wrapper {
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  padding: 22px 27px 177px 74px;
-}
-.login-logo {
-  color: #fff;
-  align-self: center;
-  margin-left: 22px;
-  font: 400 70px Lobster Two, sans-serif;
-}
-.login-form {
+
+.login-container {
+  position: absolute;
+  top: 250px;
+  right: 150px;
+  width: 597px;
+  height: 455px;
   border-radius: 40px;
-  background-color: rgba(255, 245, 245, 0.48);
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  display: flex;
-  margin-top: 125px;
-  flex-direction: column;
-  text-align: center;
-  padding: 19px 71px 63px;
-  font: 600 25px Poppins, sans-serif;
+  background: rgba(255, 245, 245, 0.48);
+  backdrop-filter: blur(40px);
+  box-shadow: 37.867px -37.867px 50px 0px rgba(194, 194, 194, 0.2) inset,
+    -37.867px 37.867px 37.867px 0px rgba(255, 255, 255, 0.1) inset,
+    0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-.login-title {
-  color: var(--main_color, #64089c);
-  font-size: 28px;
-  align-self: center;
-}
-.login-fields {
+
+.form-wrapper {
+  position: relative;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
   display: flex;
-  margin-top: 65px;
   flex-direction: column;
+  align-items: center;
+}
+
+.login-text {
+  color: var(--main_color);
+  font-family: Poppins, sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.login-form {
+  width: 80%;
+  max-width: 400px;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid #6b21a8;
+  background: transparent;
+  outline: none;
   color: #7c6c86;
+  font-family: Poppins, sans-serif;
+  font-size: 23px;
   font-weight: 500;
 }
-.login-field {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
+
+.input-group input:focus {
+  border-bottom: 2px solid #6b21a8;
 }
-.login-field-wrapper {
-  display: flex;
-  gap: 20px;
-  justify-content: space-between;
-}
-.login-field-icon {
-  aspect-ratio: 1.05;
-  object-fit: contain;
-  width: 40px;
-}
-.login-field-line {
-  margin-top: 8px;
-  width: 100%;
-  height: 2px;
-  border: 2px solid #1c1616;
-}
-.login-button {
-  border-radius: 15px;
-  background-color: #64089c;
-  margin-top: 65px;
-  color: #fefbff;
-  padding: 6px 70px;
-  border: none;
-  cursor: pointer;
-}
-.visually-hidden {
+
+.icon {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b21a8;
+  width: 30px;
+  height: 30px;
 }
-@media (max-width: 991px) {
-  .login-container {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
-  .login-image-column,
-  .login-form-column {
-    width: 100%;
-  }
-  .login-form-wrapper {
-    padding: 0 20px 100px;
-  }
-  .login-logo {
-    font-size: 40px;
-  }
-  .login-form {
-    margin-top: 40px;
-    padding: 0 20px;
-  }
-  .login-fields {
-    margin-top: 40px;
-  }
-  .login-button {
-    margin: 40px 3px 0 0;
-    padding: 6px 20px;
-  }
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #6b21a8;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 23px;
+  font-family: Poppins, sans-serif;
+  margin-top: 20px;
+}
+
+.submit-btn:hover {
+  background-color: #581c87;
 }

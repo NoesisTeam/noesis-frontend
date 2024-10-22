@@ -17,3 +17,10 @@ body {
   --main_color: #64089c;
   --gradient_purple: #eee1ff;
 }
+
+.noesis-text-logo {
+  position: absolute;
+  color: #fff;
+  font-family: "Lobster Two", cursive;
+  font-size: 70px;
+}
