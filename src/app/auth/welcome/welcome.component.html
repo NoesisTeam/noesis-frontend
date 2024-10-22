@@ -1,64 +1,114 @@
-<section class="welcome-page">
-  <div class="hero-section">
-    <img
-      src="https://cdn.builder.io/api/v1/image/assets/TEMP/58bcea5538439fc3c08dc5beaf03bcdc181fe3378b0e6263d8e5c6f7d3e7358d?placeholderIfAbsent=true&apiKey=0f5b1658d860479ca16ec7be0276f12a"
-      alt=""
-      class="hero-image"
-    />
-    <header class="header">
-      <div class="logo-container">
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/b0c316a946cb880dc5cab1651caf12c6658a7f89b53dcf17016f445e41655937?placeholderIfAbsent=true&apiKey=0f5b1658d860479ca16ec7be0276f12a"
-          alt="Noesis logo"
+<section class="welcome-section">
+  <div
+    class="background-section"
+    style="
+      background: url('/assets/images/img-welcome-bg.png') lightgray 50% / cover
+        no-repeat;
+    "
+  >
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="521"
+        height="181"
+        viewBox="0 0 521 181"
+        fill="none"
+      >
+        <path
+          d="M288.298 137.068C109.514 214.822 21.6062 169.465 0 137.068V0H520C517.259 13.2914 467.081 59.3129 288.298 137.068Z"
+          class="vector-path"
         />
-        Noesis
-      </div>
-      <button class="login-button">Ingrese</button>
-    </header>
-    <h1 class="main-title">Desafía tu comprensión!</h1>
-    <div class="content-section">
-      <img
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/35a9e5c223cb72bd92523a85dc606e1311cb88db0f7202ebf8a03f694cdc0d01?placeholderIfAbsent=true&apiKey=0f5b1658d860479ca16ec7be0276f12a"
-        alt=""
-      />
-      <div class="content-wrapper">
-        <button class="cta-button">Únete a un club ahora!</button>
-        <div class="features-container">
-          <div class="feature-item">
-            <div class="feature-icon-wrapper">
-              <div class="feature-icon">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/0bbfb4215a925c1422e25f4976ef70e8b534d461f0e116911f926e968feaea9f?placeholderIfAbsent=true&apiKey=0f5b1658d860479ca16ec7be0276f12a"
-                  alt="Reconoce icon"
-                />
-              </div>
-            </div>
-            <p class="feature-text">Reconoce</p>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon-wrapper">
-              <div class="feature-icon">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/cc66e217368b1c0b4f16d85e016c05f27a6398189cf14dfe3548686fa07978cb?placeholderIfAbsent=true&apiKey=0f5b1658d860479ca16ec7be0276f12a"
-                  alt="Explora icon"
-                />
-              </div>
-            </div>
-            <p class="feature-text">Explora</p>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon-wrapper">
-              <div class="feature-icon">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/97e9d4af1e303a196ba5dd29d385a928ddd3111766d221250c9bbc6c61122b52?placeholderIfAbsent=true&apiKey=0f5b1658d860479ca16ec7be0276f12a"
-                  alt="Prepárate icon"
-                />
-              </div>
-            </div>
-            <p class="feature-text">Prepárate</p>
-          </div>
-        </div>
-      </div>
+      </svg>
     </div>
+    <div class="vector-2-container">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        height="100%"
+        viewBox="0 0 1280 474"
+        preserveAspectRatio="none"
+        fill="none"
+      >
+        <path
+          d="M414.5 306.5C194.5 317.5 189.5 346.5 90.5 306.5L40.5 263.5L0 206.631V474H1280V0C1267.85 62.7236 1186.45 191.863 958.003 206.631C729.56 221.398 517.5 279 414.5 306.5Z"
+          class="vector-path"
+        />
+      </svg>
+    </div>
+    <p class="noesis-logo-text-container">Noesis</p>
+    <p class="title-text">
+      Desafía tu <br />
+      comprensión!
+    </p>
+    <button class="join-button" [routerLink]="['/login']">
+      Únete a un club ahora!
+    </button>
+    <button class="login-button" [routerLink]="['/login']">Ingrese</button>
+    <div class="ellipse-container" style="left: 200px">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="153"
+        height="145"
+        viewBox="0 0 153 145"
+        fill="none"
+      >
+        <ellipse
+          cx="76.5"
+          cy="72.5"
+          rx="76.5"
+          ry="72.5"
+          class="ellipse-shape"
+        />
+      </svg>
+    </div>
+    <img
+      src="/assets/icons/ic-recognize.png"
+      alt="Recognize Icon"
+      class="img-container"
+      style="left: 230px"
+    />
+    <p class="feature-text" style="left: 200px">Reconoce</p>
+    <div class="ellipse-container" style="left: 900px">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="153"
+        height="145"
+        viewBox="0 0 153 145"
+        fill="none"
+      >
+        <ellipse
+          cx="76.5"
+          cy="72.5"
+          rx="76.5"
+          ry="72.5"
+          class="ellipse-shape"
+        />
+      </svg>
+    </div>
+    <img
+      src="/assets/icons/ic-alien.png"
+      alt="Explore Icon"
+      class="img-container"
+      style="left: 930px"
+    />
+    <p class="feature-text" style="left: 920px">Explora</p>
   </div>
+  <div class="ellipse-container" style="left: 1550px">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="153"
+      height="145"
+      viewBox="0 0 153 145"
+      fill="none"
+    >
+      <ellipse cx="76.5" cy="72.5" rx="76.5" ry="72.5" class="ellipse-shape" />
+    </svg>
+  </div>
+  <img
+    src="/assets/icons/ic-get-ready.png"
+    alt="Recognize Icon"
+    class="img-container"
+    style="left: 1580px"
+  />
+  <p class="feature-text" style="left: 1550px">Prepárate</p>
 </section>
