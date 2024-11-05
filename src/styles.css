@@ -1,5 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-
 /* Font import  */
 @import url("https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600;700&display=swap");
 
@@ -16,11 +14,32 @@ body {
 :root {
   --main_color: #64089c;
   --gradient_purple: #eee1ff;
+  --gray_dark: #635353;
+  --faded_purple: #d499f84a;
+  --pink: #d900d0;
+  --deep_violet: #6e27e3;
 }
 
+/* Noesis Logo */
 .noesis-text-logo {
   position: absolute;
   color: #fff;
   font-family: "Lobster Two", cursive;
   font-size: 70px;
+}
+
+/* Default section */
+.default-section {
+  width: 100%;
+  height: 100%;
+}
+
+/* Purple container */
+.purple-container {
+  position: absolute;
+  width: 1639px;
+  height: 90.3%;
+  margin-top: 90px;
+  margin-left: 240px;
+  background-color: var(--faded_purple);
 }

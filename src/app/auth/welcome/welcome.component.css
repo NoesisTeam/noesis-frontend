@@ -57,6 +57,7 @@
 .join-button:hover {
   background: var(--main_color);
   color: var(--gradient_purple);
+  cursor: pointer;
 }
 
 .login-button {
@@ -82,6 +83,7 @@
 .login-button:hover {
   background: var(--gradient_purple);
   color: #000;
+  cursor: pointer;
 }
 
 .ellipse-container {

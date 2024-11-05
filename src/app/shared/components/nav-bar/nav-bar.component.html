@@ -1,0 +1,52 @@
+<section class="default-section">
+  <div class="nav-bar-container">
+    <nav *ngIf="shouldDisplayNavBar()">
+      <p
+        class="noesis-text-logo"
+        style="
+          position: relative;
+          top: -60px;
+          left: 30px;
+          color: var(--main_color);
+          margin-bottom: -50px;
+        "
+      >
+        <a href="/clubs-home"> Noesis </a>
+      </p>
+      <ul>
+        <li
+          class="menu-item clubs"
+          [routerLink]="['/clubs-home']"
+          routerLinkActive="active"
+        >
+          <img src="/assets/ico/ic-clubs.png" alt="Clubs Icon" class="icon" />
+          &nbsp;&nbsp;Clubs
+        </li>
+        <li
+          class="menu-item explore"
+          [routerLink]="['/explore']"
+          routerLinkActive="active"
+        >
+          <img
+            src="/assets/ico/ic-explore.png"
+            alt="Explore Icon"
+            class="icon"
+          />
+          &nbsp;Explorar
+        </li>
+        <li
+          class="menu-item profile"
+          [routerLink]="['/profile']"
+          routerLinkActive="active"
+        >
+          <img
+            src="/assets/ico/ic-profile.png"
+            alt="Profile Icon"
+            class="icon"
+          />
+          &nbsp;&nbsp;Perfil
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>

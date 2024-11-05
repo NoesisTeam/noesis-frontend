@@ -1,0 +1,81 @@
+.nav-bar-container {
+  position: absolute;
+  top: 0;
+  width: 12%;
+}
+
+a {
+  text-decoration: none;
+  color: #64089c;
+}
+
+.icon {
+  width: 35px;
+  height: 35px;
+  transition: 0.3s ease;
+}
+
+ul {
+  gap: 10px;
+}
+
+li {
+  background-color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: var(--gray_dark);
+  font-family: Poppins;
+  font-size: 23.04px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Clubs Item */
+li.clubs .icon {
+  content: url("/assets/ico/ic-clubs.png");
+}
+
+li.clubs:hover .icon {
+  content: url("/assets/ico/ic-clubs-filled.png");
+}
+
+li.clubs.active .icon {
+  content: url("/assets/ico/ic-clubs-filled.png");
+}
+
+/* Explore Item */
+li.explore .icon {
+  content: url("/assets/ico/ic-explore.png");
+}
+
+li.explore:hover .icon {
+  content: url("/assets/ico/ic-explore-filled.png");
+}
+
+li.explore.active .icon {
+  content: url("/assets/ico/ic-explore-filled.png");
+}
+
+/* Profile Item */
+li.profile .icon {
+  content: url("/assets/ico/ic-profile.png");
+}
+
+li.profile:hover .icon {
+  content: url("/assets/ico/ic-profile-filled.png");
+}
+
+li.profile.active .icon {
+  content: url("/assets/ico/ic-profile-filled.png");
+}
+
+li:hover,
+li.active {
+  background: var(--gradient_purple);
+  color: var(--main_color);
+}

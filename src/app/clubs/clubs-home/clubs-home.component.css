@@ -1,0 +1,169 @@
+.welcoming-text {
+  font-family: Poppins;
+  font-size: 27.65px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: var(--main_color);
+  margin-left: 40px;
+}
+
+.create-club-button {
+  display: flex;
+  width: 332px;
+  height: 65px;
+  padding: 12px 16px;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  font-family: Poppins;
+  font-size: 23.04px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-left: 40px;
+  cursor: pointer;
+  background: linear-gradient(
+    90deg,
+    rgba(217, 0, 208, 0.89) 0%,
+    rgba(100, 8, 156, 0.89) 98.61%
+  );
+  border: none;
+}
+
+.create-club-button .icon {
+  width: 30px;
+  height: 30px;
+  margin-left: auto;
+}
+
+.clubs-container {
+  width: 1550px;
+  height: 72%;
+  border-radius: 10px;
+  background: #fdfdfd;
+  box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.25);
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+.input-wrapper {
+  position: absolute;
+  right: 90px;
+  top: 230px;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+input {
+  padding-left: 40px;
+  border-radius: 5px;
+  border: none;
+  background: #e8e8e8;
+  color: #948282cc;
+  width: 300px;
+  height: 40px;
+  font-family: Poppins;
+  font-size: 16px;
+}
+
+.clubs-text {
+  color: rgba(0, 0, 0, 0.75);
+  font-family: Poppins;
+  font-size: 23.04px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 30px;
+  position: absolute;
+  top: 250px;
+}
+
+.club-card {
+  display: flex;
+  width: 280px;
+  height: 150px;
+  padding: 1px 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  flex-shrink: 0;
+  position: absolute;
+  top: 320px;
+  left: 70px;
+
+  border: none;
+  background: var(--gradient_purple);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.card-svg {
+  width: 239.5px;
+  height: 79.739px;
+  flex-shrink: 0;
+}
+
+.club-text {
+  position: inherit;
+  color: white;
+  margin-top: 5px;
+  margin-left: 10px;
+
+  font-family: Poppins;
+  font-size: 19.2px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.club-name-text {
+  position: inherit;
+  color: white;
+  margin-top: 35px;
+  margin-left: 10px;
+
+  font-family: Poppins;
+  font-size: 23.04px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.founded-by-text {
+  position: inherit;
+  color: var(--deep_violet);
+  margin-top: 85px;
+  margin-left: 10px;
+
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.founded-by-name-text {
+  position: inherit;
+  color: rgba(0, 0, 0, 0.72);
+  margin-top: 110px;
+  margin-left: 10px;
+
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
