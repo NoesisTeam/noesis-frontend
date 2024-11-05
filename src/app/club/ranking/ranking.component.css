@@ -1,0 +1,135 @@
+.ranking-container {
+  background-color: #f9f3ff;
+  border: 2px solid #6200ea;
+  border-radius: 8px;
+  padding: 16px;
+  width: 20vw;
+  max-width: 400px;
+  min-height: 400px;
+  max-height: 400px;
+  font-family: Arial, sans-serif;
+  position: absolute;
+  right: 20px;
+  top: 20vh;
+  overflow-y: auto;
+}
+
+.ranking-list, .solicitudes-list {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.usuario-item.top-three:nth-child(1) {
+  background-color: #1804FF;
+  color: white;
+}
+
+.usuario-item.top-three:nth-child(2) {
+  background-color: #5B7FFF;
+  color: white;
+}
+
+.usuario-item.top-three:nth-child(3) {
+  background-color: #A0B8FF;
+  color: white;
+}
+
+.usuario-item.top-three:nth-child(1) .puntos,
+.usuario-item.top-three:nth-child(2) .puntos,
+.usuario-item.top-three:nth-child(3) .puntos {
+  color: white;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 12px;
+}
+
+.tabs button {
+  background-color: transparent;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #6b6b6b;
+  font-size: 1.2em;
+}
+
+.tabs button.active {
+  color: #6200ea;
+  border-bottom: 2px solid #6200ea;
+  font-size: 1.3em;
+}
+
+
+.ranking-list, .solicitudes-list {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.usuario-item:hover {
+  background-color: #e0e0e0;
+}
+
+.usuario-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  border: 1px solid #6200ea;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background-color: #ffffff;
+}
+
+.solicitud-icono {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+}
+
+.boton-verificado, .boton-rechazo {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.boton-verificado {
+  width: 24px;
+  height: 24px;
+  background-image: url('/assets/icons/ic-accepted-request.png'); /* Imagen normal */
+  background-size: cover;
+  cursor: pointer;
+}
+
+.boton-verificado:hover {
+  background-image: url('/assets/icons/ic-accepted-request-filled.png'); /* Imagen de hover */
+}
+
+.boton-rechazo {
+  width: 24px;
+  height: 24px;
+  background-image: url('/assets/icons/ic-denied-request.png'); /* Imagen normal */
+  background-size: cover;
+  cursor: pointer;
+}
+
+.boton-rechazo:hover {
+  background-image: url('/assets/icons/ic-denied-request-filled.png'); /* Imagen de hover */
+}
+
+.position {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.nombre {
+  flex-grow: 1;
+}
+
+.puntos {
+  font-weight: bold;
+  color: #6200ea;
+}

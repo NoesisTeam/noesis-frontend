@@ -1,0 +1,26 @@
+<div class="ranking-container">
+  <div class="tabs">
+    <button (click)="cambiarVista('ranking')" [class.active]="vistaActual === 'ranking'">Ranking</button>
+    <button (click)="cambiarVista('solicitudes')" [class.active]="vistaActual === 'solicitudes'">Solicitudes</button>
+  </div>
+
+  <div *ngIf="vistaActual === 'ranking'" class="ranking-list">
+    <div *ngFor="let usuario of rankingUsuarios; let i = index" class="usuario-item" [ngClass]="{'top-three': i < 3}">
+      <span class="position">{{ i + 1 }}</span>
+      <span class="nombre">{{ usuario.nombre }}</span>
+      <span class="puntos">{{ usuario.puntos }}Pts</span>
+    </div>
+  </div>
+
+  <div *ngIf="vistaActual === 'solicitudes'" class="solicitudes-list">
+    <div *ngFor="let usuario of solicitudesUsuarios" class="usuario-item">
+      <img src="./assets/icons/ic-request.png" class="solicitud-icono" alt="Solicitud Icono">
+      <span class="nombre">{{ usuario.nombre }}</span>
+      <div class="acciones">
+        <img src="./assets/icons/ic-denied-request.png" class="boton-rechazo" alt="Rechazar"
+             (click)="rechazarSolicitud(usuario)">
+        <img src="./assets/icons/ic-accepted-request.png" class="boton-verificado" alt="Aceptar" (click)="aceptarSolicitud(usuario)">
+      </div>
+    </div>
+  </div>
+</div>
