@@ -1,48 +1,48 @@
 import { Component } from '@angular/core';
-import {NgClass, NgForOf, NgIf} from '@angular/common';
+import { NgClass, NgForOf, NgIf } from '@angular/common';
 
-interface Usuario {
-  nombre: string;
-  puntos: number;
+interface User {
+  name: string;
+  points: number;
 }
+
 @Component({
   selector: 'app-ranking',
   standalone: true,
   imports: [
     NgClass,
     NgForOf,
-    NgIf
+    NgIf,
   ],
   templateUrl: './ranking.component.html',
   styleUrl: './ranking.component.css'
 })
-
 export class RankingComponent {
-  rankingUsuarios: Usuario[] = [
-    { nombre: 'Pepito Pérez', puntos: 3300 },
-    { nombre: 'Pepito Pérez', puntos: 3200 },
-    { nombre: 'Pepito Pérez', puntos: 3100 },
-    { nombre: 'Pepito Pérez', puntos: 3000 },
-    { nombre: 'Pepito Pérez', puntos: 2900 }
+  rankingUsers: User[] = [
+    { name: 'Pepito Pérez', points: 3300 },
+    { name: 'Pepito Pérez', points: 3200 },
+    { name: 'Pepito Pérez', points: 3100 },
+    { name: 'Pepito Pérez', points: 3000 },
+    { name: 'Pepito Pérez', points: 2900 }
   ];
 
-  solicitudesUsuarios: Usuario[] = [
-    { nombre: 'Juan García', puntos: 2800 },
-    { nombre: 'María López', puntos: 2700 },
-    { nombre: 'Carlos Martínez', puntos: 2600 }
+  requestUsers: User[] = [
+    { name: 'Juan García', points: 2800 },
+    { name: 'María López', points: 2700 },
+    { name: 'Carlos Martínez', points: 2600 }
   ];
 
-  vistaActual: 'ranking' | 'solicitudes' = 'ranking';
+  currentView: 'ranking' | 'requests' = 'ranking';
 
-  cambiarVista(vista: 'ranking' | 'solicitudes') {
-    this.vistaActual = vista;
+  changeView(view: 'ranking' | 'requests') {
+    this.currentView = view;
   }
 
-  rechazarSolicitud(usuario: Usuario) {
-
+  rejectRequest(user: User) {
+    alert("Request rejected");
   }
 
-  aceptarSolicitud(usuario: Usuario) {
-
+  acceptRequest(user: User) {
+    alert("Request accepted");
   }
 }

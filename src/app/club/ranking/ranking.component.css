@@ -14,29 +14,29 @@
   overflow-y: auto;
 }
 
-.ranking-list, .solicitudes-list {
+.ranking-list, .requests-list {
   max-height: 500px;
   overflow-y: auto;
 }
 
-.usuario-item.top-three:nth-child(1) {
+.user-item.top-three:nth-child(1) {
   background-color: #1804FF;
   color: white;
 }
 
-.usuario-item.top-three:nth-child(2) {
+.user-item.top-three:nth-child(2) {
   background-color: #5B7FFF;
   color: white;
 }
 
-.usuario-item.top-three:nth-child(3) {
+.user-item.top-three:nth-child(3) {
   background-color: #A0B8FF;
   color: white;
 }
 
-.usuario-item.top-three:nth-child(1) .puntos,
-.usuario-item.top-three:nth-child(2) .puntos,
-.usuario-item.top-three:nth-child(3) .puntos {
+.user-item.top-three:nth-child(1) .points,
+.user-item.top-three:nth-child(2) .points,
+.user-item.top-three:nth-child(3) .points {
   color: white;
 }
 
@@ -62,18 +62,17 @@
   font-size: 1.3em;
 }
 
-
-.ranking-list, .solicitudes-list {
+.ranking-list, .requests-list {
   display: flex;
   flex-direction: column;
   padding: 8px;
 }
 
-.usuario-item:hover {
+.user-item:hover {
   background-color: #e0e0e0;
 }
 
-.usuario-item {
+.user-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -84,19 +83,19 @@
   background-color: #ffffff;
 }
 
-.solicitud-icono {
+.request-icon {
   width: 24px;
   height: 24px;
   margin-right: 12px;
 }
 
-.boton-verificado, .boton-rechazo {
+.accept-button, .reject-button {
   width: 24px;
   height: 24px;
   cursor: pointer;
 }
 
-.boton-verificado {
+.accept-button {
   width: 24px;
   height: 24px;
   background-image: url('/assets/icons/ic-accepted-request.png'); /* Imagen normal */
@@ -104,11 +103,11 @@
   cursor: pointer;
 }
 
-.boton-verificado:hover {
+.accept-button:hover {
   background-image: url('/assets/icons/ic-accepted-request-filled.png'); /* Imagen de hover */
 }
 
-.boton-rechazo {
+.reject-button {
   width: 24px;
   height: 24px;
   background-image: url('/assets/icons/ic-denied-request.png'); /* Imagen normal */
@@ -116,7 +115,7 @@
   cursor: pointer;
 }
 
-.boton-rechazo:hover {
+.reject-button:hover {
   background-image: url('/assets/icons/ic-denied-request-filled.png'); /* Imagen de hover */
 }
 
@@ -125,11 +124,11 @@
   margin-right: 8px;
 }
 
-.nombre {
+.name {
   flex-grow: 1;
 }
 
-.puntos {
+.points {
   font-weight: bold;
   color: #6200ea;
 }
