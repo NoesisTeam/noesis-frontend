@@ -99,7 +99,6 @@ input {
   align-items: flex-start;
   gap: 6px;
   flex-shrink: 0;
-  position: absolute;
   top: 320px;
   left: 70px;
 
@@ -117,7 +116,7 @@ input {
 }
 
 .club-text {
-  position: inherit;
+  position: absolute;
   color: white;
   margin-top: 5px;
   margin-left: 10px;
@@ -130,7 +129,7 @@ input {
 }
 
 .club-name-text {
-  position: inherit;
+  position: absolute;
   color: white;
   margin-top: 35px;
   margin-left: 10px;
@@ -143,7 +142,7 @@ input {
 }
 
 .founded-by-text {
-  position: inherit;
+  position: absolute;
   color: var(--deep_violet);
   margin-top: 85px;
   margin-left: 10px;
@@ -156,7 +155,7 @@ input {
 }
 
 .founded-by-name-text {
-  position: inherit;
+  position: absolute;
   color: rgba(0, 0, 0, 0.72);
   margin-top: 110px;
   margin-left: 10px;
@@ -166,4 +165,22 @@ input {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.carousel-container {
+  position: relative;
+  top: 130px;
+  left: 10px;
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+  width: 1500px;
+  margin: 0 auto;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+  gap: 3rem;
 }

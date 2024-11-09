@@ -43,3 +43,10 @@ body {
   margin-left: 240px;
   background-color: var(--faded_purple);
 }
+
+.error-text {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 5px;
+  font-family: Poppins, sans-serif;
+}

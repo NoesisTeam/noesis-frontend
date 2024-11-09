@@ -8,40 +8,72 @@
   ></div>
   <p class="noesis-text-logo" style="right: 360px">Noesis</p>
   <div class="login-container">
-    <!-- Form Container -->
     <div class="form-wrapper">
       <p class="login-text">Ingrese</p>
-      <form class="login-form">
+      <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onSubmit()">
         <div class="input-group">
           <input
             id="username"
-            name="username"
+            formControlName="username"
             type="text"
-            required
             placeholder="Usuario"
           />
           <img
             src="/assets/ico/ic-profile-filled.png"
             class="icon"
-            alt="Ícono Usuario"
+            alt="Icono Usuario"
           />
+          <p
+            *ngIf="
+              loginForm.get('username')?.invalid &&
+              loginForm.get('username')?.touched
+            "
+            class="error-text"
+          >
+            Campo obligatorio
+          </p>
         </div>
         <div class="input-group">
           <input
             id="password"
-            name="password"
-            type="password"
-            required
+            formControlName="password"
+            [type]="showPassword ? 'text' : 'password'"
             placeholder="Contraseña"
           />
           <img
-            src="/assets/ico/ic-hidden-password-filled.png"
+            [src]="
+              showPassword
+                ? '/assets/ico/ic-show-password-filled.png'
+                : '/assets/ico/ic-hidden-password-filled.png'
+            "
             class="icon"
-            alt="Ícono Contraseña"
+            style="cursor: pointer"
+            alt="Icono Contraseña"
+            (click)="togglePasswordVisibility()"
           />
+          <p
+            *ngIf="
+              loginForm.get('password')?.invalid &&
+              loginForm.get('password')?.touched
+            "
+            class="error-text"
+          >
+            Campo obligatorio con al menos 6 caracteres
+          </p>
         </div>
-        <button type="submit" class="submit-btn">Ingrese</button>
+        <!-- The button is enabled only when the form is valid -->
+        <button type="submit" class="submit-btn" [disabled]="loginForm.invalid">
+          Ingrese
+        </button>
       </form>
     </div>
   </div>
+  <!-- Dialog Component -->
+  <app-executed-process-dialog
+    *ngIf="showDialog"
+    [message]="dialogMessage"
+    [actionText]="dialogActionText"
+    (close)="closeDialog()"
+  >
+  </app-executed-process-dialog>
 </section>

@@ -1,16 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { WelcomeComponent } from './auth/welcome/welcome.component';
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, WelcomeComponent, NavBarComponent],
+  imports: [CommonModule, RouterOutlet, NavBarComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'noesis-frontend';
+  shouldShowNavBar = true;
+
+  hiddenRoutes: string[] = ['/', '/login', '/signup'];
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Checks if the current route is in the hidden routes list
+        this.shouldShowNavBar = !this.hiddenRoutes.includes(
+          event.urlAfterRedirects
+        );
+      }
+    });
+  }
 }

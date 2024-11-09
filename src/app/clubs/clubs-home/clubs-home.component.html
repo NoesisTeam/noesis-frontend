@@ -14,23 +14,32 @@
       <input id="search" name="search" type="text" placeholder="Buscar club" />
     </div>
     <p class="clubs-text">Clubs creados</p>
-    <button class="club-card">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="239.5"
-        height="79.739"
-        viewBox="0 0 240 80"
-        class="card-svg"
-      >
-        <path
-          d="M132 64.5C77.2 92.1 21.1667 76 0 64.5V0H239.5C226.5 10 186.8 36.9 132 64.5Z"
-          fill="var(--rosa, #D900D0)"
-        />
-      </svg>
-      <p class="club-text">Club</p>
-      <p class="club-name-text">Literatura</p>
-      <p class="founded-by-text">Fundado por:</p>
-      <p class="founded-by-name-text">Cesar Augusto</p>
-    </button>
+    <div class="carousel-wrapper">
+      <div class="carousel" #carousel></div>
+    </div>
+    <div class="carousel-container">
+      <div class="carousel-wrapper">
+        <div class="carousel">
+          <button class="club-card" *ngFor="let club of visibleClubs">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="239.5"
+              height="79.739"
+              viewBox="0 0 240 80"
+              class="card-svg"
+            >
+              <path
+                d="M132 64.5C77.2 92.1 21.1667 76 0 64.5V0H239.5C226.5 10 186.8 36.9 132 64.5Z"
+                fill="var(--rosa, #D900D0)"
+              />
+            </svg>
+            <p class="club-text">Club</p>
+            <p class="club-name-text">{{ club.name }}</p>
+            <p class="founded-by-text">Fundado por:</p>
+            <p class="founded-by-name-text">{{ club.founder }}</p>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

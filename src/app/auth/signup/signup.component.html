@@ -11,13 +11,16 @@
     <!-- Form Container -->
     <div class="form-wrapper">
       <p class="signup-text">Regístrese</p>
-      <form class="signup-form">
+      <form
+        [formGroup]="signupForm"
+        (ngSubmit)="onSubmit()"
+        class="signup-form"
+      >
         <div class="input-group">
           <input
             id="username"
-            name="username"
+            formControlName="username"
             type="text"
-            required
             placeholder="Usuario"
           />
           <img
@@ -25,37 +28,92 @@
             class="icon"
             alt="Icono Usuario"
           />
+          <p
+            *ngIf="
+              signupForm.get('username')?.invalid &&
+              signupForm.get('username')?.touched
+            "
+            class="error-text"
+          >
+            Campo obligatorio
+          </p>
         </div>
+
         <div class="input-group">
           <input
             id="password"
-            name="password"
-            type="password"
-            required
+            formControlName="password"
+            [type]="showPassword ? 'text' : 'password'"
             placeholder="Contraseña"
           />
           <img
-            src="/assets/ico/ic-hidden-password-filled.png"
+            [src]="
+              showPassword
+                ? '/assets/ico/ic-show-password-filled.png'
+                : '/assets/ico/ic-hidden-password-filled.png'
+            "
             class="icon"
+            style="cursor: pointer"
             alt="Icono Contraseña"
+            (click)="togglePasswordVisibility()"
           />
+          <p
+            *ngIf="
+              signupForm.get('password')?.invalid &&
+              signupForm.get('password')?.touched
+            "
+            class="error-text"
+          >
+            Campo obligatorio con al menos 6 caracteres
+          </p>
         </div>
+
         <div class="input-group">
           <input
             id="confirm-password"
-            name="confirm-password"
-            type="password"
-            required
+            formControlName="confirmPassword"
+            [type]="showConfirmPassword ? 'text' : 'password'"
             placeholder="Confirmar Contraseña"
           />
           <img
-            src="/assets/ico/ic-hidden-password-filled.png"
+            [src]="
+              showConfirmPassword
+                ? '/assets/ico/ic-show-password-filled.png'
+                : '/assets/ico/ic-hidden-password-filled.png'
+            "
             class="icon"
-            alt="Icono Contraseña"
+            style="cursor: pointer"
+            alt="Icono Confirmar Contraseña"
+            (click)="toggleConfirmPasswordVisibility()"
           />
+          <p
+            *ngIf="
+              signupForm.hasError('mismatch') &&
+              signupForm.get('confirmPassword')?.touched
+            "
+            class="error-text"
+          >
+            Las contraseñas no coinciden
+          </p>
         </div>
-        <button type="submit" class="submit-btn">Regístrese</button>
+
+        <!-- The button is enabled only when the form is valid -->
+        <button
+          type="submit"
+          class="submit-btn"
+          [disabled]="signupForm.invalid"
+        >
+          Regístrese
+        </button>
       </form>
     </div>
   </div>
+  <!-- Dialog Component -->
+  <app-executed-process-dialog
+    *ngIf="showDialog"
+    [message]="dialogMessage"
+    [actionText]="dialogActionText"
+    (close)="closeDialog()"
+  >
+  </app-executed-process-dialog>
 </section>
