@@ -1,20 +1,34 @@
 <div class="quiz-container">
-  <button class="back-button">← Atrás</button>
+  <button class="back-button" (mouseenter)="hoverBack = true" (mouseleave)="hoverBack = false">← Atrás</button>
 
   <div class="main-content">
     <div class="header">
       <div class="quiz-info">
         <div class="quiz-title">Quiz <span>Lectura violencia</span></div>
-        <div class="timer">04:59</div>
+        <div *ngIf="role === 'usuario' && !showStats" class="timer">{{ timeRemaining }}</div>
       </div>
-      <button class="submit-button">Enviar →</button>
+      <button *ngIf="role === 'usuario' && !showStats" (click)="submitQuiz()" class="submit-button">Enviar →</button>
+      <button *ngIf="role === 'fundador' && !isEditing" (click)="toggleEdit()" class="edit-button">Editar</button>
+      <button *ngIf="role === 'fundador' && isEditing" (click)="saveChanges()" class="save-button">Guardar</button>
     </div>
 
     <div class="questions-container">
       <div class="question-card" *ngFor="let question of questions; let i = index">
-        <h3>{{ i + 1 }}. {{ question.title }}</h3>
-        <div class="option" *ngFor="let option of question.options">
-          <input type="radio" [name]="'question-' + i" /> {{ option }}
+        <h3 *ngIf="!isEditing">{{ i + 1 }}. {{ question.title }}</h3>
+        <input *ngIf="isEditing" [(ngModel)]="question.title" class="question-input" />
+
+        <div *ngFor="let option of question.options; let j = index" class="option"
+             [ngClass]="{'correct': showStats && option.isCorrect, 'incorrect': showStats && option.isSelected && !option.isCorrect}">
+          <input type="radio"
+                 [name]="'question-' + i"
+                 [checked]="option.isSelected"
+                 [disabled]="!isEditing && showStats"
+                 (change)="selectOption(i, j)"
+                 [ngClass]="{'correct-radio': showStats && option.isCorrect, 'incorrect-radio': showStats && option.isSelected && !option.isCorrect}" />
+          <input *ngIf="isEditing && role === 'fundador'"
+                 [(ngModel)]="option.text"
+                 class="option-input" />
+          <span *ngIf="!isEditing || role === 'usuario'">{{ option.text }}</span>
         </div>
       </div>
     </div>
@@ -26,6 +40,19 @@
       <div class="club-name">Literatura</div>
     </div>
 
-    <!-- Aquí puedes colocar componentes para mostrar los resultados -->
+    <div *ngIf="showStats" class="stats">
+      <div class="stat-item">
+        <div>Tu puntuación:</div>
+        <div class="stat-value">{{ score }} pts</div>
+      </div>
+      <div class="stat-item">
+        <div>Preguntas correctas:</div>
+        <div class="stat-value">{{ correctAnswers }}/{{ questions.length }}</div>
+      </div>
+      <div class="stat-item">
+        <div>Tiempo:</div>
+        <div class="stat-value">{{ timeUsed }} min</div>
+      </div>
+    </div>
   </div>
 </div>

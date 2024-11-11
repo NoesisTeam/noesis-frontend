@@ -10,19 +10,9 @@
   position: relative;
 }
 
-.back-button {
-  background: none;
-  border: none;
-  font-size: 16px;
-  color: #696262;         /* Color blanco para buen contraste */
-  cursor: pointer;
-  position: absolute;     /* Posicionado absoluto para superposición */
-  top: 8px;               /* Ajusta el posicionamiento vertical */
-  left: 8px;              /* Ajusta el posicionamiento horizontal */
-  z-index: 2;             /* Asegura que esté encima del encabezado */
+.back-button:hover {
+  color: #ff69b4; /* Color rosa para el hover */
 }
-
-
 
 .main-content {
   flex: 1;
@@ -39,8 +29,8 @@
   color: #ffffff;
   border-radius: 8px;
   padding: 12px;
-  position: relative;       /* Posiciona el botón de "Atrás" en relación al header */
-  margin-top: 24px;         /* Agrega un margen superior para separarlo del botón de "Atrás" */
+  position: relative;
+  margin-top: 24px;
 }
 
 .quiz-info {
@@ -58,12 +48,13 @@
 
 .timer {
   background-color: #003e7e;
-  padding: 6px 6px;   /* Reduce el padding para hacer el tamaño más pequeño */
+  padding: 6px;
   border-radius: 4px;
-  font-size: 16px;    /* Reduce el tamaño de fuente */
+  font-size: 16px;
   margin-top: 4px;
-  max-width: 60px;    /* Limita el ancho del componente */
+  max-width: 60px;
 }
+
 .submit-button {
   background: #ffffff;
   color: #333;
@@ -72,6 +63,32 @@
   font-size: 16px;
   border-radius: 4px;
   cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.edit-button,
+.save-button {
+  background-color: #ffffff;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.edit-button {
+  background-color: #0073ff;
+  color: #ffffff;
+}
+
+.save-button {
+  background-color: #00d4ff;
+  color: #ffffff;
 }
 
 .questions-container {
@@ -103,6 +120,23 @@
   margin-right: 8px;
 }
 
+.question-input {
+  width: 100%;
+  font-size: 16px;
+  padding: 4px;
+  margin-bottom: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.option-input {
+  font-size: 16px;
+  padding: 4px;
+  margin-left: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 .sidebar {
   width: 200px;
   display: flex;
@@ -111,26 +145,106 @@
 }
 
 .club-info {
-  position: absolute;             /* Posiciona el componente en la esquina derecha */
-  right: 0px;                    /* Separación del borde derecho */
-  top: 16px;                      /* Separación del borde superior */
-  background-color: #1804FF;      /* Fondo azul oscuro */
-  color: #ffffff;                 /* Texto blanco */
+  position: absolute;
+  right: 0px;
+  top: 16px;
+  background-color: #1804ff;
+  color: #ffffff;
   border-radius: 0px 0px 0px 8px;
   font-size: 16px;
   font-weight: bold;
-  overflow: hidden;               /* Mantiene el borde redondeado */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para resaltarlo */
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
-  width: 200px;                   /* Ancho fijo para el componente */
+  width: 200px;
 }
 
-.club-info .club-label,
-.club-info .club-name {
-  padding: 4px 8px 4px 12px;       /* Reduce el padding para acercar los textos */
-  text-align: left;                 /* Alineación a la izquierda */
-  margin: 3px;                        /* Elimina cualquier margen entre los textos */
-  line-height: 1;                   /* Ajusta la altura de línea para reducir el espacio vertical */
+.stats {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
 }
+
+.stat-item {
+  background-color: #ff00a5;
+  color: #ffffff;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.stat-value {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.option input[type="radio"] {
+  margin-right: 8px;
+}
+
+.option span[contenteditable="true"] {
+  outline: none;
+  border-bottom: 1px dashed #ccc;
+  padding: 0 4px;
+  cursor: text;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #696262;
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  transition: color 0.3s;
+}
+
+.back-button:hover {
+  color: #ff69b4; /* Color rosa para el hover */
+}
+
+.option input[type="radio"] {
+  margin-right: 8px;
+}
+
+.editable[contenteditable="true"] {
+  outline: none;
+  border-bottom: 1px dashed #ccc;
+  padding: 0 4px;
+  cursor: text;
+  text-align: left; /* Alineación del texto a la izquierda */
+}
+.option-input {
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 16px;
+  width: auto;
+  margin-left: 8px;
+  color: #3b3b3b;
+}
+
+.option.correct {
+  color: green;
+}
+
+.option.incorrect {
+  color: red;
+}
+
+.correct-radio {
+  accent-color: green;
+}
+
+.incorrect-radio {
+  accent-color: red;
+}
+
 
 
