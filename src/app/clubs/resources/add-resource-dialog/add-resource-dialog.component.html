@@ -1,0 +1,89 @@
+<div class="dialog-overlay">
+  <div class="dialog-content">
+    <h2>Agregar recurso</h2>
+    <form
+      [formGroup]="readingResourceForm"
+      class="form-container"
+      (ngSubmit)="onSubmit()"
+    >
+      <!-- Left column -->
+      <div class="form-column">
+        <div class="form-field">
+          <input formControlName="title" type="text" placeholder="Título" />
+          <p
+            *ngIf="
+              readingResourceForm.get('title')?.invalid &&
+              readingResourceForm.get('title')?.touched
+            "
+            class="error-text"
+          >
+            Campo obligatorio
+          </p>
+        </div>
+        <div class="pdf-upload">
+          <button
+            type="button"
+            class="upload-button"
+            (click)="triggerFileInput()"
+          >
+            Añadir PDF
+          </button>
+          <input
+            #fileInput
+            type="file"
+            accept=".pdf"
+            (change)="onFileSelected($event)"
+            style="display: none"
+          />
+          <!-- Error message for file -->
+          <p *ngIf="fileError" class="error-text">
+            Por favor, selecciona un archivo PDF válido
+          </p>
+          <!-- Selected file name -->
+          <p *ngIf="selectedFile" class="success-text">
+            Archivo: {{ selectedFile.name }}
+          </p>
+        </div>
+      </div>
+      <!-- Right column -->
+      <div class="form-column">
+        <div class="form-field">
+          <input formControlName="author" type="text" placeholder="Autor" />
+          <p
+            *ngIf="
+              readingResourceForm.get('author')?.invalid &&
+              readingResourceForm.get('author')?.touched
+            "
+            class="error-text"
+          >
+            Campo obligatorio
+          </p>
+        </div>
+        <div class="form-field">
+          <textarea
+            formControlName="description"
+            style="height: 100px"
+            placeholder="Descripción"
+          ></textarea>
+          <p
+            *ngIf="
+              readingResourceForm.get('description')?.invalid &&
+              readingResourceForm.get('description')?.touched
+            "
+            class="error-text"
+          >
+            Campo obligatorio
+          </p>
+        </div>
+      </div>
+    </form>
+    <div class="actions">
+      <button type="button" class="cancel-button" (click)="onClose()">
+        Cancelar
+      </button>
+      <button type="submit" class="confirm-button" [disabled]="!isFormValid()">
+        Agregar
+      </button>
+    </div>
+  </div>
+</div>

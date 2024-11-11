@@ -17,12 +17,7 @@
         class="signup-form"
       >
         <div class="input-group">
-          <input
-            id="username"
-            formControlName="username"
-            type="text"
-            placeholder="Usuario"
-          />
+          <input formControlName="username" type="text" placeholder="Usuario" />
           <img
             src="/assets/ico/ic-profile-filled.png"
             class="icon"
@@ -41,7 +36,6 @@
 
         <div class="input-group">
           <input
-            id="password"
             formControlName="password"
             [type]="showPassword ? 'text' : 'password'"
             placeholder="Contraseña"
@@ -70,7 +64,6 @@
 
         <div class="input-group">
           <input
-            id="confirm-password"
             formControlName="confirmPassword"
             [type]="showConfirmPassword ? 'text' : 'password'"
             placeholder="Confirmar Contraseña"

@@ -6,7 +6,7 @@
 
 a {
   text-decoration: none;
-  color: #64089c;
+  color: inherit;
 }
 
 .icon {
@@ -16,7 +16,12 @@ a {
 }
 
 ul {
+  display: flex;
+  flex-direction: column;
   gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 li {
@@ -24,15 +29,22 @@ li {
   padding: 10px 20px;
   cursor: pointer;
   color: var(--gray_dark);
-  font-family: Poppins;
+  font-family: Poppins, sans-serif;
   font-size: 23.04px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
   border-radius: 10px;
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+li a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 /* Clubs Item */
@@ -40,10 +52,7 @@ li.clubs .icon {
   content: url("/assets/ico/ic-clubs.png");
 }
 
-li.clubs:hover .icon {
-  content: url("/assets/ico/ic-clubs-filled.png");
-}
-
+li.clubs:hover .icon,
 li.clubs.active .icon {
   content: url("/assets/ico/ic-clubs-filled.png");
 }
@@ -53,10 +62,7 @@ li.explore .icon {
   content: url("/assets/ico/ic-explore.png");
 }
 
-li.explore:hover .icon {
-  content: url("/assets/ico/ic-explore-filled.png");
-}
-
+li.explore:hover .icon,
 li.explore.active .icon {
   content: url("/assets/ico/ic-explore-filled.png");
 }
@@ -66,16 +72,31 @@ li.profile .icon {
   content: url("/assets/ico/ic-profile.png");
 }
 
-li.profile:hover .icon {
-  content: url("/assets/ico/ic-profile-filled.png");
-}
-
+li.profile:hover .icon,
 li.profile.active .icon {
   content: url("/assets/ico/ic-profile-filled.png");
 }
 
+/* Hover and Active States */
 li:hover,
 li.active {
   background: var(--gradient_purple);
   color: var(--main_color);
+}
+
+/* Apply a filter or change icon styles when active */
+li.active .icon {
+  filter: brightness(1.2);
+}
+
+li.clubs.active .icon {
+  content: url("/assets/ico/ic-clubs-filled.png");
+}
+
+li.explore.active .icon {
+  content: url("/assets/ico/ic-explore-filled.png");
+}
+
+li.profile.active .icon {
+  content: url("/assets/ico/ic-profile-filled.png");
 }

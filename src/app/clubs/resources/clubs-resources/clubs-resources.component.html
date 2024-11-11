@@ -1,0 +1,16 @@
+<div class="purple-container">
+  <button class="back-button" [routerLink]="['/clubs']">
+    <img src="assets/ico/ic-back.png" alt="Back Icon" class="icon" />
+    Atrás
+  </button>
+  <button class="add-resource-button" (click)="openDialog()">
+    Agregar recursos
+    <img src="assets/ico/ic-add-club-filled.png" alt="Add Icon" class="icon" />
+  </button>
+</div>
+
+<!-- Show the dialogue only if it is open -->
+<app-add-resource-dialog
+  *ngIf="isDialogOpen"
+  (close)="closeDialog()"
+></app-add-resource-dialog>

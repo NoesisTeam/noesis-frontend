@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CreateClubDialogComponent } from '../create-club-dialog/create-club-dialog.component';
 
 @Component({
   selector: 'app-clubs-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CreateClubDialogComponent],
   templateUrl: './clubs-home.component.html',
   styleUrl: './clubs-home.component.css',
 })
 export class ClubsHomeComponent {
+  isDialogOpen = false;
+
   clubs = [
     { name: 'Literatura', founder: 'Cesar Augusto' },
     { name: 'Historia', founder: 'María Perez' },
@@ -43,5 +46,13 @@ export class ClubsHomeComponent {
       this.currentStartIndex += 1;
       this.updateVisibleClubs();
     }
+  }
+
+  openDialog() {
+    this.isDialogOpen = true;
+  }
+
+  closeDialog() {
+    this.isDialogOpen = false;
   }
 }

@@ -44,9 +44,144 @@ body {
   background-color: var(--faded_purple);
 }
 
+/* Dialog overlay */
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Dialog content */
+.dialog-content {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 626px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Dialog h2 */
+.dialog-content h2 {
+  margin: 0;
+  color: var(--main_color);
+  font-family: Poppins;
+  font-size: 23.04px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Dialog form container */
+.form-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.form-field label {
+  display: inline-flex; /* Places the content in line */
+  align-items: center; /* Aligns vertically the box with the text */
+  gap: 8px; /* Space between input and text */
+  white-space: nowrap; /* Prevents the text from splitting into several lines */
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+/* Dialog form field - input, textarea */
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  max-width: 285px;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background: #fff;
+  font-family: Poppins;
+  font-size: 16px;
+  color: var(--gray-dark);
+}
+
+.form-field input[type="text"] {
+  width: 100%;
+  max-width: 285px;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background: #fff;
+  font-family: Poppins;
+  font-size: 16px;
+  color: var(--gray-dark);
+}
+
+/* Dialog button actions container */
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Dialog button actions */
+.actions button {
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Dialog cancel button actions */
+.actions .cancel-button {
+  background: var(--gradient_purple);
+  color: var(--gray-dark);
+  border: 1px solid var(--main_color);
+}
+
+/* Dialog confirm button actions */
+.actions .confirm-button {
+  background: var(--main_color);
+  color: white;
+}
+
+/* Dialog disabled confirm button actions */
+.actions .confirm-button:disabled {
+  background-color: #b0b0b0;
+  cursor: not-allowed;
+  color: #ffffff;
+  opacity: 0.6;
+}
+
+/* Error text & Success Text */
+.error-text,
+.success-text {
+  text-align: center;
+  margin: 5px 0;
+  font-family: Poppins;
+  font-size: 14px;
+}
+
+/* Error text color */
 .error-text {
-  color: red;
-  font-size: 0.875rem;
-  margin-top: 5px;
-  font-family: Poppins, sans-serif;
+  color: #ff0000;
+}
+
+/* Success text color */
+.success-text {
+  color: #28a745;
 }

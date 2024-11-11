@@ -1,6 +1,6 @@
 <div class="purple-container">
   <p class="welcoming-text">¡Qué alegría verte de nuevo!</p>
-  <button class="create-club-button">
+  <button class="create-club-button" (click)="openDialog()">
     Crear club
     <img src="assets/ico/ic-add-club-filled.png" alt="Add Icon" class="icon" />
   </button>
@@ -43,3 +43,9 @@
     </div>
   </div>
 </div>
+
+<!-- Show the dialogue only if it is open -->
+<app-create-club-dialog
+  *ngIf="isDialogOpen"
+  (close)="closeDialog()"
+></app-create-club-dialog>

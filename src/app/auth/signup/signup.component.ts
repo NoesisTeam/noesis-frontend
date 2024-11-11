@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthRequest } from '../../core/models/auth-request.model';
 import { AuthService } from '../../core/services/auth.service';
-import { LoginResponse } from '../../core/models/login-response.model';
 import { ExecutedProcessDialogComponent } from '../../shared/components/executed-process-dialog/executed-process-dialog.component';
 import {
   FormBuilder,
@@ -37,14 +34,10 @@ export class SignupComponent {
   dialogActionText: string = 'Aceptar';
   showDialog: boolean = false;
 
-  private signupURL: string = 'http://127.0.0.1:8000/register';
-  private loginURL: string = 'http://127.0.0.1:8000/login';
-
   constructor(
-    private http: HttpClient,
+    private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService,
-    private formBuilder: FormBuilder
+    private authService: AuthService
   ) {
     // Initialization of the form with validators
     this.signupForm = this.formBuilder.group(
@@ -81,13 +74,26 @@ export class SignupComponent {
   onSubmit(): void {
     if (this.signupForm.invalid) return;
 
-    const signupData: AuthRequest = {
-      user_name: this.signupForm.value.username,
-      user_password: this.signupForm.value.password,
-    };
+    const { username, password } = this.signupForm.value;
 
-    this.http.post(this.signupURL, signupData).subscribe({
-      next: () => this.loginAfterSignup(signupData),
+    this.authService.signup(username, password).subscribe({
+      next: (response) => {
+        this.authService.login(username, password).subscribe({
+          next: (response) => {
+            this.authService.setUserId(response.user.id_user.toString());
+            this.dialogMessage = 'Registro exitoso';
+            this.dialogActionText = 'Aceptar';
+            this.showDialog = true;
+          },
+          error: (err) => {
+            console.error(err.error?.detail || 'Error de inicio de sesión');
+            this.dialogMessage = 'Error al iniciar sesión después del registro';
+            this.dialogActionText = 'Reintentar';
+            this.showDialog = true;
+          },
+        });
+        console.log('Signup successful', response);
+      },
       error: (err) => {
         this.dialogMessage =
           err.error?.detail === 'User already exists'
@@ -100,27 +106,10 @@ export class SignupComponent {
     });
   }
 
-  private loginAfterSignup(signupData: AuthRequest): void {
-    this.http.post<LoginResponse>(this.loginURL, signupData).subscribe({
-      next: (loginResponse) => {
-        this.authService.setUserId(loginResponse.user.id.toString());
-        this.dialogMessage = 'Registro exitoso';
-        this.dialogActionText = 'Aceptar';
-        this.showDialog = true;
-      },
-      error: (err) => {
-        console.error(err.error?.detail || 'Error de inicio de sesión');
-        this.dialogMessage = 'Error al iniciar sesión después del registro';
-        this.dialogActionText = 'Reintentar';
-        this.showDialog = true;
-      },
-    });
-  }
-
   closeDialog(): void {
     this.showDialog = false;
     if (this.dialogMessage === 'Registro exitoso') {
-      this.router.navigate(['/clubs-home']);
+      this.router.navigate(['/clubs']);
     }
   }
 }

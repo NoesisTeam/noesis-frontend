@@ -11,40 +11,46 @@
           margin-bottom: -50px;
         "
       >
-        <a href="/clubs-home"> Noesis </a>
+        <a href="/clubs"> Noesis </a>
       </p>
       <ul>
         <li
           class="menu-item clubs"
-          [routerLink]="['/clubs-home']"
           routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
         >
-          <img src="/assets/ico/ic-clubs.png" alt="Clubs Icon" class="icon" />
-          &nbsp;&nbsp;Clubs
+          <a [routerLink]="['/clubs']">
+            <img src="/assets/ico/ic-clubs.png" alt="Clubs Icon" class="icon" />
+            &nbsp;&nbsp;Clubs
+          </a>
         </li>
         <li
           class="menu-item explore"
-          [routerLink]="['/explore']"
           routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
         >
-          <img
-            src="/assets/ico/ic-explore.png"
-            alt="Explore Icon"
-            class="icon"
-          />
-          &nbsp;Explorar
+          <a [routerLink]="['/explore']">
+            <img
+              src="/assets/ico/ic-explore.png"
+              alt="Explore Icon"
+              class="icon"
+            />
+            &nbsp;Explorar
+          </a>
         </li>
         <li
           class="menu-item profile"
-          [routerLink]="['/profile']"
           routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
         >
-          <img
-            src="/assets/ico/ic-profile.png"
-            alt="Profile Icon"
-            class="icon"
-          />
-          &nbsp;&nbsp;Perfil
+          <a [routerLink]="['/profile']">
+            <img
+              src="/assets/ico/ic-profile.png"
+              alt="Profile Icon"
+              class="icon"
+            />
+            &nbsp;&nbsp;Perfil
+          </a>
         </li>
       </ul>
     </nav>

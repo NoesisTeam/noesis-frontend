@@ -13,7 +13,6 @@
       <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onSubmit()">
         <div class="input-group">
           <input
-            id="username"
             formControlName="username"
             type="text"
             placeholder="Usuario"
@@ -35,7 +34,6 @@
         </div>
         <div class="input-group">
           <input
-            id="password"
             formControlName="password"
             [type]="showPassword ? 'text' : 'password'"
             placeholder="Contraseña"

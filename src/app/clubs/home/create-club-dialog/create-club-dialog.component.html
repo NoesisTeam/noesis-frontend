@@ -1,0 +1,51 @@
+<div class="dialog-overlay">
+  <div class="dialog-content" style="max-width: 400px">
+    <h2>Crear club</h2>
+    <form
+      [formGroup]="createClubForm"
+      class="form-container"
+      style="flex-direction: column; align-items: center"
+    >
+      <div class="form-field">
+        <label>
+          <input type="checkbox" formControlName="isAcademic" />
+          Es académico
+        </label>
+      </div>
+      <div class="form-field">
+        <input
+          formControlName="clubName"
+          type="text"
+          placeholder="Nombre del club"
+        />
+        <p
+          *ngIf="
+            createClubForm.get('clubName')?.invalid &&
+            createClubForm.get('clubName')?.touched
+          "
+          class="error-text"
+        >
+          Campo obligatorio
+        </p>
+      </div>
+      <div class="form-field radio-group">
+        <label>
+          <input type="radio" formControlName="clubType" value="Público" />
+          Público
+        </label>
+        <label>
+          <input type="radio" formControlName="clubType" value="Privado" />
+          Privado
+        </label>
+      </div>
+    </form>
+    <div class="actions">
+      <button type="button" class="cancel-button" (click)="onClose()">
+        Cancelar
+      </button>
+      <button type="submit" class="confirm-button" [disabled]="!isFormValid()">
+        Crear
+      </button>
+    </div>
+  </div>
+</div>

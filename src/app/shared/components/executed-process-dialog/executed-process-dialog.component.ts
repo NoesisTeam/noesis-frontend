@@ -10,7 +10,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class ExecutedProcessDialogComponent {
   @Input() message: string = 'Mensaje por defecto';
   @Input() actionText: string = 'Aceptar';
-  @Input() isVisible: boolean = false;
   @Output() close = new EventEmitter<void>();
 
   onClose() {

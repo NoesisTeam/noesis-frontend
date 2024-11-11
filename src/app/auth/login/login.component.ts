@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { LoginResponse } from '../../core/models/login-response.model';
-import { AuthRequest } from '../../core/models/auth-request.model';
 import { AuthService } from '../../core/services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -32,21 +29,16 @@ export class LoginComponent {
   showDialog: boolean = false;
   dialogMessage: string = '';
   dialogActionText: string = 'Aceptar';
-  private loginURL: string = 'http://127.0.0.1:8000/login';
 
   constructor(
-    private http: HttpClient,
+    private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService,
-    private formBuilder: FormBuilder
+    private authService: AuthService
   ) {
-    this.loginForm = this.formBuilder.group(
-      {
-        username: ['', Validators.required],
-        password: ['', [Validators.required, Validators.minLength(6)]],
-      },
-      {}
-    );
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
   }
 
   // Function to toggle password visibility
@@ -57,15 +49,12 @@ export class LoginComponent {
   onSubmit(): void {
     if (this.loginForm.invalid) return;
 
-    const loginData: AuthRequest = {
-      user_name: this.loginForm.value.username,
-      user_password: this.loginForm.value.password,
-    };
+    const { username, password } = this.loginForm.value;
 
-    this.http.post<LoginResponse>(this.loginURL, loginData).subscribe({
-      next: (response: LoginResponse) => {
+    this.authService.login(username, password).subscribe({
+      next: (response) => {
         console.log('Login successful', response);
-        this.authService.setUserId(response.user.id.toString());
+        this.authService.setUserId(response.user.id_user.toString());
         this.dialogMessage = 'Ingreso exitoso';
         this.dialogActionText = 'Aceptar'; //
         this.showDialog = true;
@@ -82,7 +71,7 @@ export class LoginComponent {
   closeDialog() {
     this.showDialog = false;
     if (this.dialogMessage === 'Ingreso exitoso') {
-      this.router.navigate(['/clubs-home']);
+      this.router.navigate(['/clubs']);
     }
   }
 }
