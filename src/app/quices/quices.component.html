@@ -1,0 +1,31 @@
+<div class="quiz-container">
+  <button class="back-button">← Atrás</button>
+
+  <div class="main-content">
+    <div class="header">
+      <div class="quiz-info">
+        <div class="quiz-title">Quiz <span>Lectura violencia</span></div>
+        <div class="timer">04:59</div>
+      </div>
+      <button class="submit-button">Enviar →</button>
+    </div>
+
+    <div class="questions-container">
+      <div class="question-card" *ngFor="let question of questions; let i = index">
+        <h3>{{ i + 1 }}. {{ question.title }}</h3>
+        <div class="option" *ngFor="let option of question.options">
+          <input type="radio" [name]="'question-' + i" /> {{ option }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <div class="club-info">
+      <div class="club-label">Club</div>
+      <div class="club-name">Literatura</div>
+    </div>
+
+    <!-- Aquí puedes colocar componentes para mostrar los resultados -->
+  </div>
+</div>

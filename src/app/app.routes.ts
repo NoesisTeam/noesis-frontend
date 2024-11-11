@@ -9,5 +9,10 @@ export const routes: Routes = [
   {
     path: 'clubs',
     loadChildren: () => import('./club/club.routes').then((m) => m.CLUB_ROUTES),
+  },
+
+  {
+    path: '',
+    loadChildren: () => import('./quices/quices.routes').then((m) => m.QUICES_ROUTES),
   }
 ];

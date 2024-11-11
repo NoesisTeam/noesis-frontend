@@ -1,0 +1,136 @@
+.quiz-container {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin: auto;
+  background-color: #f3e9f3;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  position: relative;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #696262;         /* Color blanco para buen contraste */
+  cursor: pointer;
+  position: absolute;     /* Posicionado absoluto para superposición */
+  top: 8px;               /* Ajusta el posicionamiento vertical */
+  left: 8px;              /* Ajusta el posicionamiento horizontal */
+  z-index: 2;             /* Asegura que esté encima del encabezado */
+}
+
+
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #0073ff, #00d4ff);
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 12px;
+  position: relative;       /* Posiciona el botón de "Atrás" en relación al header */
+  margin-top: 24px;         /* Agrega un margen superior para separarlo del botón de "Atrás" */
+}
+
+.quiz-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.quiz-title {
+  font-size: 18px;
+}
+
+.quiz-title span {
+  font-weight: bold;
+}
+
+.timer {
+  background-color: #003e7e;
+  padding: 6px 6px;   /* Reduce el padding para hacer el tamaño más pequeño */
+  border-radius: 4px;
+  font-size: 16px;    /* Reduce el tamaño de fuente */
+  margin-top: 4px;
+  max-width: 60px;    /* Limita el ancho del componente */
+}
+.submit-button {
+  background: #ffffff;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.questions-container {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 500px;
+  padding-right: 8px;
+  margin-top: 16px;
+}
+
+.question-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #3b3b3b;
+  margin-top: 8px;
+}
+
+.option input[type="radio"] {
+  margin-right: 8px;
+}
+
+.sidebar {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.club-info {
+  position: absolute;             /* Posiciona el componente en la esquina derecha */
+  right: 0px;                    /* Separación del borde derecho */
+  top: 16px;                      /* Separación del borde superior */
+  background-color: #1804FF;      /* Fondo azul oscuro */
+  color: #ffffff;                 /* Texto blanco */
+  border-radius: 0px 0px 0px 8px;
+  font-size: 16px;
+  font-weight: bold;
+  overflow: hidden;               /* Mantiene el borde redondeado */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para resaltarlo */
+  text-align: center;
+  width: 200px;                   /* Ancho fijo para el componente */
+}
+
+.club-info .club-label,
+.club-info .club-name {
+  padding: 4px 8px 4px 12px;       /* Reduce el padding para acercar los textos */
+  text-align: left;                 /* Alineación a la izquierda */
+  margin: 3px;                        /* Elimina cualquier margen entre los textos */
+  line-height: 1;                   /* Ajusta la altura de línea para reducir el espacio vertical */
+}
+
+
