@@ -18,6 +18,7 @@ body {
   --faded_purple: #d499f84a;
   --pink: #d900d0;
   --deep_violet: #6e27e3;
+  --blue: #1804ff;
 }
 
 /* Noesis Logo */
@@ -184,4 +185,99 @@ body {
 /* Success text color */
 .success-text {
   color: #28a745;
+}
+
+/* Home page welcoming text */
+.welcoming-text {
+  font-family: Poppins;
+  font-size: 27.65px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: var(--main_color);
+  margin-left: 40px;
+}
+
+/* Clubs & Explore home create button */
+.create-club-button {
+  display: flex;
+  width: 332px;
+  height: 65px;
+  padding: 12px 16px;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  font-family: Poppins;
+  font-size: 23.04px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-left: 40px;
+  cursor: pointer;
+  background: linear-gradient(
+    90deg,
+    rgba(217, 0, 208, 0.89) 0%,
+    rgba(100, 8, 156, 0.89) 98.61%
+  );
+  border: none;
+}
+
+/* Clubs & Explore home create button icon */
+.create-club-button .icon {
+  width: 30px;
+  height: 30px;
+  margin-left: auto;
+}
+
+.clubs-container {
+  width: 1550px;
+  height: 72%;
+  border-radius: 10px;
+  background: #fdfdfd;
+  box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.25);
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+.input-wrapper {
+  position: absolute;
+  right: 90px;
+  top: 230px;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.input-wrapper input {
+  padding-left: 40px;
+  border-radius: 5px;
+  border: none;
+  background: #e8e8e8;
+  color: #948282cc;
+  width: 300px;
+  height: 40px;
+  font-family: Poppins;
+  font-size: 16px;
+}
+
+.clubs-text {
+  color: rgba(0, 0, 0, 0.75);
+  font-family: Poppins;
+  font-size: 23.04px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 30px;
+  position: absolute;
+  top: 250px;
 }

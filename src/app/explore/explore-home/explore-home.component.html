@@ -13,18 +13,8 @@
       />
       <input id="search" name="search" type="text" placeholder="Buscar club" />
     </div>
-    <p class="clubs-text">Clubs creados</p>
-    <app-club-list
-      [color]="'var(--pink)'"
-      [top]="'130px'"
-      [clubs]="clubs"
-    ></app-club-list>
-    <p class="clubs-text" style="top: 480px">Clubs a los que Perteneces</p>
-    <app-club-list
-      [color]="'var(--blue)'"
-      [top]="'220px'"
-      [clubs]="clubs"
-    ></app-club-list>
+    <p class="clubs-text">Clubs públicos</p>
+    <app-public-club-list [clubs]="clubs"></app-public-club-list>
   </div>
 </div>
 

@@ -3,6 +3,7 @@
     <h2>Crear club</h2>
     <form
       [formGroup]="createClubForm"
+      (ngSubmit)="onSubmit()"
       class="form-container"
       style="flex-direction: column; align-items: center"
     >
@@ -38,14 +39,18 @@
           Privado
         </label>
       </div>
+      <div class="actions">
+        <button type="button" class="cancel-button" (click)="onClose()">
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="confirm-button"
+          [disabled]="!isFormValid()"
+        >
+          Crear
+        </button>
+      </div>
     </form>
-    <div class="actions">
-      <button type="button" class="cancel-button" (click)="onClose()">
-        Cancelar
-      </button>
-      <button type="submit" class="confirm-button" [disabled]="!isFormValid()">
-        Crear
-      </button>
-    </div>
   </div>
 </div>

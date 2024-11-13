@@ -80,7 +80,7 @@ export class SignupComponent {
       next: (response) => {
         this.authService.login(username, password).subscribe({
           next: (response) => {
-            this.authService.setUserId(response.user.id_user.toString());
+            this.authService.setUserId(response.user.id.toString());
             this.dialogMessage = 'Registro exitoso';
             this.dialogActionText = 'Aceptar';
             this.showDialog = true;

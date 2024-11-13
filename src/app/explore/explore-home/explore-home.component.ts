@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CreateClubDialogComponent } from '../create-club-dialog/create-club-dialog.component';
-import { Club } from '../../../core/domain/entities';
-import { ClubListComponent } from '../club-list/club-list.component';
+import { CreateClubDialogComponent } from '../../clubs/home/create-club-dialog/create-club-dialog.component';
+import { Club } from '../../core/domain/entities';
+import { PublicClubListComponent } from '../public-club-list/public-club-list.component';
 
 @Component({
-  selector: 'app-clubs-home',
+  selector: 'app-explore-home',
   standalone: true,
-  imports: [CommonModule, CreateClubDialogComponent, ClubListComponent],
-  templateUrl: './clubs-home.component.html',
-  styleUrl: './clubs-home.component.css',
+  imports: [CommonModule, CreateClubDialogComponent, PublicClubListComponent],
+  templateUrl: './explore-home.component.html',
+  styleUrl: './explore-home.component.css',
 })
-export class ClubsHomeComponent implements OnInit {
-  constructor() {}
+export class ExploreHomeComponent {
+  isDialogOpen = false;
   clubs: Club[] = [
     {
       id_club: 1,
@@ -115,10 +115,6 @@ export class ClubsHomeComponent implements OnInit {
       clubs_status: 'pending',
     },
   ];
-
-  isDialogOpen = false;
-
-  ngOnInit() {}
 
   openDialog() {
     this.isDialogOpen = true;

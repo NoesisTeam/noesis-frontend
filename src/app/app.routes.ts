@@ -10,4 +10,9 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./clubs/clubs.routes').then((m) => m.CLUBS_ROUTES),
   },
+  {
+    path: 'explore',
+    loadChildren: () =>
+      import('./explore/explore.routes').then((m) => m.EXPLORE_ROUTES),
+  },
 ];

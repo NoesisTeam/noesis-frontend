@@ -1,9 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { LoginUseCase } from '../domain/usecases';
-import { SignupUseCase } from '../domain/usecases';
-import { User, UserCreate } from '../domain/entities';
+import { LoginResponseModel, SignupResponse } from '../data/models';
+import { productionEnvironment } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
@@ -12,49 +10,40 @@ export class AuthService {
   private userId = 'userId';
   private tokenKey = 'authToken';
 
-  private currentUserSubject = new BehaviorSubject<User | null>(null);
-  currentUser$ = this.currentUserSubject.asObservable();
+  constructor(private http: HttpClient) {}
 
-  constructor(
-    private loginUseCase: LoginUseCase,
-    private signupUseCase: SignupUseCase
-  ) {}
-
-  login(
-    user_name: string,
-    user_password: string
-  ): Observable<{ message: string; user: User }> {
-    const credentials: UserCreate = { user_name, user_password };
-
-    return this.loginUseCase.execute(credentials).pipe(
-      tap((response) => {
-        this.currentUserSubject.next(response.user);
-      })
+  login(user_name: string, user_password: string) {
+    return this.http.post<LoginResponseModel>(
+      productionEnvironment.authApiUrl + 'login',
+      {
+        user_name,
+        user_password,
+      }
     );
   }
 
-  signup(user_name: string, user_password: string): Observable<{ user: User }> {
-    const credentials: UserCreate = { user_name, user_password };
-
-    return this.signupUseCase.execute(credentials).pipe(
-      tap((response) => {
-        this.currentUserSubject.next(response.user);
-      })
+  signup(user_name: string, user_password: string) {
+    return this.http.post<SignupResponse>(
+      productionEnvironment.authApiUrl + 'register',
+      {
+        user_name,
+        user_password,
+      }
     );
   }
 
   // Uses localstorage to store a token
-  setTokenKey(token: string): void {
+  setToken(token: string): void {
     localStorage.setItem(this.tokenKey, token);
   }
 
   // Check if there is a token in the localstorage to obtain it
-  getTokenKey(): string | null {
+  getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
   }
 
   // When you log out, the token is deleted so that no record remains.
-  clearTokenKey(): void {
+  clearToken(): void {
     localStorage.removeItem(this.tokenKey);
   }
 

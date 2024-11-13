@@ -54,16 +54,18 @@ export class LoginComponent {
     this.authService.login(username, password).subscribe({
       next: (response) => {
         console.log('Login successful', response);
-        this.authService.setUserId(response.user.id_user.toString());
+
+        // Saves the user ID
+        this.authService.setUserId(response.user.id.toString()); // Convierte a string si es necesario
         this.dialogMessage = 'Ingreso exitoso';
-        this.dialogActionText = 'Aceptar'; //
+        this.dialogActionText = 'Aceptar';
         this.showDialog = true;
       },
       error: (err) => {
-        this.dialogMessage = 'Error de ingreso';
+        this.dialogMessage = err.error?.message || 'Error de inicio de sesión';
         this.dialogActionText = 'Reintentar';
         this.showDialog = true;
-        console.log(err.error?.detail || 'Error de inicio de sesión');
+        console.error(err);
       },
     });
   }

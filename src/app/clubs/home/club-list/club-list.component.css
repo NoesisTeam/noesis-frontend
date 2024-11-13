@@ -1,0 +1,129 @@
+.club-list-container {
+  display: flex;
+}
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  width: 1500px;
+  margin: 0 auto;
+  left: 40px;
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+  gap: 3rem;
+  align-items: center;
+}
+
+.carousel-button {
+  position: relative;
+  margin-inline: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 150px;
+  background-color: var(--main_color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-family: Poppins, sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.carousel-button .icon {
+  width: 30px;
+  height: 30px;
+}
+
+.carousel-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.carousel-button:not(:disabled):hover {
+  background-color: #7c4dff;
+  transform: scale(1.05);
+}
+
+.prev-button {
+  margin-right: auto;
+}
+
+.next-button {
+  margin-left: auto;
+}
+
+.club-card {
+  display: flex;
+  width: 280px;
+  height: 150px;
+  padding: 1px 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  flex-shrink: 0;
+  top: 320px;
+  left: 70px;
+
+  border: none;
+  background: var(--gradient_purple);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.club-text {
+  position: absolute;
+  color: white;
+  margin-top: 5px;
+  margin-left: 10px;
+
+  font-family: Poppins;
+  font-size: 19.2px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.club-name-text {
+  position: absolute;
+  color: white;
+  margin-top: 35px;
+  margin-left: 10px;
+
+  font-family: Poppins;
+  font-size: 23.04px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.founded-by-text {
+  position: absolute;
+  color: var(--deep_violet);
+  margin-top: 85px;
+  margin-left: 10px;
+
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.founded-by-name-text {
+  position: absolute;
+  color: rgba(0, 0, 0, 0.72);
+  margin-top: 110px;
+  margin-left: 10px;
+
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

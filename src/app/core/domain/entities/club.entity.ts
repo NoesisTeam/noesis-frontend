@@ -6,4 +6,5 @@ export interface Club {
   is_private: boolean;
   is_academic: boolean;
   created_at: string;
+  clubs_status: string;
 }

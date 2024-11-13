@@ -1,4 +1,5 @@
-export const environment = {
+export const productionEnvironment = {
   production: true,
-  apiUrl: 'http://your-production-api-url',
+  authApiUrl: 'https://authapi-dvz6.onrender.com/auth/',
+  coreApiUrl: 'https://noesis-coreapi.onrender.com/club/',
 };

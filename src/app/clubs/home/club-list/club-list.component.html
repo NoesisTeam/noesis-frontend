@@ -1,0 +1,50 @@
+<div class="club-list-container">
+  <!-- Back button -->
+  <button
+    class="carousel-button prev-button"
+    [style.top]="top"
+    (click)="scrollLeft()"
+    [disabled]="currentStartIndex === 0"
+  >
+    <img
+      src="assets/ico/ic-back-minimal.png"
+      alt="Back Arrow Icon"
+      class="icon"
+    />
+  </button>
+
+  <!-- Carousel -->
+  <div class="carousel-container" [style.top]="top">
+    <button class="club-card" *ngFor="let club of visibleClubs">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="280"
+        height="79"
+        viewBox="0 0 280 79"
+      >
+        <path
+          d="M238.204 69.5C204.448 81.631 22 82 0 69.5V0H280C269.929 35 270.204 58 238.204 69.5Z"
+          [attr.fill]="color"
+        />
+      </svg>
+      <p class="club-text">Club</p>
+      <p class="club-name-text">{{ club.club_name }}</p>
+      <p class="founded-by-text" [style.color]="color">Fundado por:</p>
+      <p class="founded-by-name-text">{{ club.club_code }}</p>
+    </button>
+  </div>
+
+  <!-- Forward button -->
+  <button
+    class="carousel-button next-button"
+    [style.top]="top"
+    (click)="scrollRight()"
+    [disabled]="currentStartIndex + clubsPerPage >= clubs.length"
+  >
+    <img
+      src="assets/ico/ic-forward-minimal.png"
+      alt="Forward Arrow Icon"
+      class="icon"
+    />
+  </button>
+</div>
