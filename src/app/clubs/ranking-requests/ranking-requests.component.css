@@ -1,0 +1,137 @@
+.ranking-container {
+  background-color: #f9f3ff;
+  border: 2px solid #6200ea;
+  border-radius: 8px;
+  padding: 16px;
+  width: 20vw;
+  max-width: 400px;
+  min-height: 400px;
+  max-height: 400px;
+  font-family: Arial, sans-serif;
+  position: absolute;
+  right: 20px;
+  top: 20vh;
+  overflow-y: auto;
+}
+
+.ranking-list,
+.requests-list {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.user-item.top-three:nth-child(1) {
+  background-color: #1804ff;
+  color: white;
+}
+
+.user-item.top-three:nth-child(2) {
+  background-color: #5b7fff;
+  color: white;
+}
+
+.user-item.top-three:nth-child(3) {
+  background-color: #a0b8ff;
+  color: white;
+}
+
+.user-item.top-three:nth-child(1) .points,
+.user-item.top-three:nth-child(2) .points,
+.user-item.top-three:nth-child(3) .points {
+  color: white;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 12px;
+}
+
+.tabs button {
+  background-color: transparent;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #6b6b6b;
+  font-size: 1.2em;
+}
+
+.tabs button.active {
+  color: #6200ea;
+  border-bottom: 2px solid #6200ea;
+  font-size: 1.3em;
+}
+
+.ranking-list,
+.requests-list {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.user-item:hover {
+  background-color: #e0e0e0;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  border: 1px solid #6200ea;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background-color: #ffffff;
+}
+
+.request-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+}
+
+.accept-button,
+.reject-button {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.accept-button {
+  width: 24px;
+  height: 24px;
+  background-image: url("/assets/icons/ic-accepted-request.png"); /* Imagen normal */
+  background-size: cover;
+  cursor: pointer;
+}
+
+.accept-button:hover {
+  background-image: url("/assets/icons/ic-accepted-request-filled.png"); /* Imagen de hover */
+}
+
+.reject-button {
+  width: 24px;
+  height: 24px;
+  background-image: url("/assets/icons/ic-denied-request.png"); /* Imagen normal */
+  background-size: cover;
+  cursor: pointer;
+}
+
+.reject-button:hover {
+  background-image: url("/assets/icons/ic-denied-request-filled.png"); /* Imagen de hover */
+}
+
+.position {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.name {
+  flex-grow: 1;
+}
+
+.points {
+  font-weight: bold;
+  color: #6200ea;
+}

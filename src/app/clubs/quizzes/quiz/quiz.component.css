@@ -1,0 +1,243 @@
+.quiz-container {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  margin: auto;
+  background-color: #f3e9f3;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  position: relative;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #0073ff, #00d4ff);
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 12px;
+  position: relative;
+  margin-top: 24px;
+}
+
+.quiz-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.quiz-title {
+  font-size: 18px;
+}
+
+.quiz-title span {
+  font-weight: bold;
+}
+
+.timer {
+  background-color: #003e7e;
+  padding: 6px;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-top: 4px;
+  max-width: 60px;
+}
+
+.submit-button {
+  background: #ffffff;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.edit-button,
+.save-button {
+  background-color: #ffffff;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.edit-button {
+  background-color: #0073ff;
+  color: #ffffff;
+}
+
+.save-button {
+  background-color: #00d4ff;
+  color: #ffffff;
+}
+
+.questions-container {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 600px;
+  padding-right: 8px;
+  margin-top: 16px;
+}
+
+.question-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #3b3b3b;
+  margin-top: 8px;
+}
+
+.option input[type="radio"] {
+  margin-right: 8px;
+}
+
+.question-input {
+  width: 100%;
+  font-size: 16px;
+  padding: 4px;
+  margin-bottom: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.option-input {
+  font-size: 16px;
+  padding: 4px;
+  margin-left: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.sidebar {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.club-info {
+  position: absolute;
+  right: 0px;
+  top: 16px;
+  background-color: #1804ff;
+  color: #ffffff;
+  border-radius: 0px 0px 0px 8px;
+  font-size: 16px;
+  font-weight: bold;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 200px;
+}
+
+.stats {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.stat-item {
+  background-color: #ff00a5;
+  color: #ffffff;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.stat-value {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.option input[type="radio"] {
+  margin-right: 8px;
+}
+
+.option span[contenteditable="true"] {
+  outline: none;
+  border-bottom: 1px dashed #ccc;
+  padding: 0 4px;
+  cursor: text;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #696262;
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  transition: color 0.3s;
+}
+
+.back-button:hover {
+  color: #ff69b4; /* Pink colour for hover */
+}
+
+.option input[type="radio"] {
+  margin-right: 8px;
+}
+
+.editable[contenteditable="true"] {
+  outline: none;
+  border-bottom: 1px dashed #ccc;
+  padding: 0 4px;
+  cursor: text;
+  text-align: left; /* Alignment of text to the left */
+}
+.option-input {
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 16px;
+  width: auto;
+  margin-left: 8px;
+  color: #3b3b3b;
+}
+
+.option.correct {
+  color: green;
+}
+
+.option.incorrect {
+  color: red;
+}
+
+.correct-radio {
+  accent-color: green;
+}
+
+.incorrect-radio {
+  accent-color: red;
+}
