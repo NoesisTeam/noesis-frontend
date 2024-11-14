@@ -1,0 +1,21 @@
+<div class="list-container">
+  <button class="resource-card" *ngFor="let resource of resources">
+    <!-- SVG as background -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="230"
+      height="40"
+      viewBox="0 0 230 40"
+      fill="none"
+    >
+      <path
+        d="M0 5C0 2.23858 2.23858 0 5 0H225C227.761 0 230 2.23858 230 5V35C230 37.7614 227.761 40 225 40H5C2.23858 40 0 37.7614 0 35V5Z"
+        fill="#20B5F5"
+      />
+    </svg>
+
+    <!-- Button content -->
+    <p class="resource-name-text">{{ resource.title }}</p>
+    <img src="assets/ico/ic-resource.png" alt="Resource Icon" />
+  </button>
+</div>

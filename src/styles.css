@@ -19,6 +19,7 @@ body {
   --pink: #d900d0;
   --deep_violet: #6e27e3;
   --blue: #1804ff;
+  --light_blue: #a5e3fe;
 }
 
 /* Noesis Logo */
@@ -227,13 +228,14 @@ body {
 }
 
 /* Clubs & Explore home create button icon */
-.create-club-button .icon {
-  width: 30px;
-  height: 30px;
+.create-club-button img {
+  width: 35px;
+  height: 35px;
   margin-left: auto;
 }
 
-.clubs-container {
+.clubs-container,
+.resources-container {
   width: 1550px;
   height: 72%;
   border-radius: 10px;
@@ -270,7 +272,8 @@ body {
   font-size: 16px;
 }
 
-.clubs-text {
+.clubs-text,
+.resource-tet¿ {
   color: rgba(0, 0, 0, 0.75);
   font-family: Poppins;
   font-size: 23.04px;

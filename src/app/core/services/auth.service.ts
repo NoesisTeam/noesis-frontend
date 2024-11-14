@@ -32,6 +32,16 @@ export class AuthService {
     );
   }
 
+  generateToken(club_id: number) {
+    return this.http.post<{ token: string }>(
+      productionEnvironment.authApiUrl + 'token_club',
+      {
+        club_id,
+        user_id: this.getUserId() || null,
+      }
+    );
+  }
+
   // Uses localstorage to store a token
   setToken(token: string): void {
     localStorage.setItem(this.tokenKey, token);

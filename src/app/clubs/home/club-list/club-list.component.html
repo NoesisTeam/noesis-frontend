@@ -15,7 +15,11 @@
 
   <!-- Carousel -->
   <div class="carousel-container" [style.top]="top">
-    <button class="club-card" *ngFor="let club of visibleClubs">
+    <button
+      class="club-card"
+      *ngFor="let club of visibleClubs"
+      (click)="getTokenClub(club.id_club)"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="280"

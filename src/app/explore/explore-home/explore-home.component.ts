@@ -22,7 +22,7 @@ export class ExploreHomeComponent {
       is_private: false,
       is_academic: true,
       created_at: '2023-05-15',
-      clubs_status: 'active',
+      club_status: 'active',
     },
     {
       id_club: 2,
@@ -32,7 +32,7 @@ export class ExploreHomeComponent {
       is_private: true,
       is_academic: true,
       created_at: '2023-08-22',
-      clubs_status: 'active',
+      club_status: 'active',
     },
     {
       id_club: 3,
@@ -42,7 +42,7 @@ export class ExploreHomeComponent {
       is_private: false,
       is_academic: false,
       created_at: '2023-03-10',
-      clubs_status: 'inactive',
+      club_status: 'inactive',
     },
     {
       id_club: 4,
@@ -52,7 +52,7 @@ export class ExploreHomeComponent {
       is_private: false,
       is_academic: true,
       created_at: '2024-01-05',
-      clubs_status: 'active',
+      club_status: 'active',
     },
     {
       id_club: 5,
@@ -62,7 +62,7 @@ export class ExploreHomeComponent {
       is_private: true,
       is_academic: false,
       created_at: '2023-11-30',
-      clubs_status: 'pending',
+      club_status: 'pending',
     },
     {
       id_club: 6,
@@ -72,7 +72,7 @@ export class ExploreHomeComponent {
       is_private: false,
       is_academic: false,
       created_at: '2023-09-18',
-      clubs_status: 'active',
+      club_status: 'active',
     },
     {
       id_club: 7,
@@ -82,7 +82,7 @@ export class ExploreHomeComponent {
       is_private: true,
       is_academic: true,
       created_at: '2024-02-01',
-      clubs_status: 'active',
+      club_status: 'active',
     },
     {
       id_club: 8,
@@ -92,7 +92,7 @@ export class ExploreHomeComponent {
       is_private: false,
       is_academic: false,
       created_at: '2023-07-12',
-      clubs_status: 'inactive',
+      club_status: 'inactive',
     },
     {
       id_club: 9,
@@ -102,7 +102,7 @@ export class ExploreHomeComponent {
       is_private: true,
       is_academic: true,
       created_at: '2023-12-05',
-      clubs_status: 'active',
+      club_status: 'active',
     },
     {
       id_club: 10,
@@ -112,7 +112,7 @@ export class ExploreHomeComponent {
       is_private: false,
       is_academic: true,
       created_at: '2024-01-20',
-      clubs_status: 'pending',
+      club_status: 'pending',
     },
   ];
 

@@ -26,13 +26,13 @@ export class ClubsService {
 
   getFoundedClubs(id: string | null): Observable<Club[]> {
     return this.http.get<Club[]>(
-      productionEnvironment.coreApiUrl + 'founded' + id
+      productionEnvironment.coreApiUrl + 'get/founded/' + id
     );
   }
 
   getJoinedClubs(id: string | null): Observable<Club[]> {
     return this.http.get<Club[]>(
-      productionEnvironment.coreApiUrl + 'joined' + id
+      productionEnvironment.coreApiUrl + 'get/joined/' + id
     );
   }
 

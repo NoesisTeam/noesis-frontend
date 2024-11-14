@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-club-list',
@@ -8,7 +10,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './club-list.component.html',
   styleUrls: ['./club-list.component.css'],
 })
-export class ClubListComponent {
+export class ClubListComponent implements OnChanges {
+  constructor(private authService: AuthService, private router: Router) {}
+
   @Input() color: string = '#000000';
   @Input() top: string = '0px';
   @Input() clubs: {
@@ -19,7 +23,7 @@ export class ClubListComponent {
     is_private: boolean;
     is_academic: boolean;
     created_at: string;
-    clubs_status: string;
+    club_status: string;
   }[] = [];
 
   visibleClubs: typeof this.clubs = [];
@@ -28,6 +32,13 @@ export class ClubListComponent {
 
   ngOnInit() {
     this.updateVisibleClubs();
+  }
+
+  // Detects changes in clubs and updates the view
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['clubs'] && changes['clubs'].currentValue) {
+      this.updateVisibleClubs();
+    }
   }
 
   updateVisibleClubs() {
@@ -49,5 +60,18 @@ export class ClubListComponent {
       this.currentStartIndex--;
       this.updateVisibleClubs();
     }
+  }
+
+  getTokenClub(club_id: number) {
+    this.authService.generateToken(club_id).subscribe({
+      next: (res) => {
+        this.authService.setToken(res.token);
+        this.router.navigate(['/clubs/resources']);
+      },
+      error: (err) => {
+        console.error('Login failed', err);
+        alert('Credenciales Incorrectas');
+      },
+    });
   }
 }

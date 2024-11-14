@@ -1,38 +1,39 @@
 .carousel-container {
+  display: flex;
   position: relative;
   left: 70px;
   top: 150px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 tarjetas por fila */
+  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
   gap: 2rem;
-  max-height: calc(150px * 2 + 3rem); /* Altura para 2 filas más espacio */
-  overflow-y: auto; /* Barra de desplazamiento si hay más de 2 filas */
+  max-height: calc(150px * 2 + 3rem); /* Height for 2 rows plus space */
+  overflow-y: auto; /* Scrollbar if there are more than 2 rows */
   width: 90%;
 }
 
 .club-card {
-  position: relative; /* Permite posicionar elementos absolutos dentro de la tarjeta */
+  position: relative; /* Allows to position absolute elements within the card */
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra horizontalmente el contenido */
-  justify-content: space-between; /* Distribuye verticalmente el contenido */
-  padding: 10px; /* Espaciado interno */
+  align-items: center; /* Horizontally centers the content */
+  justify-content: space-between; /* Distributes content vertically */
+  padding: 10px; /* Internal spacing */
   width: 280px;
   height: 150px;
   border: none;
   background: var(--gradient_purple);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
-  overflow: hidden; /* Asegura que ningún contenido salga del borde */
+  overflow: hidden; /* Ensures that no content leaves the edge */
 }
 
 .club-card svg {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; /* Asegura que el SVG ocupe todo el ancho de la tarjeta */
+  width: 100%; /* Ensures that the SVG occupies the full width of the card */
   height: auto;
-  z-index: 0; /* Envía el SVG detrás del contenido */
+  z-index: 0; /* Sends the SVG behind the content */
 }
 
 .club-text,
@@ -40,14 +41,14 @@
 .founded-by-text,
 .founded-by-name-text {
   position: relative;
-  z-index: 1; /* Asegura que el texto esté delante del SVG */
+  z-index: 1; /* Ensures that the text is in front of the SVG */
   margin: 0;
   padding: 0;
   font-family: Poppins, sans-serif;
 }
 
 .club-text {
-  align-self: flex-start; /* Alinea a la izquierda dentro del contenedor */
+  align-self: flex-start; /* Aligns to the left inside the container */
   color: white;
   font-size: 19.2px;
   font-weight: 500;
@@ -77,8 +78,8 @@
 
 .join-button {
   position: absolute;
-  bottom: 10px; /* Margen inferior */
-  right: 10px; /* Margen derecho */
+  bottom: 10px; /* Bottom margin */
+  right: 10px; /* Right margin */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,5 +95,5 @@
   line-height: normal;
   text-align: center;
   cursor: pointer;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Opcional: Añade un poco de sombra */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
