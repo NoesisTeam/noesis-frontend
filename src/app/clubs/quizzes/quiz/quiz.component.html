@@ -3,26 +3,26 @@
     <div class="header">
       <div class="quiz-info">
         <div class="quiz-title">Quiz <span>Lectura violencia</span></div>
-        <div *ngIf="role === 'usuario' && !showStats" class="timer">
+        <div *ngIf="role === 'Member' && !showStats" class="timer">
           {{ timeRemaining }}
         </div>
       </div>
       <button
-        *ngIf="role === 'usuario' && !showStats"
+        *ngIf="role === 'Member' && !showStats"
         (click)="submitQuiz()"
         class="submit-button"
       >
         Enviar →
       </button>
       <button
-        *ngIf="role === 'fundador' && !isEditing"
+        *ngIf="role === 'Founder' && !isEditing"
         (click)="toggleEdit()"
         class="edit-button"
       >
         Editar
       </button>
       <button
-        *ngIf="role === 'fundador' && isEditing"
+        *ngIf="role === 'Founder' && isEditing"
         (click)="saveChanges()"
         class="save-button"
       >
@@ -63,13 +63,11 @@
             }"
           />
           <input
-            *ngIf="isEditing && role === 'fundador'"
+            *ngIf="isEditing && role === 'Founder'"
             [(ngModel)]="option.text"
             class="option-input"
           />
-          <span *ngIf="!isEditing || role === 'usuario'">{{
-            option.text
-          }}</span>
+          <span *ngIf="!isEditing || role === 'Member'">{{ option.text }}</span>
         </div>
       </div>
     </div>

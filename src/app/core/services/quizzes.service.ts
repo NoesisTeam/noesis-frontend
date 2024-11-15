@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { productionEnvironment } from '../../../environments/environment.prod';
-import { Quiz } from '../domain/entities';
+import { QuizResponseModel } from '../data/models/quiz-response';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +9,13 @@ import { Quiz } from '../domain/entities';
 export class QuizzesService {
   constructor(private http: HttpClient) {}
 
-  getQuiz(resource_id: number) {
-    return this.http.get<Quiz>(
+  getReadingResourceId(): string | null {
+    return localStorage.getItem('resourceId');
+  }
+
+  getQuiz(resource_id: string) {
+    console.log(resource_id);
+    return this.http.get<QuizResponseModel>(
       productionEnvironment.coreApiUrl + 'get/resources/quiz/' + resource_id
     );
   }

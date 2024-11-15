@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { QuizzesService } from '../../../core/services/quizzes.service';
+import { QuizResponseModel } from '../../../core/data/models/quiz-response';
+import { RequestService } from '../../../core/services/requests.service';
 
 interface QuestionOption {
   text: string;
@@ -22,8 +24,12 @@ interface Question {
   styleUrl: './quiz.component.css',
 })
 export class QuizComponent implements OnInit {
-  constructor(private quizzesService: QuizzesService) {}
-  role = 'usuario';
+  constructor(
+    private quizzesService: QuizzesService,
+    private requestsService: RequestService
+  ) {}
+
+  role = 'Member';
   isEditing = false;
   showStats = false;
   score = 0;
@@ -32,15 +38,55 @@ export class QuizComponent implements OnInit {
   hoverBack = false;
   questions: Question[] = [];
 
-  
-
   // Timer
   timeRemaining = '05:00';
   private timer: any;
 
   ngOnInit() {
-    this.startTimer();
-    // this.questions = this.quizzesService.getQuiz()
+    if (!this.requestsService.isTokenExpired()) {
+      this.role = this.requestsService.getRoleFromToken();
+      const resource_id = this.quizzesService.getReadingResourceId();
+      console.log(resource_id);
+      if (resource_id != null) {
+        this.quizzesService.getQuiz(resource_id).subscribe({
+          next: (res: QuizResponseModel) => {
+            console.log(res);
+
+            // Parse JSON properties to JavaScript objects/arrays
+            const parsedQuestions = JSON.parse(res.questions as string) as {
+              question: string;
+            }[];
+            const parsedAnswers = JSON.parse(
+              res.answers as string
+            ) as string[][];
+            const parsedCorrectAnswers = JSON.parse(
+              res.correct_answers as string
+            ) as string[];
+
+            // Transforming questions and answers
+            this.questions = parsedQuestions.map((q, index) => ({
+              title: q.question,
+              options:
+                parsedAnswers[index]?.map((answer) => ({
+                  text: answer, // Response text
+                  isCorrect: parsedCorrectAnswers[index] === answer, // Validate if correct
+                  isSelected: false, // Initially not selected
+                })) || [],
+            }));
+
+            console.log('Questions transformed:', this.questions);
+          },
+          error: (err) => {
+            console.error('Fallo al obtener el quiz', err);
+            alert('No hay quiz para mostrar');
+          },
+        });
+      } else {
+        alert('No hay recurso seleccionado');
+      }
+    } else {
+      alert('Debes iniciar sesión para ver el quiz');
+    }
   }
 
   ngOnDestroy() {

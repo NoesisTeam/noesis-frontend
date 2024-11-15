@@ -1,4 +1,17 @@
 <div class="purple-container">
   <app-ranking-requests></app-ranking-requests>
   <app-pdf-viewer [pdfSrc]="readingResourceUrl"></app-pdf-viewer>
+  <button
+    class="create-club-button"
+    style="
+      position: absolute;
+      bottom: 120px;
+      right: 55px;
+      background: linear-gradient(90deg, #1804ff 0%, #23d4df 100%);
+    "
+    (click)="getQuiz()"
+  >
+    Ver Quiz
+    <img src="assets/ico/ic-ia.png" alt="AI Icon" class="icon" />
+  </button>
 </div>

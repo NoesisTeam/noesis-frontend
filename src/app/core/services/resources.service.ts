@@ -27,12 +27,12 @@ export class ResourcesService {
     localStorage.setItem('resourceId', String(id_reading_resource));
   }
 
-  getReadingResourceId(): number {
-    return parseInt(localStorage.getItem('resourceId') || '0');
+  getReadingResourceId(): string {
+    return localStorage.getItem('resourceId') ?? '';
   }
 
   getReadingResourceUrl() {
-    return this.http.get<{ url_resource: string }>(
+    return this.http.get<string>(
       productionEnvironment.coreApiUrl +
         'get/resources/id/' +
         this.getReadingResourceId()
