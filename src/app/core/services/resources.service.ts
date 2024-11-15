@@ -12,7 +12,14 @@ export class ResourcesService {
 
   getClubResources(): Observable<ReadingResource[]> {
     return this.http.get<ReadingResource[]>(
-      productionEnvironment.coreApiUrl + 'resource/all'
+      productionEnvironment.coreApiUrl + 'get/resources/all'
+    );
+  }
+
+  addResource(formData: FormData) {
+    return this.http.post<{ message: string }>(
+      productionEnvironment.coreApiUrl + 'add/resource',
+      formData
     );
   }
 }

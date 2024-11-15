@@ -7,4 +7,5 @@ export interface ReadingResource {
   created_at: string;
   url_resource: string;
   resource_status: string;
+  id_reading_resource: number;
 }

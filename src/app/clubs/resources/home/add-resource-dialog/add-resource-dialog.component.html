@@ -44,11 +44,20 @@
             Archivo: {{ selectedFile.name }}
           </p>
         </div>
+        <div class="actions">
+          <button type="button" class="cancel-button" (click)="onClose()">
+            Cancelar
+          </button>
+        </div>
       </div>
       <!-- Right column -->
       <div class="form-column">
         <div class="form-field">
-          <input formControlName="author" type="text" placeholder="Autor" />
+          <input
+            formControlName="author"
+            type="text"
+            placeholder="Autor y Año"
+          />
           <p
             *ngIf="
               readingResourceForm.get('author')?.invalid &&
@@ -61,29 +70,30 @@
         </div>
         <div class="form-field">
           <textarea
-            formControlName="description"
+            formControlName="references"
             style="height: 100px"
-            placeholder="Descripción"
+            placeholder="Referencias"
           ></textarea>
           <p
             *ngIf="
-              readingResourceForm.get('description')?.invalid &&
-              readingResourceForm.get('description')?.touched
+              readingResourceForm.get('references')?.invalid &&
+              readingResourceForm.get('references')?.touched
             "
             class="error-text"
           >
             Campo obligatorio
           </p>
         </div>
+        <div class="actions">
+          <button
+            type="submit"
+            class="confirm-button"
+            [disabled]="!isFormValid()"
+          >
+            Agregar
+          </button>
+        </div>
       </div>
     </form>
-    <div class="actions">
-      <button type="button" class="cancel-button" (click)="onClose()">
-        Cancelar
-      </button>
-      <button type="submit" class="confirm-button" [disabled]="!isFormValid()">
-        Agregar
-      </button>
-    </div>
   </div>
 </div>

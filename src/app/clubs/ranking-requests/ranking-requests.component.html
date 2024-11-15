@@ -7,6 +7,7 @@
       Ranking
     </button>
     <button
+      *ngIf="userRole === 'Founder'"
       (click)="changeView('requests')"
       [class.active]="currentView === 'requests'"
     >
@@ -21,12 +22,15 @@
       [ngClass]="{ 'top-three': i < 3 }"
     >
       <span class="position">{{ i + 1 }}</span>
-      <span class="name">{{ user.user_name }}</span>
-      <span class="points">{{ user.points }}Pts</span>
+      <span class="name">{{ user.nickname }}</span>
+      <span class="points">{{ user.total_score }}Pts</span>
     </div>
   </div>
 
-  <div *ngIf="currentView === 'requests'" class="requests-list">
+  <div
+    *ngIf="currentView === 'requests' && userRole === 'Founder'"
+    class="requests-list"
+  >
     <div *ngFor="let user of requestUsers" class="user-item">
       <img
         src="./assets/ico/ic-request.png"
@@ -39,13 +43,13 @@
           src="./assets/ico/ic-denied-request.png"
           class="reject-button"
           alt="Reject"
-          (click)="rejectRequest(user)"
+          (click)="rejectMembership(user.id_user)"
         />
         <img
           src="./assets/ico/ic-accepted-request.png"
           class="accept-button"
           alt="Accept"
-          (click)="acceptRequest(user)"
+          (click)="approveMembership(user.id_user)"
         />
       </div>
     </div>

@@ -4,7 +4,7 @@ export * from './club.entity';
 export * from './medal-awarded.entity';
 export * from './medal-quality.entity';
 export * from './medal-type.entity';
-export * from './participant-role-club.entity';
+export * from './club-participant.entity';
 export * from './quiz-result.entity';
 export * from './quiz.entity';
 export * from './reading-resource.entity';

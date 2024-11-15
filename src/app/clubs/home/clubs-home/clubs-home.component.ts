@@ -22,6 +22,7 @@ export class ClubsHomeComponent implements OnInit {
   isDialogOpen = false;
 
   ngOnInit() {
+    this.clubsService.clearToken();
     this.clubsService
       .getFoundedClubs(String(this.clubsService.getUserId()))
       .subscribe({

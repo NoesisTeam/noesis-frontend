@@ -1,5 +1,9 @@
 <div class="carousel-container">
-  <button class="club-card" *ngFor="let club of clubs">
+  <button
+    class="club-card"
+    *ngFor="let club of clubs"
+    (click)="clubRequest(club.id_club, club.is_private)"
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="280"
@@ -13,7 +17,7 @@
     </svg>
     <p class="club-text">Club</p>
     <p class="club-name-text">{{ club.club_name }}</p>
-    <p class="founded-by-text" style="color: var(--blue)">Fundado por:</p>
+    <p class="founded-by-text" style="color: var(--blue)">Código</p>
     <p class="founded-by-name-text">{{ club.club_code }}</p>
     <div class="join-button">Unirte</div>
   </button>

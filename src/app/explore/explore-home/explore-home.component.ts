@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateClubDialogComponent } from '../../clubs/home/create-club-dialog/create-club-dialog.component';
 import { Club } from '../../core/domain/entities';
 import { PublicClubListComponent } from '../public-club-list/public-club-list.component';
+import { ClubsService } from '../../core/services/clubs.service';
 
 @Component({
   selector: 'app-explore-home',
@@ -11,9 +12,25 @@ import { PublicClubListComponent } from '../public-club-list/public-club-list.co
   templateUrl: './explore-home.component.html',
   styleUrl: './explore-home.component.css',
 })
-export class ExploreHomeComponent {
+export class ExploreHomeComponent implements OnInit {
+  constructor(private clubsService: ClubsService) {}
+
+  clubList: Club[] = [];
+  ngOnInit(): void {
+    this.clubsService
+      .getAllClubs(String(this.clubsService.getUserId()))
+      .subscribe({
+        next: (data) => {
+          this.clubList = data;
+          console.log('Explore club list', data);
+        },
+        error: (error) => {
+          console.error('Explore club error', error);
+        },
+      });
+  }
   isDialogOpen = false;
-  clubs: Club[] = [
+  clubsTest: Club[] = [
     {
       id_club: 1,
       club_code: 'CHESS01',

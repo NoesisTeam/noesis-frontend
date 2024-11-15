@@ -35,6 +35,25 @@ export class ClubsService {
       productionEnvironment.coreApiUrl + 'get/joined/' + id
     );
   }
+  getAllClubs(id: string | null): Observable<Club[]> {
+    return this.http.get<Club[]>(
+      productionEnvironment.coreApiUrl + 'get/all/' + id
+    );
+  }
+
+  privateClubRequest(id_user: number, id_club: number) {
+    return this.http.post<{ message: string }>(
+      productionEnvironment.coreApiUrl + 'membership/request',
+      { id_user, id_club }
+    );
+  }
+
+  publicClubRequest(id_user: number, id_club: number) {
+    return this.http.post<{ message: string }>(
+      productionEnvironment.coreApiUrl + 'add/member',
+      { id_user, id_club }
+    );
+  }
 
   getUserId(): number | null {
     return Number(localStorage.getItem(this.userId));
@@ -42,5 +61,9 @@ export class ClubsService {
 
   clearUserId(): void {
     localStorage.removeItem(this.userId);
+  }
+
+  clearToken(): void {
+    localStorage.removeItem('authToken');
   }
 }

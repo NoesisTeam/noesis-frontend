@@ -63,15 +63,21 @@ export class ClubListComponent implements OnChanges {
   }
 
   getTokenClub(club_id: number) {
-    this.authService.generateToken(club_id).subscribe({
-      next: (res) => {
-        this.authService.setToken(res.token);
-        this.router.navigate(['/clubs/resources']);
-      },
-      error: (err) => {
-        console.error('Login failed', err);
-        alert('Credenciales Incorrectas');
-      },
-    });
+    console.log(club_id);
+    const userId = this.authService.getUserId();
+    if (userId != null) {
+      this.authService.generateToken(userId, club_id).subscribe({
+        next: (res) => {
+          this.authService.setToken(res.access_token);
+          this.router.navigate(['/clubs/resources']);
+        },
+        error: (err) => {
+          console.error('Login failed', err);
+          alert('Credenciales Incorrectas');
+        },
+      });
+    } else {
+      alert('Por favor iniciar sesión');
+    }
   }
 }

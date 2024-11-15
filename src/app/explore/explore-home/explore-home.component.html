@@ -2,7 +2,7 @@
   <p class="welcoming-text">¡Qué alegría verte de nuevo!</p>
   <button class="create-club-button" (click)="openDialog()">
     Crear club
-    <img src="assets/ico/ic-add-club-filled.png" alt="Add Icon"/>
+    <img src="assets/ico/ic-add-club-filled.png" alt="Add Icon" />
   </button>
   <div class="clubs-container">
     <div class="input-wrapper">
@@ -13,8 +13,8 @@
       />
       <input id="search" name="search" type="text" placeholder="Buscar club" />
     </div>
-    <p class="clubs-text">Clubs públicos</p>
-    <app-public-club-list [clubs]="clubs"></app-public-club-list>
+    <p class="clubs-text">Explorar clubes</p>
+    <app-public-club-list [clubs]="clubList"></app-public-club-list>
   </div>
 </div>
 

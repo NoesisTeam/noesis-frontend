@@ -8,7 +8,7 @@ import { productionEnvironment } from '../../../environments/environment.prod';
 })
 export class AuthService {
   private userId = 'userId';
-  private tokenKey = 'authToken';
+  private authToken = 'authToken';
 
   constructor(private http: HttpClient) {}
 
@@ -32,37 +32,37 @@ export class AuthService {
     );
   }
 
-  generateToken(club_id: number) {
-    return this.http.post<{ token: string }>(
+  generateToken(user_id: number, club_id: number) {
+    return this.http.post<{ access_token: string }>(
       productionEnvironment.authApiUrl + 'token_club',
       {
+        user_id,
         club_id,
-        user_id: this.getUserId() || null,
       }
     );
   }
 
   // Uses localstorage to store a token
-  setToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
+  setToken(access_token: string): void {
+    localStorage.setItem(this.authToken, access_token);
   }
 
   // Check if there is a token in the localstorage to obtain it
   getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
+    return localStorage.getItem(this.authToken);
   }
 
   // When you log out, the token is deleted so that no record remains.
   clearToken(): void {
-    localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem(this.authToken);
   }
 
   setUserId(userId: string): void {
     localStorage.setItem(this.userId, userId);
   }
 
-  getUserId(): string | null {
-    return localStorage.getItem(this.userId);
+  getUserId(): number | null {
+    return Number(localStorage.getItem(this.userId));
   }
 
   clearUserId(): void {

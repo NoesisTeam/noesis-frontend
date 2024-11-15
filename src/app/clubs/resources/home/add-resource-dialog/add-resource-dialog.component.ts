@@ -13,6 +13,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { ResourcesService } from '../../../../core/services/resources.service';
 
 @Component({
   selector: 'app-add-resource-dialog',
@@ -29,11 +30,15 @@ export class AddResourceDialogComponent {
   @Output() close = new EventEmitter<void>();
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private resourcesService: ResourcesService
+  ) {
     this.readingResourceForm = this.formBuilder.group({
       title: ['', Validators.required],
       author: ['', Validators.required],
-      description: ['', Validators.required],
+      references: ['', Validators.required],
     });
   }
 
@@ -68,5 +73,39 @@ export class AddResourceDialogComponent {
     this.close.emit();
   }
 
-  onSubmit(): void {}
+  onSubmit(): void {
+    if (!this.selectedFile) {
+      // Manejo de error: el archivo no está seleccionado
+      this.fileError = true;
+      alert('Por favor selecciona un archivo PDF antes de enviar.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append(
+      'title',
+      this.readingResourceForm.get('title')?.value || ''
+    );
+    formData.append(
+      'author',
+      this.readingResourceForm.get('author')?.value || ''
+    );
+    formData.append(
+      'biblio_ref',
+      this.readingResourceForm.get('references')?.value || ''
+    );
+    formData.append('reading_res_desc', '');
+    formData.append('file', this.selectedFile as File);
+    this.resourcesService.addResource(formData).subscribe({
+      next: (res) => {
+        alert(res.message);
+        this.onClose();
+        this.router.navigate(['/clubs/resources']);
+      },
+      error: (err) => {
+        console.error('Add resource request failed', err);
+        alert('No se pudo cargar el recurso');
+      },
+    });
+  }
 }
