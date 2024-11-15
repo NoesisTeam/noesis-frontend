@@ -5,4 +5,5 @@ export interface Quiz {
   correct_answers: string;
   quantity_questions: number;
   minutes_to_answer: number;
+  id_reading_resource: number;
 }

@@ -22,4 +22,20 @@ export class ResourcesService {
       formData
     );
   }
+
+  setReadingResourceId(id_reading_resource: number) {
+    localStorage.setItem('resourceId', String(id_reading_resource));
+  }
+
+  getReadingResourceId(): number {
+    return parseInt(localStorage.getItem('resourceId') || '0');
+  }
+
+  getReadingResourceUrl() {
+    return this.http.get<{ url_resource: string }>(
+      productionEnvironment.coreApiUrl +
+        'get/resources/id/' +
+        this.getReadingResourceId()
+    );
+  }
 }

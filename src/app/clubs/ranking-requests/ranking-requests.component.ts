@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RequestService } from '../../core/services/requests.service';
-import { ClubParticipant, ClubRequest } from '../../core/domain/entities';
+import { ClubRequest } from '../../core/domain/entities';
 import { Router } from '@angular/router';
+import { Ranking } from '../../core/data/models';
 
 @Component({
   selector: 'app-ranking-requests',
@@ -18,7 +19,7 @@ export class RankingRequestsComponent implements OnInit {
   ) {}
 
   userRole: string = 'Member';
-  rankingUsers: ClubParticipant[] = [];
+  rankingUsers: Ranking[] = [];
   requestUsers: ClubRequest[] = [];
   currentView: 'ranking' | 'requests' = 'ranking';
 

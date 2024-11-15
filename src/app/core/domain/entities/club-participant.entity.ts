@@ -10,4 +10,5 @@ export interface ClubParticipant {
   nickname?: string;
   total_score: number;
   participant_status?: string;
+  user_name: string;
 }

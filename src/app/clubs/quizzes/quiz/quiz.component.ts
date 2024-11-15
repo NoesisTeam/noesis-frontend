@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { QuizzesService } from '../../../core/services/quizzes.service';
 
 interface QuestionOption {
   text: string;
@@ -20,7 +21,8 @@ interface Question {
   templateUrl: './quiz.component.html',
   styleUrl: './quiz.component.css',
 })
-export class QuizComponent {
+export class QuizComponent implements OnInit {
+  constructor(private quizzesService: QuizzesService) {}
   role = 'usuario';
   isEditing = false;
   showStats = false;
@@ -28,8 +30,86 @@ export class QuizComponent {
   correctAnswers = 0;
   timeUsed = '4:30';
   hoverBack = false;
+  questions: Question[] = [];
 
-  questions: Question[] = [
+  
+
+  // Timer
+  timeRemaining = '05:00';
+  private timer: any;
+
+  ngOnInit() {
+    this.startTimer();
+    // this.questions = this.quizzesService.getQuiz()
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.timer);
+  }
+
+  startTimer() {
+    let totalSeconds = 300;
+    this.timer = setInterval(() => {
+      if (totalSeconds > 0) {
+        totalSeconds--;
+        const minutes = Math.floor(totalSeconds / 60)
+          .toString()
+          .padStart(2, '0');
+        const seconds = (totalSeconds % 60).toString().padStart(2, '0');
+        this.timeRemaining = `${minutes}:${seconds}`;
+      } else {
+        clearInterval(this.timer);
+      }
+    }, 1000);
+  }
+
+  toggleEdit() {
+    this.isEditing = !this.isEditing;
+  }
+
+  saveChanges() {
+    this.isEditing = false;
+  }
+
+  selectOption(questionIndex: number, optionIndex: number) {
+    if (this.role === 'usuario' && !this.showStats) {
+      this.questions[questionIndex].options.forEach(
+        (option) => (option.isSelected = false)
+      );
+      this.questions[questionIndex].options[optionIndex].isSelected = true;
+    }
+  }
+
+  updateOptionText(questionIndex: number, optionIndex: number, event: Event) {
+    const input = event.target as HTMLElement;
+    this.questions[questionIndex].options[optionIndex].text =
+      input.textContent || '';
+  }
+
+  submitQuiz() {
+    this.showStats = true;
+    this.calculateScore();
+    clearInterval(this.timer); // Stop the timer when sending
+  }
+
+  calculateScore() {
+    this.correctAnswers = 0;
+    this.score = 0;
+
+    this.questions.forEach((question) => {
+      const selectedOption = question.options.find(
+        (option) => option.isSelected
+      );
+      if (selectedOption && selectedOption.isCorrect) {
+        this.correctAnswers++;
+        this.score += 1; // Score for each correct answer
+      }
+    });
+
+    this.timeUsed = this.timeRemaining; // Saves the time used
+  }
+
+  questionsTest: Question[] = [
     {
       title: 'Primera pregunta',
       options: [
@@ -103,78 +183,4 @@ export class QuizComponent {
       ],
     },
   ];
-
-  // Timer
-  timeRemaining = '05:00';
-  private timer: any;
-
-  ngOnInit() {
-    this.startTimer();
-  }
-
-  ngOnDestroy() {
-    clearInterval(this.timer);
-  }
-
-  startTimer() {
-    let totalSeconds = 300;
-    this.timer = setInterval(() => {
-      if (totalSeconds > 0) {
-        totalSeconds--;
-        const minutes = Math.floor(totalSeconds / 60)
-          .toString()
-          .padStart(2, '0');
-        const seconds = (totalSeconds % 60).toString().padStart(2, '0');
-        this.timeRemaining = `${minutes}:${seconds}`;
-      } else {
-        clearInterval(this.timer);
-      }
-    }, 1000);
-  }
-
-  toggleEdit() {
-    this.isEditing = !this.isEditing;
-  }
-
-  saveChanges() {
-    this.isEditing = false;
-  }
-
-  selectOption(questionIndex: number, optionIndex: number) {
-    if (this.role === 'usuario' && !this.showStats) {
-      this.questions[questionIndex].options.forEach(
-        (option) => (option.isSelected = false)
-      );
-      this.questions[questionIndex].options[optionIndex].isSelected = true;
-    }
-  }
-
-  updateOptionText(questionIndex: number, optionIndex: number, event: Event) {
-    const input = event.target as HTMLElement;
-    this.questions[questionIndex].options[optionIndex].text =
-      input.textContent || '';
-  }
-
-  submitQuiz() {
-    this.showStats = true;
-    this.calculateScore();
-    clearInterval(this.timer); // Stop the timer when sending
-  }
-
-  calculateScore() {
-    this.correctAnswers = 0;
-    this.score = 0;
-
-    this.questions.forEach((question) => {
-      const selectedOption = question.options.find(
-        (option) => option.isSelected
-      );
-      if (selectedOption && selectedOption.isCorrect) {
-        this.correctAnswers++;
-        this.score += 1; // Score for each correct answer
-      }
-    });
-
-    this.timeUsed = this.timeRemaining; // Saves the time used
-  }
 }

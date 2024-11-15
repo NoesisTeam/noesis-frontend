@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { productionEnvironment } from '../../../environments/environment.prod';
-import { ClubParticipant, ClubRequest } from '../domain/entities';
+import { ClubRequest } from '../domain/entities';
+import { Ranking } from '../data/models';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,8 @@ import { ClubParticipant, ClubRequest } from '../domain/entities';
 export class RequestService {
   constructor(private http: HttpClient) {}
   private authToken = 'authToken';
-  getRankingUsers(): Observable<ClubParticipant[]> {
-    return this.http.get<ClubParticipant[]>(
+  getRankingUsers(): Observable<Ranking[]> {
+    return this.http.get<Ranking[]>(
       productionEnvironment.coreApiUrl + 'ranking'
     );
   }
@@ -22,17 +23,17 @@ export class RequestService {
     );
   }
 
-  approveMembership(user_id: number) {
-    return this.http.post<{ message: string }>(
+  approveMembership(id_user: number) {
+    return this.http.patch<{ message: string }>(
       productionEnvironment.coreApiUrl + 'membership/approve',
-      { user_id }
+      { id_user }
     );
   }
 
-  rejectMembership(user_id: number) {
-    return this.http.post<{ message: string }>(
+  rejectMembership(id_user: number) {
+    return this.http.patch<{ message: string }>(
       productionEnvironment.coreApiUrl + 'membership/reject',
-      { user_id }
+      { id_user }
     );
   }
 

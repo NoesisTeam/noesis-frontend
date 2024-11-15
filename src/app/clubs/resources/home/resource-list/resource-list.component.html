@@ -1,5 +1,9 @@
 <div class="list-container">
-  <button class="resource-card" *ngFor="let resource of resources">
+  <button
+    class="resource-card"
+    *ngFor="let resource of resources"
+    (click)="setResourceId(resource.id_reading_resource)"
+  >
     <!-- SVG as background -->
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -101,25 +101,25 @@
 .accept-button {
   width: 24px;
   height: 24px;
-  background-image: url("/assets/icons/ic-accepted-request.png"); /* Imagen normal */
+  background-image: url("/assets/ico/ic-accepted-request.png"); /* Image normal */
   background-size: cover;
   cursor: pointer;
 }
 
 .accept-button:hover {
-  background-image: url("/assets/icons/ic-accepted-request-filled.png"); /* Imagen de hover */
+  background-image: url("/assets/ico/ic-accepted-request-filled.png"); /* Imagen de hover */
 }
 
 .reject-button {
   width: 24px;
   height: 24px;
-  background-image: url("/assets/icons/ic-denied-request.png"); /* Imagen normal */
+  background-image: url("/assets/ico/ic-denied-request.png"); /* Image normal */
   background-size: cover;
   cursor: pointer;
 }
 
 .reject-button:hover {
-  background-image: url("/assets/icons/ic-denied-request-filled.png"); /* Imagen de hover */
+  background-image: url("/assets/ico/ic-denied-request-filled.png"); /* Imagen de hover */
 }
 
 .position {
