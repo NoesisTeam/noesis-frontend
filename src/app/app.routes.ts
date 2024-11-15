@@ -14,5 +14,10 @@ export const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./quices/quices.routes').then((m) => m.QUICES_ROUTES),
+  },
+  {
+    path: '',
+    loadChildren: () => import('./profile/profile.routes').then((m) => m.PROFILE_ROUTES),
   }
+
 ];

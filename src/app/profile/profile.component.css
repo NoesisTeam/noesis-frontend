@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f3e8ff;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  width: 80vw;
+  height: 90vh;
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.user-info {
+  margin-left: 20px;
+}
+
+.username {
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.quote {
+  color: #666;
+}
+
+.progress-title {
+  color: #6200ea;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin: 20px 0 16px 20px;
+}
+
+.score-section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.centered-title {
+  text-align: center;
+  font-weight: normal;
+  color: #333;
+  margin: 10px 0;
+}
+
+.score {
+  font-size: 2em;
+  color: #6200ea;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Contenedor del carrusel de medallas */
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.medals-carousel {
+  display: flex;
+  gap: 16px;
+  overflow: hidden;
+  padding: 0 10px;
+  flex-grow: 1;
+  max-width: calc(120px * 4 + 16px * 3); /* Espacio para 4 medallas */
+}
+
+.medal {
+  width: 120px;
+  height: 140px;
+  border-radius: 8px;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.medal-icon {
+  width: 80%;
+  height: auto;
+  margin-bottom: 4px;
+}
+
+.medal-text {
+  font-size: 0.9em;
+  padding: 0 5px;
+}
+
+/* Botones de desplazamiento */
+.scroll-button {
+  background-color: #6200ea;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1.2em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+}
+
+.scroll-button:hover {
+  background-color: #4b0082;
+}
+
+@media (max-width: 768px) {
+  .progress-container {
+    width: 100vw;
+    height: auto;
+  }
+  .score-section {
+    padding: 15px;
+  }
+}
+
+/* Contenedor principal para centrar el carrusel */
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+
+/* Carrusel de medallas */
+.medals-carousel {
+  display: flex;
+  gap: 16px;
+  overflow: hidden;
+  padding: 0 10px;
+  max-width: calc(120px * 4 + 16px * 3); /* Espacio para 4 medallas */
+  flex-grow: 1;
+}
+
+/* Botón izquierdo (previo) al borde izquierdo del carrusel */
+.scroll-button.left {
+  left: 0;
+}
+
+/* Botón derecho (siguiente) al borde derecho del carrusel */
+.scroll-button.right {
+  right: 0;
+}
+
+.scroll-button:hover {
+  background-color: #4b0082;
+}
+/* Contenedor principal para centrar el carrusel */
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+/* Carrusel de medallas */
+.medals-carousel {
+  display: flex;
+  gap: 16px;
+  overflow: hidden;
+  padding: 0 10px;
+  max-width: calc(120px * 4 + 16px * 3); /* Espacio para 4 medallas */
+  flex-grow: 1;
+}
+
+/* Botones de desplazamiento */
+.scroll-button {
+  background-color: #6200ea;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1.2em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 1;
+  margin: 0 5px; /* Ajusta la distancia entre el botón y el carrusel */
+}
+
+/* Botón izquierdo (previo) cerca del borde izquierdo del carrusel */
+.scroll-button.left {
+  left: -40px; /* Ajusta esta distancia según sea necesario */
+}
+
+/* Botón derecho (siguiente) cerca del borde derecho del carrusel */
+.scroll-button.right {
+  right: -40px; /* Ajusta esta distancia según sea necesario */
+}
+
+.scroll-button:hover {
+  background-color: #4b0082;
+}
+
+/* Contenedor principal para centrar el carrusel */
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+/* Carrusel de medallas */
+.medals-carousel {
+  display: flex;
+  gap: 16px;
+  overflow: hidden;
+  padding: 0 10px;
+  max-width: calc(120px * 4 + 16px * 3); /* Espacio para 4 medallas */
+  flex-grow: 1;
+  position: relative; /* Necesario para alinear bien los botones */
+}
+
+/* Botones de desplazamiento */
+.scroll-button {
+  background-color: #6200ea;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1.2em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 1;
+}
+
+/* Botón izquierdo (previo) muy cerca del borde izquierdo del carrusel */
+.scroll-button.left {
+  left: 150px; /* Ajusta este valor si deseas acercarlo más */
+}
+
+/* Botón derecho (siguiente) muy cerca del borde derecho del carrusel */
+.scroll-button.right {
+  right: 150px; /* Ajusta este valor si deseas acercarlo más */
+}
+
+.scroll-button:hover {
+  background-color: #4b0082;
+}

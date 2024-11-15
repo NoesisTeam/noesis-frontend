@@ -1,0 +1,27 @@
+<div class="progress-container">
+  <div class="user-info">
+    <h2 class="username">CesarAugusto123</h2>
+    <p class="quote">A good reader lives a thousand lives: Live each of them</p>
+  </div>
+
+  <h3 class="progress-title">Progress</h3>
+
+  <div class="score-section">
+    <h4 class="centered-title">Global Score</h4>
+    <p class="score">87.73 pts</p>
+
+    <h4 class="centered-title">Medals</h4>
+
+    <div class="carousel-container">
+      <button *ngIf="showLeftButton" (click)="scrollLeft()" class="scroll-button left">&lt;</button>
+      <div class="medals-carousel">
+        <div *ngFor="let medal of visibleMedals" class="medal" [ngStyle]="{'background-color': medal.color}">
+          <img src="./assets/icons/ic-golden-medal.png" class="medal-icon" alt="Medal Icon">
+          <p class="medal-text">{{ medal.text }}</p>
+        </div>
+      </div>
+      <button *ngIf="showRightButton" (click)="scrollRight()" class="scroll-button right">&gt;</button>
+    </div>
+
+  </div>
+</div>
