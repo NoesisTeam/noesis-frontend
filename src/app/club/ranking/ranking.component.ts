@@ -33,6 +33,7 @@ export class RankingComponent {
   ];
 
   currentView: 'ranking' | 'requests' = 'ranking';
+  userRole: 'fundador' | 'miembro' = 'miembro'; // Cambia este valor según el rol
 
   changeView(view: 'ranking' | 'requests') {
     this.currentView = view;
