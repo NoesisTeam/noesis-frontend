@@ -7,7 +7,7 @@
     "
   >
     <!-- Top vector -->
-    <div>
+    <div class="vector-1-container">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="100%"
@@ -38,84 +38,92 @@
       </svg>
     </div>
 
+    <!-- Logo and main text -->
     <p class="noesis-text-logo">Noesis</p>
     <p class="title-text">¡Desafía tu<br />comprensión!</p>
 
+    <!-- Buttons -->
     <button class="signup-button" [routerLink]="['/signup']">
       ¡Regístrate ahora!
     </button>
     <button class="login-button" [routerLink]="['/login']">Ingrese</button>
 
-    <!-- Feature 1 -->
-    <div class="ellipse-container feature-ellipse-1">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="100%"
-        viewBox="0 0 153 145"
-        fill="none"
-      >
-        <ellipse
-          cx="76.5"
-          cy="72.5"
-          rx="76.5"
-          ry="72.5"
-          class="ellipse-shape"
-        />
-      </svg>
-    </div>
-    <img
-      src="/assets/ico/ic-recognize.png"
-      alt="Recognize Icon"
-      class="img-container feature-icon-1"
-    />
-    <p class="feature-text feature-text-1">Reconoce</p>
+    <!-- Features -->
+    <div class="features-wrapper">
+      <!-- Feature 1 -->
+      <div class="feature-container">
+        <div class="ellipse-container">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 153 145"
+            fill="none"
+          >
+            <ellipse
+              cx="76.5"
+              cy="72.5"
+              rx="76.5"
+              ry="72.5"
+              class="ellipse-shape"
+            />
+          </svg>
+          <img
+            src="/assets/ico/ic-recognize.png"
+            alt="Recognize Icon"
+            class="img-container"
+          />
+        </div>
+        <p class="feature-text">Reconoce</p>
+      </div>
 
-    <!-- Feature 2 -->
-    <div class="ellipse-container feature-ellipse-2">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="100%"
-        viewBox="0 0 153 145"
-        fill="none"
-      >
-        <ellipse
-          cx="76.5"
-          cy="72.5"
-          rx="76.5"
-          ry="72.5"
-          class="ellipse-shape"
-        />
-      </svg>
-    </div>
-    <img
-      src="/assets/ico/ic-alien.png"
-      alt="Explore Icon"
-      class="img-container feature-icon-2"
-    />
-    <p class="feature-text feature-text-2">Explora</p>
+      <!-- Feature 2 -->
+      <div class="feature-container">
+        <div class="ellipse-container">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 153 145"
+            fill="none"
+          >
+            <ellipse
+              cx="76.5"
+              cy="72.5"
+              rx="76.5"
+              ry="72.5"
+              class="ellipse-shape"
+            />
+          </svg>
+          <img
+            src="/assets/ico/ic-alien.png"
+            alt="Explore Icon"
+            class="img-container"
+          />
+        </div>
+        <p class="feature-text">Explora</p>
+      </div>
 
-    <!-- Feature 3 -->
-    <div class="ellipse-container feature-ellipse-3">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="100%"
-        viewBox="0 0 153 145"
-        fill="none"
-      >
-        <ellipse
-          cx="76.5"
-          cy="72.5"
-          rx="76.5"
-          ry="72.5"
-          class="ellipse-shape"
-        />
-      </svg>
+      <!-- Feature 3 -->
+      <div class="feature-container">
+        <div class="ellipse-container">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 153 145"
+            fill="none"
+          >
+            <ellipse
+              cx="76.5"
+              cy="72.5"
+              rx="76.5"
+              ry="72.5"
+              class="ellipse-shape"
+            />
+          </svg>
+          <img
+            src="/assets/ico/ic-get-ready.png"
+            alt="Get Ready Icon"
+            class="img-container"
+          />
+        </div>
+        <p class="feature-text">Prepárate</p>
+      </div>
     </div>
-    <img
-      src="/assets/ico/ic-get-ready.png"
-      alt="Get Ready Icon"
-      class="img-container feature-icon-3"
-    />
-    <p class="feature-text feature-text-3">Prepárate</p>
   </div>
 </section>

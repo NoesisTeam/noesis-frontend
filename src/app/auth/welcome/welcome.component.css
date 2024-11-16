@@ -1,3 +1,4 @@
+/* Main container styles */
 .welcome-section {
   width: 100%;
   height: 100vh;
@@ -13,9 +14,9 @@
   flex-direction: column;
 }
 
+/* Vector styles */
 .vector-path {
   fill: var(--main_color);
-  height: min-content;
 }
 
 .vector-2-container {
@@ -30,11 +31,14 @@
   height: 100%;
 }
 
+/* Text styles */
 .noesis-text-logo {
   position: absolute;
   top: 2vh;
   left: 3vw;
   font-size: clamp(2rem, 4vw, 4.375rem);
+  color: #fff;
+  font-family: "Lobster Two", cursive;
 }
 
 .title-text {
@@ -48,26 +52,24 @@
   line-height: 1.2;
 }
 
+/* Button styles */
 .signup-button {
   position: absolute;
   top: 45vh;
   left: 8vw;
-  padding: 0.2em 0.6em;
+  padding: 0.6em 1.4em;
   border-radius: 0.625rem;
   border: 2px solid var(--main_color);
   background: var(--gradient_purple);
   font-size: clamp(1rem, 1.5vw, 1.563rem);
   font-weight: 500;
   font-family: Poppins;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 45px;
+  cursor: pointer;
 }
 
 .signup-button:hover {
   background: var(--main_color);
   color: var(--gradient_purple);
-  cursor: pointer;
 }
 
 .login-button {
@@ -78,162 +80,108 @@
   border-radius: 10px 0px;
   border: 2px solid var(--gradient_purple);
   background: var(--main_color);
-  font-size: clamp(0.875rem, 1.25vw, 1.25rem);
   color: #fff;
-  text-align: center;
+  font-size: clamp(0.875rem, 1.25vw, 1.25rem);
   font-family: Poppins;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
+  cursor: pointer;
 }
 
 .login-button:hover {
   background: var(--gradient_purple);
   color: #000;
-  cursor: pointer;
+}
+
+/* Features styles */
+.features-wrapper {
+  position: absolute;
+  bottom: 10vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.feature-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .ellipse-container {
-  position: absolute;
-  bottom: 20vh;
-  width: clamp(120px, 10vw, 153px);
-  height: clamp(120px, 10vw, 145px);
+  position: relative;
+  width: clamp(100px, 12vw, 160px);
+  height: clamp(100px, 12vw, 160px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .ellipse-shape {
   fill: var(--gradient_purple);
+  width: 100%;
+  height: 100%;
 }
 
 .img-container {
   position: absolute;
-  bottom: 23vh;
-  width: clamp(70px, 6vw, 90px);
-  height: clamp(70px, 6vw, 90px);
+  width: clamp(50px, 7vw, 90px);
+  height: clamp(50px, 7vw, 90px);
+  object-fit: contain;
 }
 
 .feature-text {
-  position: absolute;
-  bottom: 10vh;
   color: white;
   text-align: center;
-  font-size: clamp(1.25rem, 2vw, 1.875rem);
+  font-size: clamp(1rem, 1.5vw, 1.875rem);
   font-family: Poppins;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
 }
 
-/* Positioning of feature elements */
-.feature-ellipse-1 {
-  left: 16vw;
-}
-
-.feature-ellipse-2 {
-  left: 46vw;
-}
-
-.feature-ellipse-3 {
-  left: 75vw;
-}
-
-.feature-icon-1 {
-  left: 17.6vw;
-}
-
-.feature-icon-2 {
-  left: 47.6vw;
-}
-
-.feature-icon-3 {
-  left: 76.6vw;
-}
-
-.feature-text-1 {
-  left: 16vw;
-}
-
-.feature-text-2 {
-  left: 47vw;
-}
-
-.feature-text-3 {
-  left: 75.3vw;
-}
-
+/* Responsive design */
 @media (max-width: 1200px) {
-  .title-text {
-    top: 18vh;
-  }
-
-  .signup-button {
-    top: 32vh;
+  .features-wrapper {
+    padding: 0 8vw;
   }
 
   .ellipse-container {
-    bottom: 18vh;
+    width: clamp(90px, 10vw, 140px);
+    height: clamp(90px, 10vw, 140px);
   }
 
   .img-container {
-    bottom: 20vh;
-  }
-
-  .feature-text {
-    bottom: 10vh;
+    width: clamp(45px, 6vw, 80px);
+    height: clamp(45px, 6vw, 80px);
   }
 }
 
 @media (max-width: 768px) {
-  .title-text {
-    top: 15vh;
-    left: 8vw;
+  .features-wrapper {
+    padding: 0 5vw;
   }
 
-  .signup-button {
-    top: 28vh;
-    left: 8vw;
+  .ellipse-container {
+    width: clamp(80px, 9vw, 120px);
+    height: clamp(80px, 9vw, 120px);
   }
 
-  .login-button {
-    right: 3vw;
-  }
-
-  .feature-1 {
-    left: 10vw;
-  }
-  .feature-2 {
-    left: 40vw;
-  }
-  .feature-3 {
-    left: 70vw;
+  .img-container {
+    width: clamp(40px, 5vw, 70px);
+    height: clamp(40px, 5vw, 70px);
   }
 }
 
 @media (max-width: 480px) {
-  .noesis-text-logo {
-    left: 2vw;
+  .features-wrapper {
+    padding: 0 3vw;
   }
 
-  .title-text {
-    top: 12vh;
-    left: 5vw;
+  .ellipse-container {
+    width: clamp(70px, 8vw, 100px);
+    height: clamp(70px, 8vw, 100px);
   }
 
-  .signup-button {
-    top: 25vh;
-    left: 5vw;
-  }
-
-  .login-button {
-    right: 2vw;
-  }
-
-  .feature-1 {
-    left: 5vw;
-  }
-  .feature-2 {
-    left: 35vw;
-  }
-  .feature-3 {
-    left: 65vw;
+  .img-container {
+    width: clamp(35px, 4vw, 60px);
+    height: clamp(35px, 4vw, 60px);
   }
 }
