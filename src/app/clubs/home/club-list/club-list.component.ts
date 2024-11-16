@@ -63,7 +63,6 @@ export class ClubListComponent implements OnChanges {
   }
 
   getTokenClub(club_id: number) {
-    console.log(club_id);
     const userId = this.authService.getUserId();
     if (userId != null) {
       this.authService.generateToken(userId, club_id).subscribe({

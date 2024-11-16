@@ -3,10 +3,106 @@
   top: 100px;
   left: 100px;
   width: auto;
-  height: auto;
-  overflow: auto;
+  height: 75vh;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background: #323232;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.maximized {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  border-radius: 0;
+  background: white;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   padding: 8px;
+  background: #3e3e3e;
+  border-radius: 4px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.control-btn {
+  padding: 8px;
+  border: none;
+  background: #3e3e3e;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.control-btn:hover {
+  background: #1473e6;
+}
+
+.zoom-text {
+  font-family: "Arial", sans-serif;
+  font-size: 14px;
+  color: #b9b9b9;
+  width: 50px;
+  text-align: center;
+  background: #3e3e3e;
+  border: 1px solid #666;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.zoom-text::-webkit-inner-spin-button,
+.zoom-text::-webkit-outer-spin-button {
+  opacity: 0;
+}
+
+.zoom-text:focus {
+  outline: none;
+  border-color: #1473e6;
+}
+
+.zoom-symbol {
+  color: #b9b9b9;
+  font-size: 14px;
+  margin-left: 2px;
+}
+
+.control-btn i {
+  font-size: 16px;
+  color: #b9b9b9;
+}
+
+.control-btn:hover i {
+  color: white;
+}
+
+.page-indicator {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  background: #3e3e3e;
+  border-radius: 4px;
+  margin: 0 8px;
+}
+
+.page-indicator span {
+  color: #b9b9b9;
+  font-family: "Arial", sans-serif;
+  font-size: 14px;
 }

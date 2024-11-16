@@ -14,7 +14,6 @@ export class QuizzesService {
   }
 
   getQuiz(resource_id: string) {
-    console.log(resource_id);
     return this.http.get<QuizResponseModel>(
       productionEnvironment.coreApiUrl + 'get/resources/quiz/' + resource_id
     );

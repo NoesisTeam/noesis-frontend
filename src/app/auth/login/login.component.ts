@@ -53,10 +53,8 @@ export class LoginComponent {
 
     this.authService.login(username, password).subscribe({
       next: (response) => {
-        console.log('Login successful', response);
-
-        // Saves the user ID
-        this.authService.setUserId(response.user.id.toString()); // Convierte a string si es necesario
+        // Saves the user ID and converts to string if necessary
+        this.authService.setUserId(response.user.id.toString()); //
         this.dialogMessage = 'Ingreso exitoso';
         this.dialogActionText = 'Aceptar';
         this.showDialog = true;

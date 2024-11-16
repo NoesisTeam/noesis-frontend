@@ -1,10 +1,46 @@
-<div class="pdf-container">
+<div class="pdf-container" [class.maximized]="isMaximized">
+  <div class="controls">
+    <!-- Zoom Out button -->
+    <button (click)="zoomOut()" class="control-btn">
+      <i class="fas fa-search-minus"></i>
+    </button>
+
+    <!-- Zoom indicator -->
+    <input
+      type="number"
+      class="zoom-text"
+      [value]="(zoom * 100).toFixed(0)"
+      (input)="updateZoom($event)"
+      (keydown)="onZoomInputKeydown($event)"
+    />
+    <span class="zoom-symbol">%</span>
+
+    <!-- Zoom In button -->
+    <button (click)="zoomIn()" class="control-btn">
+      <i class="fas fa-search-plus"></i>
+    </button>
+
+    <!-- Page indicator -->
+    <div class="page-indicator">
+      <span>{{ currentPage }} de {{ totalPages }}</span>
+    </div>
+
+    <!-- Maximize/Minimize button -->
+    <button (click)="toggleMaximize()" class="control-btn">
+      <i [class]="isMaximized ? 'fas fa-compress' : 'fas fa-expand'"></i>
+    </button>
+  </div>
+
   <pdf-viewer
     *ngIf="pdfSrc"
     [src]="pdfSrc"
     [render-text]="true"
     [original-size]="false"
-    style="width: 1000px; height: 700px"
+    [zoom]="zoom"
+    [style.width.px]="viewerWidth"
+    [style.height.px]="viewerHeight"
+    (pageChange)="onPageChange($event)"
+    (after-load-complete)="afterLoadComplete($event)"
   >
   </pdf-viewer>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { QuizzesService } from '../../../core/services/quizzes.service';
@@ -46,12 +46,9 @@ export class QuizComponent implements OnInit {
     if (!this.requestsService.isTokenExpired()) {
       this.role = this.requestsService.getRoleFromToken();
       const resource_id = this.quizzesService.getReadingResourceId();
-      console.log(resource_id);
       if (resource_id != null) {
         this.quizzesService.getQuiz(resource_id).subscribe({
           next: (res: QuizResponseModel) => {
-            console.log(res);
-
             // Parse JSON properties to JavaScript objects/arrays
             const parsedQuestions = JSON.parse(res.questions as string) as {
               question: string;
@@ -73,8 +70,6 @@ export class QuizComponent implements OnInit {
                   isSelected: false, // Initially not selected
                 })) || [],
             }));
-
-            console.log('Questions transformed:', this.questions);
           },
           error: (err) => {
             console.error('Fallo al obtener el quiz', err);
@@ -154,79 +149,4 @@ export class QuizComponent implements OnInit {
 
     this.timeUsed = this.timeRemaining; // Saves the time used
   }
-
-  questionsTest: Question[] = [
-    {
-      title: 'Primera pregunta',
-      options: [
-        { text: 'Respuesta 1', isCorrect: true, isSelected: false },
-        { text: 'Respuesta 2', isCorrect: false, isSelected: false },
-        { text: 'Respuesta 3', isCorrect: false, isSelected: false },
-        { text: 'Respuesta 4', isCorrect: false, isSelected: false },
-      ],
-    },
-    {
-      title: 'Primera pregunta',
-      options: [
-        { text: 'Respuesta 1', isCorrect: true, isSelected: false },
-        { text: 'Respuesta 2', isCorrect: false, isSelected: false },
-        { text: 'Respuesta 3', isCorrect: false, isSelected: false },
-        { text: 'Respuesta 4', isCorrect: false, isSelected: false },
-      ],
-    },
-    {
-      title: 'Primera pregunta',
-      options: [
-        { text: 'Respuesta 1', isCorrect: true, isSelected: false },
-        { text: 'Respuesta 2', isCorrect: false, isSelected: false },
-        { text: 'Respuesta 3', isCorrect: false, isSelected: false },
-        { text: 'Respuesta 4', isCorrect: false, isSelected: false },
-      ],
-    },
-    {
-      title: 'Primera pregunta',
-      options: [
-        { text: 'Respuesta 1', isCorrect: true, isSelected: false },
-        { text: 'Respuesta 2', isCorrect: false, isSelected: false },
-        { text: 'Respuesta 3', isCorrect: false, isSelected: false },
-        { text: 'Respuesta 4', isCorrect: false, isSelected: false },
-      ],
-    },
-    {
-      title: 'Primera pregunta',
-      options: [
-        { text: 'Respuesta 1', isCorrect: true, isSelected: false },
-        { text: 'Respuesta 2', isCorrect: false, isSelected: false },
-        { text: 'Respuesta 3', isCorrect: false, isSelected: false },
-        { text: 'Respuesta 4', isCorrect: false, isSelected: false },
-      ],
-    },
-    {
-      title: 'Primera pregunta',
-      options: [
-        { text: 'Respuesta 1', isCorrect: true, isSelected: false },
-        { text: 'Respuesta 2', isCorrect: false, isSelected: false },
-        { text: 'Respuesta 3', isCorrect: false, isSelected: false },
-        { text: 'Respuesta 4', isCorrect: false, isSelected: false },
-      ],
-    },
-    {
-      title: 'Primera pregunta',
-      options: [
-        { text: 'Respuesta 1', isCorrect: true, isSelected: false },
-        { text: 'Respuesta 2', isCorrect: false, isSelected: false },
-        { text: 'Respuesta 3', isCorrect: false, isSelected: false },
-        { text: 'Respuesta 4', isCorrect: false, isSelected: false },
-      ],
-    },
-    {
-      title: 'Primera pregunta',
-      options: [
-        { text: 'Respuesta 1', isCorrect: true, isSelected: false },
-        { text: 'Respuesta 2', isCorrect: false, isSelected: false },
-        { text: 'Respuesta 3', isCorrect: false, isSelected: false },
-        { text: 'Respuesta 4', isCorrect: false, isSelected: false },
-      ],
-    },
-  ];
 }

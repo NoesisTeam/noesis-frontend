@@ -54,7 +54,7 @@ export class CreateClubDialogComponent {
         next: (response) => {
           this.onClose();
           this.router.navigate(['/clubs']);
-          console.log('Request done');
+          alert('Club creado exitosamente');
         },
         error: (error) => {
           console.log(error.message);

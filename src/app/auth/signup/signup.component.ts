@@ -92,7 +92,6 @@ export class SignupComponent {
             this.showDialog = true;
           },
         });
-        console.log('Signup successful', response);
       },
       error: (err) => {
         this.dialogMessage =

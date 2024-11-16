@@ -40,7 +40,6 @@ export class RankingRequestsComponent implements OnInit {
     this.requestsService.getRankingUsers().subscribe({
       next: (data) => {
         this.rankingUsers = data;
-        console.log('Ranking users data:', data);
       },
       error: (error) => {
         console.log('Error: ', error);
@@ -52,7 +51,6 @@ export class RankingRequestsComponent implements OnInit {
     this.requestsService.getAllMemberRequests().subscribe({
       next: (data) => {
         this.requestUsers = data;
-        console.log('Member request data:', data);
       },
       error: (error) => {
         console.log('Error: ', error);

@@ -28,7 +28,6 @@ export class ClubsHomeComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.clubsCreated = data;
-          console.log('Data clubs created', data);
         },
         error: (error) => {
           console.error('Error al obtener los clubs fundados:', error);
@@ -40,7 +39,6 @@ export class ClubsHomeComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.clubsJoined = data;
-          console.log('Data clubs joined', data);
         },
         error: (error) => {
           console.error(

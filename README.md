@@ -1,27 +1,61 @@
-# NoesisFrontend
+# Noesis Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+A web application developed with Angular 17 to manage academic and recreational reading clubs.
 
-## Development server
+## 🚀 Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Book Club Management** (Public and Private)
+- **Authentication and User Roles** (Member, Founder)
+- **Integrated PDF Viewer**
+- **Evaluation System with Quizzes**
+- **User Ranking**
+- **Membership Request Management**
+- **Club Browsing and Search**
+- **Responsive Design**
 
-## Code scaffolding
+## 🛠️ Technologies
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Angular 17**
+- **TypeScript**
+- **RxJS**
+- **Angular Router**
+- **ng2-pdf-viewer**
 
-## Build
+## 📋 Prerequisites
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Node.js** (LTS version recommended)
+- **npm**
+- **Angular CLI v17.3.6**
 
-## Running unit tests
+## 🔧 Installation
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+# Install dependencies
+npm install
 
-## Running end-to-end tests
+# Development server
+ng serve --open
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# Start development server
+ng serve
+```
 
-## Further help
+## ⚙️ Available Scripts
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- **npm start:** Start development server.
+- **npm run build:** Build the project for production.
+- **npm test:** Run unit tests.
+- **npm run watch:** Build in watcher mode.
+
+## 🔗 Backend APIs
+
+- **Auth API:** <https://authapi-dvz6.onrender.com>
+- **Core API:** <https://noesis-coreapi.onrender.com>
+
+## 🙋‍♂️ Author
+
+Developed by the Noesis team
+
+## 📄 License
+
+This project is licensed under the MIT license - for more details, see the [LICENSE](LICENSE) file
