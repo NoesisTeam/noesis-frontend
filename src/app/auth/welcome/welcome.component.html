@@ -1,14 +1,17 @@
 <section class="welcome-section">
   <div
     class="background-container"
-    style="background: url('/assets/img/welcome-bg.png') lightgray 50% / cover no-repeat;"
+    style="
+      background: url('/assets/img/welcome-bg.png') lightgray 50% / cover
+        no-repeat;
+    "
   >
+    <!-- Top vector -->
     <div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="521"
-        height="181"
-        viewBox="0 0 521 181"
+        width="100%"
+        viewBox="0 0 1500 181"
         fill="none"
       >
         <path
@@ -17,6 +20,8 @@
         />
       </svg>
     </div>
+
+    <!-- Bottom vector -->
     <div class="vector-2-container">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -32,20 +37,20 @@
         />
       </svg>
     </div>
-    <p class="noesis-text-logo" style="top: -10px; left: 50px">Noesis</p>
-    <p class="title-text">
-      Desafía tu <br />
-      comprensión!
-    </p>
-    <button class="join-button" [routerLink]="['/signup']">
-      Únete a un club ahora!
+
+    <p class="noesis-text-logo">Noesis</p>
+    <p class="title-text">¡Desafía tu<br />comprensión!</p>
+
+    <button class="signup-button" [routerLink]="['/signup']">
+      ¡Regístrate ahora!
     </button>
     <button class="login-button" [routerLink]="['/login']">Ingrese</button>
-    <div class="ellipse-container" style="left: 200px">
+
+    <!-- Feature 1 -->
+    <div class="ellipse-container feature-ellipse-1">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="153"
-        height="145"
+        width="100%"
         viewBox="0 0 153 145"
         fill="none"
       >
@@ -61,15 +66,15 @@
     <img
       src="/assets/ico/ic-recognize.png"
       alt="Recognize Icon"
-      class="img-container"
-      style="left: 230px"
+      class="img-container feature-icon-1"
     />
-    <p class="feature-text" style="left: 200px">Reconoce</p>
-    <div class="ellipse-container" style="left: 900px">
+    <p class="feature-text feature-text-1">Reconoce</p>
+
+    <!-- Feature 2 -->
+    <div class="ellipse-container feature-ellipse-2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="153"
-        height="145"
+        width="100%"
         viewBox="0 0 153 145"
         fill="none"
       >
@@ -85,27 +90,32 @@
     <img
       src="/assets/ico/ic-alien.png"
       alt="Explore Icon"
-      class="img-container"
-      style="left: 930px"
+      class="img-container feature-icon-2"
     />
-    <p class="feature-text" style="left: 920px">Explora</p>
+    <p class="feature-text feature-text-2">Explora</p>
+
+    <!-- Feature 3 -->
+    <div class="ellipse-container feature-ellipse-3">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        viewBox="0 0 153 145"
+        fill="none"
+      >
+        <ellipse
+          cx="76.5"
+          cy="72.5"
+          rx="76.5"
+          ry="72.5"
+          class="ellipse-shape"
+        />
+      </svg>
+    </div>
+    <img
+      src="/assets/ico/ic-get-ready.png"
+      alt="Get Ready Icon"
+      class="img-container feature-icon-3"
+    />
+    <p class="feature-text feature-text-3">Prepárate</p>
   </div>
-  <div class="ellipse-container" style="left: 1550px">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="153"
-      height="145"
-      viewBox="0 0 153 145"
-      fill="none"
-    >
-      <ellipse cx="76.5" cy="72.5" rx="76.5" ry="72.5" class="ellipse-shape" />
-    </svg>
-  </div>
-  <img
-    src="/assets/ico/ic-get-ready.png"
-    alt="Recognize Icon"
-    class="img-container"
-    style="left: 1580px"
-  />
-  <p class="feature-text" style="left: 1550px">Prepárate</p>
 </section>

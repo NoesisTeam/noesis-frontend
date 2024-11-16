@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
-  styleUrl: './welcome.component.css',
+  styleUrls: ['./welcome.component.css'],
   standalone: true,
   imports: [CommonModule, RouterLink],
 })
