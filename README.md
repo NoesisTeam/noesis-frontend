@@ -1,6 +1,6 @@
 # Noesis Frontend
 
-A web application developed with Angular 17 to manage academic and recreational reading clubs.
+Web frontend developed in Angular 17 for the Noesis platform - an AI-assisted interactive platform for strengthening reading comprehension through gamified learning
 
 ## 🚀 Features
 
@@ -35,9 +35,6 @@ npm install
 
 # Development server
 ng serve --open
-
-# Start development server
-ng serve
 ```
 
 ## ⚙️ Available Scripts
