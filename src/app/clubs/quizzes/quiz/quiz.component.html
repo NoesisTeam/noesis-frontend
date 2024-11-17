@@ -2,7 +2,7 @@
   <div class="main-content">
     <div class="header">
       <div class="quiz-info">
-        <div class="quiz-title">Quiz <span>Lectura violencia</span></div>
+        <div class="quiz-title">Quiz <span></span></div>
         <div *ngIf="role === 'Member' && !showStats" class="timer">
           {{ timeRemaining }}
         </div>
@@ -13,6 +13,13 @@
         class="submit-button"
       >
         Enviar →
+      </button>
+      <button
+        *ngIf="role === 'Founder' && !showStats"
+        (click)="regenerateQuiz()"
+        class="regenerate-button"
+      >
+        Regenerar
       </button>
       <button
         *ngIf="role === 'Founder' && !isEditing"

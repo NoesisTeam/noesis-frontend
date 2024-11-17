@@ -18,4 +18,12 @@ export class QuizzesService {
       productionEnvironment.coreApiUrl + 'get/resources/quiz/' + resource_id
     );
   }
+
+  regenerateQuiz() {
+    return this.http.get<QuizResponseModel>(
+      productionEnvironment.coreApiUrl +
+        'regenerate/resources/quiz/' +
+        this.getReadingResourceId()
+    );
+  }
 }

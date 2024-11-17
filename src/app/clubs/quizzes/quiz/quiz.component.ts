@@ -7,7 +7,7 @@ import { RequestsService } from '../../../core/services/requests.service';
 
 interface QuestionOption {
   text: string;
-  isCorrect: boolean;
+  isCorrect?: boolean;
   isSelected: boolean;
 }
 
@@ -49,27 +49,7 @@ export class QuizComponent implements OnInit {
       if (resource_id != null) {
         this.quizzesService.getQuiz(resource_id).subscribe({
           next: (res: QuizResponseModel) => {
-            // Parse JSON properties to JavaScript objects/arrays
-            const parsedQuestions = JSON.parse(res.questions as string) as {
-              question: string;
-            }[];
-            const parsedAnswers = JSON.parse(
-              res.answers as string
-            ) as string[][];
-            const parsedCorrectAnswers = JSON.parse(
-              res.correct_answers as string
-            ) as string[];
-
-            // Transforming questions and answers
-            this.questions = parsedQuestions.map((q, index) => ({
-              title: q.question,
-              options:
-                parsedAnswers[index]?.map((answer) => ({
-                  text: answer, // Response text
-                  isCorrect: parsedCorrectAnswers[index] === answer, // Validate if correct
-                  isSelected: false, // Initially not selected
-                })) || [],
-            }));
+            this.mapQuestionsData(res);
           },
           error: (err) => {
             console.error('Fallo al obtener el quiz', err);
@@ -134,19 +114,41 @@ export class QuizComponent implements OnInit {
   }
 
   calculateScore() {
-    this.correctAnswers = 0;
-    this.score = 0;
-
-    this.questions.forEach((question) => {
-      const selectedOption = question.options.find(
-        (option) => option.isSelected
-      );
-      if (selectedOption && selectedOption.isCorrect) {
-        this.correctAnswers++;
-        this.score += 1; // Score for each correct answer
-      }
-    });
-
     this.timeUsed = this.timeRemaining; // Saves the time used
+  }
+
+  regenerateQuiz() {
+    this.quizzesService.regenerateQuiz().subscribe({
+      next: (res: QuizResponseModel) => {
+        this.mapQuestionsData(res);
+      },
+      error: (err) => {
+        console.error('Fallo al obtener el quiz', err);
+        alert('No hay quiz para mostrar');
+      },
+    });
+  }
+
+  private mapQuestionsData(res: QuizResponseModel): void {
+    const parsedQuestions = JSON.parse(res.questions as string) as {
+      question: string;
+    }[];
+    const parsedAnswers = JSON.parse(res.answers as string) as string[][];
+    let parsedCorrectAnswers: string[] = [];
+    if (res.correct_answers) {
+      parsedCorrectAnswers = JSON.parse(
+        res.correct_answers as string
+      ) as string[];
+    }
+    // Transforming questions and answers
+    this.questions = parsedQuestions.map((q, index) => ({
+      title: q.question,
+      options:
+        parsedAnswers[index]?.map((answer) => ({
+          text: answer, // Response text
+          isCorrect: parsedCorrectAnswers[index] === answer, // Validate if correct
+          isSelected: false, // Initially not selected
+        })) || [],
+    }));
   }
 }
