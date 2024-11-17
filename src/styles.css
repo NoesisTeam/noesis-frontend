@@ -20,14 +20,42 @@ body {
   --deep_violet: #6e27e3;
   --blue: #1804ff;
   --light_blue: #a5e3fe;
+  --transparent_red: rgba(234, 27, 27, 0.5);
 }
 
 /* Noesis Logo */
 .noesis-text-logo {
   position: absolute;
-  color: #fff;
   font-family: "Lobster Two", cursive;
   font-size: 70px;
+}
+
+.noesis-text-logo a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.noesis-text-logo a:hover {
+  filter: brightness(1.9);
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 20px;
+  font-family: Poppins, sans-serif;
+  font-size: 16px;
+  color: #7c6c86;
+}
+
+.auth-link a {
+  font-weight: bold;
+  color: #6b21a8;
+  text-decoration: none;
+}
+
+.auth-link a:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 /* Default section */

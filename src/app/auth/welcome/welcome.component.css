@@ -12,6 +12,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  background: url("/assets/img/welcome-bg.png") lightgray 50% / cover no-repeat;
 }
 
 /* Vector styles */

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { QuizzesService } from '../../../core/services/quizzes.service';
-import { QuizResponseModel } from '../../../core/data/models/quiz-response';
-import { RequestService } from '../../../core/services/requests.service';
+import { QuizResponseModel } from '../../../core/data/models/quiz-response.model';
+import { RequestsService } from '../../../core/services/requests.service';
 
 interface QuestionOption {
   text: string;
@@ -26,7 +26,7 @@ interface Question {
 export class QuizComponent implements OnInit {
   constructor(
     private quizzesService: QuizzesService,
-    private requestsService: RequestService
+    private requestsService: RequestsService
   ) {}
 
   role = 'Member';

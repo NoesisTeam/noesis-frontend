@@ -7,11 +7,14 @@ import { productionEnvironment } from '../../../environments/environment.prod';
   providedIn: 'root',
 })
 export class AuthService {
-  private userId = 'userId';
-  private authToken = 'authToken';
-
   constructor(private http: HttpClient) {}
 
+  /**
+   * Logs in the user
+   * @param user_name - The name of the user
+   * @param user_password - The password of the user
+   * @returns Observable<LoginResponseModel>
+   */
   login(user_name: string, user_password: string) {
     return this.http.post<LoginResponseModel>(
       productionEnvironment.authApiUrl + 'login',
@@ -22,6 +25,12 @@ export class AuthService {
     );
   }
 
+  /**
+   * Registers a new user
+   * @param user_name - The name of the new user
+   * @param user_password - The password of the new user
+   * @returns Observable<SignupResponse>
+   */
   signup(user_name: string, user_password: string) {
     return this.http.post<SignupResponse>(
       productionEnvironment.authApiUrl + 'register',
@@ -32,6 +41,12 @@ export class AuthService {
     );
   }
 
+  /**
+   * Generates a token for a user and club
+   * @param user_id - The ID of the user
+   * @param club_id - The ID of the club
+   * @returns Observable<{ access_token: string }>
+   */
   generateToken(user_id: number, club_id: number) {
     return this.http.post<{ access_token: string }>(
       productionEnvironment.authApiUrl + 'token_club',
@@ -40,32 +55,5 @@ export class AuthService {
         club_id,
       }
     );
-  }
-
-  // Uses localstorage to store a token
-  setToken(access_token: string): void {
-    localStorage.setItem(this.authToken, access_token);
-  }
-
-  // Check if there is a token in the localstorage to obtain it
-  getToken(): string | null {
-    return localStorage.getItem(this.authToken);
-  }
-
-  // When you log out, the token is deleted so that no record remains.
-  clearToken(): void {
-    localStorage.removeItem(this.authToken);
-  }
-
-  setUserId(userId: string): void {
-    localStorage.setItem(this.userId, userId);
-  }
-
-  getUserId(): number | null {
-    return Number(localStorage.getItem(this.userId));
-  }
-
-  clearUserId(): void {
-    localStorage.removeItem(this.userId);
   }
 }

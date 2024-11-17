@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth.service';
+import { LocalStorageService } from '../../../core/services/local-storage.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +12,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./club-list.component.css'],
 })
 export class ClubListComponent implements OnChanges {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private localStorageService: LocalStorageService,
+    private router: Router
+  ) {}
 
   @Input() color: string = '#000000';
   @Input() top: string = '0px';
@@ -63,11 +68,11 @@ export class ClubListComponent implements OnChanges {
   }
 
   getTokenClub(club_id: number) {
-    const userId = this.authService.getUserId();
+    const userId = Number(this.localStorageService.getUserId());
     if (userId != null) {
       this.authService.generateToken(userId, club_id).subscribe({
         next: (res) => {
-          this.authService.setToken(res.access_token);
+          this.localStorageService.setToken(res.access_token);
           this.router.navigate(['/clubs/resources']);
         },
         error: (err) => {

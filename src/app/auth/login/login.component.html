@@ -6,17 +6,15 @@
         no-repeat;
     "
   ></div>
-  <p class="noesis-text-logo" style="right: 360px">Noesis</p>
+  <p class="noesis-text-logo" style="right: 380px">
+    <a [routerLink]="['/']">Noesis</a>
+  </p>
   <div class="login-container">
     <div class="form-wrapper">
-      <p class="login-text">Ingrese</p>
+      <p class="login-text">Ingresa</p>
       <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onSubmit()">
         <div class="input-group">
-          <input
-            formControlName="username"
-            type="text"
-            placeholder="Usuario"
-          />
+          <input formControlName="username" type="text" placeholder="Usuario" />
           <img
             src="/assets/ico/ic-profile-filled.png"
             class="icon"
@@ -59,14 +57,16 @@
             Campo obligatorio con al menos 6 caracteres
           </p>
         </div>
-        <!-- The button is enabled only when the form is valid -->
         <button type="submit" class="submit-btn" [disabled]="loginForm.invalid">
-          Ingrese
+          Ingresa
         </button>
+        <p class="auth-link">
+          ¿Aún no tienes una cuenta?
+          <a [routerLink]="['/signup']">Regístrate</a>
+        </p>
       </form>
     </div>
   </div>
-  <!-- Dialog Component -->
   <app-executed-process-dialog
     *ngIf="showDialog"
     [message]="dialogMessage"

@@ -15,9 +15,15 @@
       </p>
       <ul>
         <li
-          class="menu-item clubs"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
+          class="clubs"
+          [class.active]="
+            isActive([
+              '/clubs',
+              '/clubs/resources',
+              '/clubs/resources/detail',
+              '/clubs/resources/detail/quiz'
+            ])
+          "
         >
           <a [routerLink]="['/clubs']">
             <img src="/assets/ico/ic-clubs.png" alt="Clubs Icon" class="icon" />
@@ -25,7 +31,7 @@
           </a>
         </li>
         <li
-          class="menu-item explore"
+          class="explore"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
         >
@@ -39,7 +45,7 @@
           </a>
         </li>
         <li
-          class="menu-item profile"
+          class="profile"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
         >
@@ -52,7 +58,29 @@
             &nbsp;&nbsp;Perfil
           </a>
         </li>
+        <li
+          class="logout"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="logout()"
+        >
+          <a>
+            <img
+              src="/assets/ico/ic-logout.png"
+              alt="Logout Icon"
+              class="icon"
+            />
+            &nbsp;&nbsp;Salir
+          </a>
+        </li>
       </ul>
     </nav>
   </div>
+  <app-executed-process-dialog
+    *ngIf="showDialog"
+    [message]="dialogMessage"
+    [actionText]="dialogActionText"
+    (close)="closeDialog()"
+  >
+  </app-executed-process-dialog>
 </section>

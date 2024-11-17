@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { productionEnvironment } from '../../../environments/environment.prod';
-import { QuizResponseModel } from '../data/models/quiz-response';
+import { QuizResponseModel } from '../data/models/quiz-response.model';
 
 @Injectable({
   providedIn: 'root',

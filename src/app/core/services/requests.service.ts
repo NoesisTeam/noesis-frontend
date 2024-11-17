@@ -3,16 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { productionEnvironment } from '../../../environments/environment.prod';
 import { ClubRequest } from '../domain/entities';
-import { Ranking } from '../data/models';
+import { RankingResponseModel } from '../data/models';
 
 @Injectable({
   providedIn: 'root',
 })
-export class RequestService {
+export class RequestsService {
   constructor(private http: HttpClient) {}
   private authToken = 'authToken';
-  getRankingUsers(): Observable<Ranking[]> {
-    return this.http.get<Ranking[]>(
+  getRankingUsers(): Observable<RankingResponseModel[]> {
+    return this.http.get<RankingResponseModel[]>(
       productionEnvironment.coreApiUrl + 'ranking'
     );
   }

@@ -15,4 +15,5 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./explore/explore.routes').then((m) => m.EXPLORE_ROUTES),
   },
+  { path: '**', redirectTo: '' },
 ];

@@ -18,7 +18,7 @@ a {
 ul {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 7px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -35,7 +35,7 @@ li {
   border-radius: 10px;
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-left: 10px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -77,16 +77,14 @@ li.profile.active .icon {
   content: url("/assets/ico/ic-profile-filled.png");
 }
 
-/* Hover and Active States */
-li:hover,
-li.active {
-  background: var(--gradient_purple);
-  color: var(--main_color);
+li.logout:hover .icon,
+li.logout.active .icon {
+  content: url("/assets/ico/ic-logout.png");
 }
 
-/* Apply a filter or change icon styles when active */
-li.active .icon {
-  filter: brightness(1.2);
+li.logout:hover .icon,
+li.logout.active .icon {
+  content: url("/assets/ico/ic-logout-filled.png");
 }
 
 li.clubs.active .icon {
@@ -99,4 +97,30 @@ li.explore.active .icon {
 
 li.profile.active .icon {
   content: url("/assets/ico/ic-profile-filled.png");
+}
+
+li.logout.active .icon {
+  content: url("/assets/ico/ic-logout-filled.png");
+}
+
+/* Hover and Active States */
+li.clubs:hover,
+li.explore:hover,
+li.profile:hover,
+li.clubs.active,
+li.explore.active,
+li.profile.active {
+  color: var(--main_color);
+  background-color: var(--gradient_purple);
+}
+
+li.logout:hover,
+li.logout.active {
+  color: black;
+  background-color: var(--transparent_red);
+}
+
+/* Apply a filter or change icon styles when active */
+li.active .icon {
+  filter: brightness(1.2);
 }
