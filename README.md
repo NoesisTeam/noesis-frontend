@@ -48,7 +48,6 @@ ng serve --open
 
 - **Auth API:** <https://github.com/NoesisTeam/AuthAPI>
 - **Core API:** <https://github.com/NoesisTeam/CoreAPI>
-- **AI-QA API:** <https://github.com/NoesisTeam/IA_QA>
 
 ## 🙋‍♂️ Author
 
