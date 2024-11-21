@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CreateClubDialogComponent } from '../../clubs/home/create-club-dialog/create-club-dialog.component';
+import { CreateClubDialogComponent } from '../../shared/components/create-club-dialog/create-club-dialog.component';
 import { Club } from '../../core/domain/entities';
 import { PublicClubListComponent } from '../public-club-list/public-club-list.component';
 import { ClubsService } from '../../core/services/clubs.service';
-import { Subscription, EMPTY } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { LocalStorageService } from '../../core/services/local-storage.service';
+import { ClubsSharedService } from '../../core/services/clubs-shared.service';
 
 @Component({
   selector: 'app-explore-home',
@@ -14,19 +14,18 @@ import { catchError } from 'rxjs/operators';
   templateUrl: './explore-home.component.html',
   styleUrl: './explore-home.component.css',
 })
-export class ExploreHomeComponent implements OnInit, OnDestroy {
-  private subscription: Subscription = new Subscription();
+export class ExploreHomeComponent implements OnInit {
   public isDialogOpen: boolean = false;
   public clubList: Club[] = [];
 
-  constructor(private readonly clubsService: ClubsService) {}
+  constructor(
+    private readonly clubsService: ClubsService,
+    private readonly localStorageService: LocalStorageService,
+    private readonly clubsSharedService: ClubsSharedService
+  ) {}
 
   public ngOnInit(): void {
     this.loadClubs();
-  }
-
-  public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 
   /**
@@ -47,17 +46,18 @@ export class ExploreHomeComponent implements OnInit, OnDestroy {
    * Load the list of available clubs
    */
   private loadClubs(): void {
-    const clubsSubscription = this.clubsService
-      .getAllClubs(String(this.clubsService.getUserId()))
-      .pipe(
-        catchError((error) => {
+    this.clubsService
+      .getAllClubs(this.localStorageService.getUserId())
+      .subscribe({
+        next: (data: Club[]) => {
+          this.clubList = data;
+        },
+        error: (error) => {
           console.error('Error al cargar clubs:', error);
-          return EMPTY;
-        })
-      )
-      .subscribe((data: Club[]) => {
-        this.clubList = data;
+        },
       });
-    this.subscription.add(clubsSubscription);
+    this.clubsSharedService.publicClubs$.subscribe((clubs) => {
+      this.clubList = clubs;
+    });
   }
 }

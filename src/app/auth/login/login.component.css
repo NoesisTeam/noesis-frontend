@@ -13,6 +13,9 @@
   border-radius: 50px;
   mask-image: linear-gradient(to left, black 70%, transparent 80%);
   -webkit-mask-image: linear-gradient(to left, black 98%, transparent 100%);
+  background: url("/assets/img/login-bg.png") lightgray -250px / 177.453% 100% no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .login-container {

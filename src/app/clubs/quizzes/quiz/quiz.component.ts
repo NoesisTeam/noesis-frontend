@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { QuizzesService } from '../../../core/services/quizzes.service';
 import { QuizResponseModel } from '../../../core/data/models/quiz-response.model';
-import { RequestsService } from '../../../core/services/requests.service';
+import { QuizzesService } from '../../../core/services/quizzes.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 interface QuestionOption {
   text: string;
@@ -26,7 +26,7 @@ interface Question {
 export class QuizComponent implements OnInit {
   constructor(
     private quizzesService: QuizzesService,
-    private requestsService: RequestsService
+    private authService: AuthService
   ) {}
 
   role = 'Member';
@@ -43,8 +43,8 @@ export class QuizComponent implements OnInit {
   private timer: any;
 
   ngOnInit() {
-    if (!this.requestsService.isTokenExpired()) {
-      this.role = this.requestsService.getRoleFromToken();
+    if (!this.authService.isTokenExpired()) {
+      this.role = this.authService.getRoleFromToken();
       const resource_id = this.quizzesService.getReadingResourceId();
       if (resource_id != null) {
         this.quizzesService.getQuiz(resource_id).subscribe({

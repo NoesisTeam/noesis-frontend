@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CreateClubDialogComponent } from '../create-club-dialog/create-club-dialog.component';
+import { CreateClubDialogComponent } from '../../../shared/components/create-club-dialog/create-club-dialog.component';
 import { Club } from '../../../core/domain/entities';
 import { ClubListComponent } from '../club-list/club-list.component';
 import { ClubsService } from '../../../core/services/clubs.service';
-import { Router } from '@angular/router';
+import { ClubsSharedService } from '../../../core/services/clubs-shared.service';
+import { LocalStorageService } from '../../../core/services/local-storage.service';
 
 @Component({
   selector: 'app-clubs-home',
@@ -14,7 +15,11 @@ import { Router } from '@angular/router';
   styleUrl: './clubs-home.component.css',
 })
 export class ClubsHomeComponent implements OnInit {
-  constructor(private clubsService: ClubsService) {}
+  constructor(
+    private clubsService: ClubsService,
+    private clubsSharedService: ClubsSharedService,
+    private localstorageService: LocalStorageService
+  ) {}
 
   clubsCreated: Club[] = [];
   clubsJoined: Club[] = [];
@@ -22,9 +27,9 @@ export class ClubsHomeComponent implements OnInit {
   isDialogOpen = false;
 
   ngOnInit() {
-    this.clubsService.clearToken();
+    this.localstorageService.clearToken();
     this.clubsService
-      .getFoundedClubs(String(this.clubsService.getUserId()))
+      .getFoundedClubs(this.localstorageService.getUserId())
       .subscribe({
         next: (data) => {
           this.clubsCreated = data;
@@ -35,7 +40,7 @@ export class ClubsHomeComponent implements OnInit {
       });
 
     this.clubsService
-      .getJoinedClubs(String(this.clubsService.getUserId()))
+      .getJoinedClubs(this.localstorageService.getUserId())
       .subscribe({
         next: (data) => {
           this.clubsJoined = data;
@@ -47,6 +52,11 @@ export class ClubsHomeComponent implements OnInit {
           );
         },
       });
+
+    // Subscribe to changes in clubsCreated
+    this.clubsSharedService.clubsCreated$.subscribe((clubs) => {
+      this.clubsCreated = clubs;
+    });
   }
 
   openDialog() {

@@ -54,16 +54,4 @@ export class ClubsService {
       { id_user, id_club }
     );
   }
-
-  getUserId(): number | null {
-    return Number(localStorage.getItem(this.userId));
-  }
-
-  clearUserId(): void {
-    localStorage.removeItem(this.userId);
-  }
-
-  clearToken(): void {
-    localStorage.removeItem('authToken');
-  }
 }

@@ -157,65 +157,6 @@ body {
   color: var(--gray-dark);
 }
 
-/* Dialog button actions container */
-.actions {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-/* Dialog button actions */
-.actions button {
-  width: 150px;
-  height: 40px;
-  border-radius: 10px;
-  font-family: Poppins;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-/* Dialog cancel button actions */
-.actions .cancel-button {
-  background: var(--gradient_purple);
-  color: var(--gray-dark);
-  border: 1px solid var(--main_color);
-}
-
-/* Dialog confirm button actions */
-.actions .confirm-button {
-  background: var(--main_color);
-  color: white;
-}
-
-/* Dialog disabled confirm button actions */
-.actions .confirm-button:disabled {
-  background-color: #b0b0b0;
-  cursor: not-allowed;
-  color: #ffffff;
-  opacity: 0.6;
-}
-
-/* Error text & Success Text */
-.error-text,
-.success-text {
-  text-align: center;
-  margin: 5px 0;
-  font-family: Poppins;
-  font-size: 14px;
-}
-
-/* Error text color */
-.error-text {
-  color: #ff0000;
-}
-
-/* Success text color */
-.success-text {
-  color: #28a745;
-}
-
 /* Home page welcoming text */
 .welcoming-text {
   font-family: Poppins;
@@ -253,6 +194,16 @@ body {
     rgba(100, 8, 156, 0.89) 98.61%
   );
   border: none;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.create-club-button:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(217, 0, 208, 1) 0%,
+    rgba(100, 8, 156, 1) 98.61%
+  );
+  transform: scale(1.05);
 }
 
 /* Clubs & Explore home create button icon */
@@ -336,4 +287,23 @@ body {
 
 .back-button:hover {
   color: var(--pink);
+}
+
+/* Error text & Success Text */
+.error-text,
+.success-text {
+  text-align: center;
+  margin: 5px 0;
+  font-family: Poppins;
+  font-size: 14px;
+}
+
+/* Error text color */
+.error-text {
+  color: #ff0000;
+}
+
+/* Success text color */
+.success-text {
+  color: #28a745;
 }

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RequestsService } from '../../core/services/requests.service';
 import { ClubRequest } from '../../core/domain/entities';
 import { Router } from '@angular/router';
 import { RankingResponseModel } from '../../core/data/models';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-ranking-requests',
@@ -15,29 +16,46 @@ import { RankingResponseModel } from '../../core/data/models';
 export class RankingRequestsComponent implements OnInit {
   constructor(
     private requestsService: RequestsService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
+  @Input() isResource: boolean = false;
   userRole: string = 'Member';
   rankingUsers: RankingResponseModel[] = [];
   requestUsers: ClubRequest[] = [];
   currentView: 'ranking' | 'requests' = 'ranking';
 
   ngOnInit(): void {
-    if (!this.requestsService.isTokenExpired()) {
-      this.userRole = this.requestsService.getRoleFromToken();
+    if (!this.authService.isTokenExpired()) {
+      this.userRole = this.authService.getRoleFromToken();
       if (this.userRole === 'Founder') {
         this.getAllMemberRequests();
       }
-      this.getRankingUsers();
+      if (this.isResource) {
+        this.getResourceRankingUsers();
+      } else {
+        this.getClubRankingUsers();
+      }
     } else {
       alert('Sesión expirada. Inicie sesión nuevamente');
       this.router.navigate(['/login']);
     }
   }
 
-  getRankingUsers(): void {
-    this.requestsService.getRankingUsers().subscribe({
+  getResourceRankingUsers(): void {
+    this.requestsService.getResourceRankingUsers().subscribe({
+      next: (data) => {
+        this.rankingUsers = data;
+      },
+      error: (error) => {
+        console.log('Error: ', error);
+      },
+    });
+  }
+
+  getClubRankingUsers(): void {
+    this.requestsService.getClubRankingUsers().subscribe({
       next: (data) => {
         this.rankingUsers = data;
       },

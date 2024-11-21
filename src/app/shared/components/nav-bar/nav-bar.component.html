@@ -1,18 +1,13 @@
 <section class="default-section">
   <div class="nav-bar-container">
     <nav *ngIf="shouldDisplayNavBar()">
-      <p
-        class="noesis-text-logo"
-        style="
-          position: relative;
-          top: -60px;
-          left: 30px;
-          color: var(--main_color);
-          margin-bottom: -50px;
-        "
-      >
-        <a href="/clubs"> Noesis </a>
-      </p>
+      <a href="/clubs">
+        <img
+          src="/assets/ico/noesis-website-logo.png"
+          alt="Noesis"
+          style="width: 240px; height: auto"
+        />
+      </a>
       <ul>
         <li
           class="clubs"
@@ -63,6 +58,7 @@
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
           (click)="logout()"
+          style="position: absolute; top: 2vh; left: 91vw"
         >
           <a>
             <img

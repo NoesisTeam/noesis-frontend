@@ -1,0 +1,146 @@
+.dialog-overlay {
+  position: fixed; /* Fixes the layer so that it is always on the screen */
+  top: 0; /* Aligns the layer at the top of the window */
+  left: 0; /* aligns the layer on the left side of the window */
+  right: 0; /* Extends the layer to the right edge */
+  bottom: 0; /* Extends the layer to the bottom edge */
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
+  display: flex; /* Uses flexbox to centre the dialogue */
+  justify-content: center; /* Centres the dialogue horizontally */
+  align-items: center; /* Centres the dialogue vertically */
+  z-index: 1000; /* Ensures that the layer is on top of other elements */
+}
+
+.dialog-content {
+  background: white;
+  padding: 13px 42px 34px 42px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  gap: 14px;
+
+  display: flex;
+  flex-direction: column; /* Aligns items in a column */
+  justify-content: center; /* Centres elements vertically */
+  align-items: center; /* Centres elements horizontally */
+  text-align: center;
+}
+
+.dialog-content p {
+  text-align: center;
+  margin: 5px 0;
+  font-family: Poppins;
+  font-size: 14px;
+}
+
+.dialog-content button {
+  width: 150px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: var(--main_color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Base style for checkbox and radio */
+.form-field input[type="checkbox"],
+.form-field input[type="radio"] {
+  appearance: none; /* Hides the default style */
+  width: 20px; /* Checkbox size */
+  height: 20px;
+  border: 2px solid #000; /* Border colour */
+  border-radius: 50%; /* Circulate it */
+  display: inline-block;
+  cursor: pointer;
+  background-color: #fff; /* Starting fund */
+  transition: all 0.3s ease; /* Smooth transitions */
+}
+
+/* Style when clicked (when selected) */
+.form-field input[type="checkbox"]:checked,
+.form-field input[type="radio"]:checked {
+  border-color: var(--main_color); /* Changes the border colour */
+  background-color: var(--main_color); /* Change the background */
+  box-shadow: 0 0 5px rgba(100, 8, 156, 0.6); /* Glossy effect */
+}
+
+/* Mouse-over style */
+.form-field input[type="checkbox"]:hover,
+.form-field input[type="radio"]:hover {
+  border-color: var(--main_color); /* Highlight the border on mouse hover */
+}
+
+/* Groups the radio buttons in a row */
+.radio-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Dialog button actions container */
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Dialog button actions */
+.actions button {
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Dialog cancel button actions */
+.actions .cancel-button {
+  background: var(--gradient_purple);
+  color: var(--gray-dark);
+  border: 1px solid var(--main_color);
+}
+
+/* Dialog confirm button actions */
+.actions .confirm-button {
+  background: var(--main_color);
+  color: white;
+}
+
+.actions .cancel-button:hover {
+  transform: scale(1.05);
+}
+
+.actions .confirm-button:hover {
+  filter: brightness(1.2);
+  transform: scale(1.05);
+}
+
+/* Dialog disabled confirm button actions */
+.actions .confirm-button:disabled {
+  background-color: #b0b0b0;
+  cursor: not-allowed;
+  color: #ffffff;
+  opacity: 0.6;
+}
+
+/* Error text color */
+.error-text {
+  color: #ff0000;
+}
+
+/* Success text color */
+.success-text {
+  color: #28a745;
+}

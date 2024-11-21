@@ -16,9 +16,32 @@
       />
     </svg>
     <p class="club-text">Club</p>
+    <img
+      [src]="
+        club.is_private
+          ? '/assets/ico/ic-lock.png'
+          : '/assets/ico/ic-lock-open.png'
+      "
+      alt="Lock Icon"
+      class="lock-icon"
+    />
     <p class="club-name-text">{{ club.club_name }}</p>
     <p class="founded-by-text" style="color: var(--blue)">Código</p>
     <p class="founded-by-name-text">{{ club.club_code }}</p>
-    <div class="join-button">Unirte</div>
+    <div class="join-button">
+      <img
+        *ngIf="club.is_academic"
+        src="/assets/ico/ic-check.png"
+        alt="Check Icon"
+        class="check-icon"
+      />
+      Unirte
+    </div>
   </button>
+  <app-executed-process-dialog
+    *ngIf="showDialog"
+    [message]="dialogMessage"
+    [actionText]="dialogActionText"
+    (close)="closeDialog()"
+  ></app-executed-process-dialog>
 </div>

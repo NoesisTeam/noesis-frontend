@@ -10,9 +10,9 @@
   position: absolute;
   width: 50%;
   height: 100%;
-  border-radius: 50px;
-  mask-image: linear-gradient(to left, black 70%, transparent 80%);
-  -webkit-mask-image: linear-gradient(to left, black 98%, transparent 100%);
+  background: url("/assets/img/signup-bg.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .signup-container {

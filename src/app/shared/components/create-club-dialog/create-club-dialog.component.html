@@ -53,4 +53,10 @@
       </div>
     </form>
   </div>
+  <app-executed-process-dialog
+    *ngIf="showDialog"
+    [message]="dialogMessage"
+    [actionText]="dialogActionText"
+    (close)="closeExecutedProcessDialog()"
+  ></app-executed-process-dialog>
 </div>

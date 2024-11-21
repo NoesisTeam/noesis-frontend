@@ -3,12 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { productionEnvironment } from '../../../environments/environment.prod';
 import { ReadingResource } from '../domain/entities/reading-resource.entity';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ResourcesService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
+  ) {}
 
   getClubResources(): Observable<ReadingResource[]> {
     return this.http.get<ReadingResource[]>(
@@ -23,19 +27,11 @@ export class ResourcesService {
     );
   }
 
-  setReadingResourceId(id_reading_resource: number) {
-    localStorage.setItem('resourceId', String(id_reading_resource));
-  }
-
-  getReadingResourceId(): string {
-    return localStorage.getItem('resourceId') ?? '';
-  }
-
   getReadingResourceUrl() {
     return this.http.get<string>(
       productionEnvironment.coreApiUrl +
         'get/resources/id/' +
-        this.getReadingResourceId()
+        this.localStorageService.getResourceId()
     );
   }
 }

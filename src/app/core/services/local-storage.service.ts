@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
   private readonly userIdKey = 'userId';
   private readonly authTokenKey = 'authToken';
+  private readonly resourceId = 'resourceId';
 
   /**
    * Stores the authentication token in local storage.
@@ -76,6 +77,31 @@ export class LocalStorageService {
       localStorage.removeItem(this.userIdKey);
     } catch (error) {
       console.error('Error removing userId from localStorage', error);
+    }
+  }
+
+  setResourceId(id_reading_resource: string): void {
+    try {
+      localStorage.setItem(this.resourceId, String(id_reading_resource));
+    } catch (error) {
+      console.error('Error saving resourceId to localStorage', error);
+    }
+  }
+
+  getResourceId(): string | null {
+    try {
+      return localStorage.getItem(this.resourceId) ?? '';
+    } catch (error) {
+      console.error('Error retrieving resourceId from localStorage', error);
+      return null;
+    }
+  }
+
+  clearResourceId(): void {
+    try {
+      localStorage.removeItem(this.resourceId);
+    } catch (error) {
+      console.error('Error removing resourceId from localStorage', error);
     }
   }
 }

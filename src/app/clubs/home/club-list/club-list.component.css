@@ -6,11 +6,10 @@
   position: relative;
   overflow: hidden;
   width: 1500px;
-  margin: 0 auto;
-  left: 40px;
   display: flex;
   transition: transform 0.3s ease-in-out;
-  gap: 3rem;
+  gap: 2rem;
+  padding: 10px;
   align-items: center;
 }
 
@@ -49,31 +48,37 @@
   transform: scale(1.05);
 }
 
-.prev-button {
-  margin-right: auto;
-}
-
-.next-button {
-  margin-left: auto;
-}
-
 .club-card {
+  position: relative; /* Allows to position absolute elements within the card */
   display: flex;
+  flex-direction: column;
+  align-items: left; /* Horizontally centers the content */
+  justify-content: space-between; /* Distributes content vertically */
+  padding: 5px; /* Internal spacing */
   width: 280px;
   height: 150px;
-  padding: 1px 0px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-  flex-shrink: 0;
-  top: 320px;
-  left: 70px;
-
   border: none;
   background: var(--gradient_purple);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
-    0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.3s, transform 0.2s; /* Ensures that no content leaves the edge */
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.club-card:hover {
+  background: var(--gradient_purple_hover);
+  transform: scale(1.05);
+}
+
+.club-card svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Ensures that the SVG occupies the full width of the card */
+  height: auto;
+  z-index: 0; /* Sends the SVG behind the content */
 }
 
 .club-text {
@@ -83,7 +88,7 @@
   margin-left: 10px;
 
   font-family: Poppins;
-  font-size: 19.2px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -96,7 +101,7 @@
   margin-left: 10px;
 
   font-family: Poppins;
-  font-size: 23.04px;
+  font-size: 21px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -126,4 +131,29 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.motivational-phrase {
+  width: 100%;
+  font-size: 3.5em;
+  font-weight: 500;
+  color: #cccccc;
+  text-align: center;
+  font-family: "Lobster Two", cursive;
+}
+
+.lock-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 35px;
+  height: 35px;
+}
+
+.check-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 35px;
+  height: 35px;
 }

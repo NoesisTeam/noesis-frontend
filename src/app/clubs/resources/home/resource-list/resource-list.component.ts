@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ReadingResource } from '../../../../core/domain/entities';
-import { ResourcesService } from '../../../../core/services/resources.service';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../../../../core/services/local-storage.service';
 
 @Component({
   selector: 'app-resource-list',
@@ -14,12 +14,12 @@ import { Router } from '@angular/router';
 export class ResourceListComponent {
   @Input() resources: ReadingResource[] = [];
   constructor(
-    private resourcesService: ResourcesService,
-    private router: Router
+    private router: Router,
+    private localStorageService: LocalStorageService
   ) {}
 
   setResourceId(id_reading_resource: number) {
-    this.resourcesService.setReadingResourceId(id_reading_resource);
+    this.localStorageService.setResourceId(String(id_reading_resource));
     this.router.navigate(['/clubs/resources/detail']);
   }
 }

@@ -15,27 +15,55 @@
 
   <!-- Carousel -->
   <div class="carousel-container" [style.top]="top">
-    <button
-      class="club-card"
-      *ngFor="let club of visibleClubs"
-      (click)="getTokenClub(club.id_club)"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="280"
-        height="79"
-        viewBox="0 0 280 79"
+    <ng-container *ngIf="clubs.length > 0; else noClubs">
+      <button
+        class="club-card"
+        *ngFor="let club of visibleClubs"
+        (click)="getTokenClub(club.id_club)"
       >
-        <path
-          d="M238.204 69.5C204.448 81.631 22 82 0 69.5V0H280C269.929 35 270.204 58 238.204 69.5Z"
-          [attr.fill]="color"
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="280"
+          height="79"
+          viewBox="0 0 280 79"
+        >
+          <path
+            d="M238.204 69.5C204.448 81.631 22 82 0 69.5V0H280C269.929 35 270.204 58 238.204 69.5Z"
+            [attr.fill]="color"
+          />
+        </svg>
+        <p class="club-text">Club</p>
+        <img
+          [src]="
+            club.is_private
+              ? '/assets/ico/ic-lock.png'
+              : '/assets/ico/ic-lock-open.png'
+          "
+          alt="Lock Icon"
+          class="lock-icon"
         />
-      </svg>
-      <p class="club-text">Club</p>
-      <p class="club-name-text">{{ club.club_name }}</p>
-      <p class="founded-by-text" [style.color]="color">Código</p>
-      <p class="founded-by-name-text">{{ club.club_code }}</p>
-    </button>
+        <p class="club-name-text">{{ club.club_name }}</p>
+        <p class="founded-by-text" [style.color]="color">Código</p>
+        <p class="founded-by-name-text">{{ club.club_code }}</p>
+        <img
+          *ngIf="isFounder && club.is_academic"
+          src="/assets/ico/ic-check-pink.png"
+          alt="Pink Check Icon"
+          class="check-icon"
+        />
+        <img
+          *ngIf="!isFounder && club.is_academic"
+          src="/assets/ico/ic-check-blue.png"
+          alt="Blue Check Icon"
+          class="check-icon"
+        />
+      </button>
+    </ng-container>
+    <ng-template #noClubs>
+      <div class="motivational-phrase">
+        {{ randomPhrase }}
+      </div>
+    </ng-template>
   </div>
 
   <!-- Forward button -->

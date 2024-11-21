@@ -1,9 +1,9 @@
 <div class="purple-container">
-  <button class="back-button" [routerLink]="['/clubs/resources']">
+  <button class="back-button" (click)="backButtonAction()">
     <img src="assets/ico/ic-back.png" alt="Back Icon" class="icon" />
     Atrás
   </button>
-  <app-ranking-requests></app-ranking-requests>
+  <app-ranking-requests [isResource]="true"></app-ranking-requests>
   <app-pdf-viewer [pdfSrc]="readingResourceUrl"></app-pdf-viewer>
   <button
     class="create-club-button"

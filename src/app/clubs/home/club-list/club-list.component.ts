@@ -1,8 +1,16 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ChangeDetectorRef,
+  AfterViewInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth.service';
 import { LocalStorageService } from '../../../core/services/local-storage.service';
 import { Router } from '@angular/router';
+import { motivationalPhrases } from '../../../shared/constants/motivational-phrases';
 
 @Component({
   selector: 'app-club-list',
@@ -11,11 +19,12 @@ import { Router } from '@angular/router';
   templateUrl: './club-list.component.html',
   styleUrls: ['./club-list.component.css'],
 })
-export class ClubListComponent implements OnChanges {
+export class ClubListComponent implements OnChanges, AfterViewInit {
   constructor(
     private authService: AuthService,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   @Input() color: string = '#000000';
@@ -30,20 +39,26 @@ export class ClubListComponent implements OnChanges {
     created_at: string;
     club_status: string;
   }[] = [];
+  @Input() isFounder: boolean = false;
 
   visibleClubs: typeof this.clubs = [];
   currentStartIndex: number = 0;
   clubsPerPage: number = 4;
+  randomPhrase: string = '';
 
   ngOnInit() {
     this.updateVisibleClubs();
   }
 
-  // Detects changes in clubs and updates the view
   ngOnChanges(changes: SimpleChanges) {
     if (changes['clubs'] && changes['clubs'].currentValue) {
       this.updateVisibleClubs();
     }
+  }
+
+  ngAfterViewInit() {
+    this.randomPhrase = this.getRandomPhrase();
+    this.cdr.detectChanges();
   }
 
   updateVisibleClubs() {
@@ -83,5 +98,10 @@ export class ClubListComponent implements OnChanges {
     } else {
       alert('Por favor iniciar sesión');
     }
+  }
+
+  getRandomPhrase(): string {
+    const randomIndex = Math.floor(Math.random() * motivationalPhrases.length);
+    return motivationalPhrases[randomIndex];
   }
 }
