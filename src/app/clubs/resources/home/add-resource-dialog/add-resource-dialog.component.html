@@ -39,6 +39,10 @@
           <p *ngIf="fileError" class="error-text">
             Por favor, selecciona un archivo PDF válido
           </p>
+          <!-- Error message for file size -->
+          <p *ngIf="fileSizeError" class="error-text">
+            El archivo debe ser menor a 1MB
+          </p>
           <!-- Selected file name -->
           <p *ngIf="selectedFile" class="success-text">
             Archivo: {{ selectedFile.name }}
@@ -88,12 +92,18 @@
           <button
             type="submit"
             class="confirm-button"
-            [disabled]="!isFormValid()"
+            [disabled]="!isFormValid() || isSubmitting"
           >
-            Agregar
+            {{ isSubmitting ? "Agregando..." : "Agregar" }}
           </button>
         </div>
       </div>
     </form>
   </div>
+  <app-executed-process-dialog
+    *ngIf="showDialog"
+    [message]="dialogMessage"
+    [actionText]="dialogActionText"
+    (close)="closeExecutedProcessDialog()"
+  ></app-executed-process-dialog>
 </div>

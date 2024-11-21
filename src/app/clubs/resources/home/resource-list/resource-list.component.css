@@ -2,11 +2,11 @@
   display: grid;
   position: relative;
   left: 30px;
-  top: 80px;
+  top: 40px;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  max-height: 79%;
-  overflow-y: auto;
+  max-height: 100%;
+  overflow-y: inherit;
   width: 95%;
 }
 
@@ -15,14 +15,21 @@
   display: flex;
   justify-content: space-between; /* Spaces the content horizontally */
   border-radius: 5px;
-  width: 490px;
+  margin-left: 15px;
+  margin-top: 10px;
+  width: 470px;
   height: 80px;
   background: var(--light_blue);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   border: none;
   overflow: hidden; /* Ensures that the SVG does not protrude */
-  padding: 10px;
+  padding: 15px;
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+}
+
+.resource-card:hover {
+  transform: scale(1.05);
 }
 
 .resource-card svg {
@@ -38,7 +45,7 @@
   position: relative;
   width: 50px;
   height: 50px;
-  margin-right: 10px; /* spacing to the right of the icon */
+  /* margin-right: 10px; spacing to the right of the icon */
   z-index: 2; /* Ensure that it is on top of the SVG */
 }
 

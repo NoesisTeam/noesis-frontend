@@ -9,6 +9,8 @@ import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ResourceListComponent } from '../resource-list/resource-list.component';
+import { AuthService } from '../../../../core/services/auth.service';
+import { ResourcesSharedService } from '../../../../core/services/resources-shared.service';
 
 @Component({
   selector: 'app-clubs-resources',
@@ -24,12 +26,15 @@ import { ResourceListComponent } from '../resource-list/resource-list.component'
   styleUrls: ['./resources-home.component.css'],
 })
 export class ResourcesHomeComponent implements OnInit {
-  constructor(
-    private resourcesService: ResourcesService,
-    private router: Router
-  ) {}
+  userRole: string = '';
   isDialogOpen = false;
   resources: ReadingResource[] = [];
+  constructor(
+    private resourcesService: ResourcesService,
+    private router: Router,
+    private authService: AuthService,
+    private resourcesSharedService: ResourcesSharedService
+  ) {}
 
   openDialog(): void {
     this.isDialogOpen = true;
@@ -40,6 +45,7 @@ export class ResourcesHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userRole = this.authService.getRoleFromToken();
     this.resourcesService
       .getClubResources()
       .pipe(
@@ -68,5 +74,8 @@ export class ResourcesHomeComponent implements OnInit {
       .subscribe((data) => {
         this.resources = data;
       });
+    this.resourcesSharedService.resourcesCreated$.subscribe((resources) => {
+      this.resources = resources;
+    });
   }
 }

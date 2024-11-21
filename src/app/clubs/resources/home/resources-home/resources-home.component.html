@@ -3,12 +3,16 @@
     <img src="assets/ico/ic-back.png" alt="Back Icon" class="icon" />
     Atrás
   </button>
-  <button class="add-resource-button" (click)="openDialog()">
+  <button
+    *ngIf="userRole === 'Founder'"
+    class="add-resource-button"
+    (click)="openDialog()"
+  >
     Agregar recursos
     <img src="assets/ico/ic-add-club-filled.png" alt="Add Icon" class="icon" />
   </button>
   <div class="resources-container" style="width: 1100px">
-    <p class="clubs-text" style="top: 170px">Tus recursos</p>
+    <p class="resources-text">Tus recursos</p>
     <app-resource-list [resources]="resources"></app-resource-list>
   </div>
   <app-ranking-requests [isResource]="false"></app-ranking-requests>

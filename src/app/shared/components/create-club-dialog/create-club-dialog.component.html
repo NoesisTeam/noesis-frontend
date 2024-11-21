@@ -46,9 +46,9 @@
         <button
           type="submit"
           class="confirm-button"
-          [disabled]="!isFormValid()"
+          [disabled]="!isFormValid() || isSubmitting"
         >
-          Crear
+          {{ isSubmitting ? "Creando..." : "Crear" }}
         </button>
       </div>
     </form>

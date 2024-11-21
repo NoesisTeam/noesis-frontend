@@ -23,6 +23,7 @@ export class CreateClubDialogComponent {
   public dialogMessage: string = '';
   public dialogActionText: string = '';
   public showDialog: boolean = false;
+  public isSubmitting: boolean = false;
 
   @Output() close = new EventEmitter<void>();
 
@@ -48,6 +49,7 @@ export class CreateClubDialogComponent {
   }
 
   onSubmit(): void {
+    this.isSubmitting = true;
     const id_user = Number(this.localStorageService.getUserId()) ?? 0;
     const is_academic = this.createClubForm.get('isAcademic')?.value ?? false;
     const club_name = this.createClubForm.get('clubName')?.value;
@@ -61,7 +63,7 @@ export class CreateClubDialogComponent {
           this.dialogMessage = 'Club creado exitosamente';
           this.dialogActionText = 'Aceptar';
           this.showDialog = true;
-
+          this.isSubmitting = false;
           // Update the clubsCreated array in the shared service
           this.clubsService
             .getFoundedClubs(this.localStorageService.getUserId())
@@ -70,19 +72,28 @@ export class CreateClubDialogComponent {
                 this.clubsSharedService.updateClubsCreated(data);
               },
               error: (error) => {
-                console.error('Error al obtener los clubs fundados:', error);
+                this.dialogMessage = 'Error al obtener los clubs fundados';
+                this.dialogActionText = 'Aceptar';
+                this.showDialog = true;
               },
             });
-          // this.router.navigate(['/clubs']);
         },
         error: (error) => {
+          this.dialogMessage = 'Error al crear el club';
+          this.dialogActionText = 'Reintentar';
+          this.showDialog = true;
+          this.isSubmitting = false;
           console.log(error.message);
         },
       });
   }
 
   public closeExecutedProcessDialog(): void {
-    this.showDialog = false;
-    this.onClose();
+    if (this.dialogMessage === 'Club creado exitosamente') {
+      this.showDialog = false;
+      this.onClose();
+    } else {
+      this.showDialog = false;
+    }
   }
 }

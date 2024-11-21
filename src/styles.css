@@ -251,8 +251,7 @@ body {
   font-size: 16px;
 }
 
-.clubs-text,
-.resource-tet¿ {
+.clubs-text {
   color: rgba(0, 0, 0, 0.75);
   font-family: Poppins;
   font-size: 23.04px;
@@ -262,6 +261,18 @@ body {
   margin-left: 30px;
   position: absolute;
   top: 250px;
+}
+
+.resources-text {
+  color: rgba(0, 0, 0, 0.75);
+  font-family: Poppins;
+  font-size: 23.04px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 30px;
+  position: relative;
+  top: 5vh;
 }
 
 .back-button {

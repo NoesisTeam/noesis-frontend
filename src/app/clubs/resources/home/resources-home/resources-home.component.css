@@ -15,7 +15,7 @@
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  margin-left: 30px;
+  margin-left: 40px;
   margin-top: 10px;
   cursor: pointer;
   background: linear-gradient(
@@ -24,6 +24,12 @@
     rgba(100, 8, 156, 0.89) 98.61%
   );
   border: none;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.add-resource-button:hover {
+  transform: scale(1.05);
+  filter: contrast(1.2);
 }
 
 .add-resource-button .icon {
