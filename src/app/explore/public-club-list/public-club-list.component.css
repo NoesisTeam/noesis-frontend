@@ -19,7 +19,7 @@
   align-items: center; /* Horizontally centers the content */
   justify-content: space-between; /* Distributes content vertically */
   padding: 5px; /* Internal spacing */
-  width: 280px;
+  width: 300px;
   height: 150px;
   border: none;
   background: var(--gradient_purple);

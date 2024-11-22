@@ -7,6 +7,7 @@ export class LocalStorageService {
   private readonly userIdKey = 'userId';
   private readonly authTokenKey = 'authToken';
   private readonly resourceId = 'resourceId';
+  private readonly quizId = 'quizId';
 
   /**
    * Stores the authentication token in local storage.
@@ -102,6 +103,31 @@ export class LocalStorageService {
       localStorage.removeItem(this.resourceId);
     } catch (error) {
       console.error('Error removing resourceId from localStorage', error);
+    }
+  }
+
+  setQuizId(id_quiz: string): void {
+    try {
+      localStorage.setItem(this.quizId, id_quiz);
+    } catch (error) {
+      console.error('Error saving quizId to localStorage', error);
+    }
+  }
+
+  getQuizId(): string | null {
+    try {
+      return localStorage.getItem(this.quizId);
+    } catch (error) {
+      console.error('Error retrieving quizId from localStorage', error);
+      return null;
+    }
+  }
+
+  clearQuizId(): void {
+    try {
+      localStorage.removeItem(this.quizId);
+    } catch (error) {
+      console.error('Error removing quizId from localStorage', error);
     }
   }
 }

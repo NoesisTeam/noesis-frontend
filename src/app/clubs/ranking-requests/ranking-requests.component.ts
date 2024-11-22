@@ -1,30 +1,33 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RequestsService } from '../../core/services/requests.service';
-import { ClubRequest } from '../../core/domain/entities';
 import { Router } from '@angular/router';
-import { RankingResponseModel } from '../../core/data/models';
 import { AuthService } from '../../core/services/auth.service';
+import { ExecutedProcessDialogComponent } from '../../shared/components/executed-process-dialog/executed-process-dialog.component';
+import { ClubRanking } from '../../core/data/models';
+import { ClubRequest } from '../../core/domain/entities';
 
 @Component({
   selector: 'app-ranking-requests',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ExecutedProcessDialogComponent],
   templateUrl: './ranking-requests.component.html',
   styleUrl: './ranking-requests.component.css',
 })
 export class RankingRequestsComponent implements OnInit {
+  @Input() isResource: boolean = false;
+  userRole: string = 'Member';
+  rankingUsers: ClubRanking[] = [];
+  requestUsers: ClubRequest[] = [];
+  currentView: 'ranking' | 'requests' = 'ranking';
+  public dialogMessage: string = '';
+  public dialogActionText: string = '';
+  public showDialog: boolean = false;
   constructor(
     private requestsService: RequestsService,
     private router: Router,
     private authService: AuthService
   ) {}
-
-  @Input() isResource: boolean = false;
-  userRole: string = 'Member';
-  rankingUsers: RankingResponseModel[] = [];
-  requestUsers: ClubRequest[] = [];
-  currentView: 'ranking' | 'requests' = 'ranking';
 
   ngOnInit(): void {
     if (!this.authService.isTokenExpired()) {
@@ -38,8 +41,9 @@ export class RankingRequestsComponent implements OnInit {
         this.getClubRankingUsers();
       }
     } else {
-      alert('Sesión expirada. Inicie sesión nuevamente');
-      this.router.navigate(['/login']);
+      this.dialogMessage = 'Sesión expirada. Inicie sesión nuevamente';
+      this.dialogActionText = 'Iniciar sesión';
+      this.showDialog = true;
     }
   }
 
@@ -100,5 +104,10 @@ export class RankingRequestsComponent implements OnInit {
         console.log('Error: ', error);
       },
     });
+  }
+
+  closeDialog(): void {
+    this.showDialog = false;
+    this.router.navigate(['/login']);
   }
 }

@@ -4,11 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { QuizResponseModel } from '../../../core/data/models/quiz-response.model';
 import { QuizzesService } from '../../../core/services/quizzes.service';
 import { AuthService } from '../../../core/services/auth.service';
+import { LocalStorageService } from '../../../core/services/local-storage.service';
+import { ExecutedProcessDialogComponent } from '../../../shared/components/executed-process-dialog/executed-process-dialog.component';
+import { Router } from '@angular/router';
 
 interface QuestionOption {
   text: string;
   isCorrect?: boolean;
   isSelected: boolean;
+  label: string;
 }
 
 interface Question {
@@ -19,14 +23,16 @@ interface Question {
 @Component({
   selector: 'app-quiz',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ExecutedProcessDialogComponent],
   templateUrl: './quiz.component.html',
   styleUrl: './quiz.component.css',
 })
 export class QuizComponent implements OnInit {
   constructor(
+    private router: Router,
     private quizzesService: QuizzesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private localStorageService: LocalStorageService
   ) {}
 
   role = 'Member';
@@ -37,10 +43,14 @@ export class QuizComponent implements OnInit {
   timeUsed = '4:30';
   hoverBack = false;
   questions: Question[] = [];
+  public dialogMessage = '';
+  public dialogActionText = '';
+  public showDialog = false;
 
   // Timer
   timeRemaining = '05:00';
   private timer: any;
+  private totalSeconds = 5 * 60;
 
   ngOnInit() {
     if (!this.authService.isTokenExpired()) {
@@ -50,38 +60,61 @@ export class QuizComponent implements OnInit {
         this.quizzesService.getQuiz(resource_id).subscribe({
           next: (res: QuizResponseModel) => {
             this.mapQuestionsData(res);
+            this.localStorageService.setQuizId(String(res.id_quiz));
+            this.startTimer();
           },
           error: (err) => {
-            console.error('Fallo al obtener el quiz', err);
-            alert('No hay quiz para mostrar');
+            this.dialogMessage = 'No hay quiz para mostrar';
+            this.dialogActionText = 'Reintentar';
+            this.showDialog = true;
           },
         });
       } else {
-        alert('No hay recurso seleccionado');
+        this.dialogMessage = 'No hay recurso seleccionado';
+        this.dialogActionText = 'Seleccionar recurso';
+        this.showDialog = true;
       }
     } else {
-      alert('Debes iniciar sesión para ver el quiz');
+      this.dialogMessage = 'Debes iniciar sesión para ver el quiz';
+      this.dialogActionText = 'Iniciar sesión';
+      this.showDialog = true;
+    }
+  }
+
+  public closeDialog(): void {
+    this.showDialog = false;
+    if (this.dialogMessage === 'Debes iniciar sesión para ver el quiz') {
+      this.router.navigate(['/login']);
     }
   }
 
   ngOnDestroy() {
-    clearInterval(this.timer);
+    this.stopTimer(); // Clear the timer when the component is destroyed
   }
 
-  startTimer() {
-    let totalSeconds = 300;
+  private startTimer(): void {
     this.timer = setInterval(() => {
-      if (totalSeconds > 0) {
-        totalSeconds--;
-        const minutes = Math.floor(totalSeconds / 60)
-          .toString()
-          .padStart(2, '0');
-        const seconds = (totalSeconds % 60).toString().padStart(2, '0');
-        this.timeRemaining = `${minutes}:${seconds}`;
-      } else {
-        clearInterval(this.timer);
+      this.totalSeconds--;
+
+      if (this.totalSeconds <= 0) {
+        this.stopTimer();
+        return;
       }
+
+      const minutes = Math.floor(this.totalSeconds / 60);
+      const seconds = this.totalSeconds % 60;
+
+      this.timeRemaining = `${minutes.toString().padStart(2, '0')}:${seconds
+        .toString()
+        .padStart(2, '0')}`;
     }, 1000);
+  }
+
+  private stopTimer(): void {
+    if (this.timer) {
+      clearInterval(this.timer);
+      this.timer = null;
+    }
   }
 
   toggleEdit() {
@@ -108,13 +141,21 @@ export class QuizComponent implements OnInit {
   }
 
   submitQuiz() {
-    this.showStats = true;
-    this.calculateScore();
     clearInterval(this.timer); // Stop the timer when sending
+    // this.calculateScore();
+    this.showStats = true;
   }
 
   calculateScore() {
     this.timeUsed = this.timeRemaining; // Saves the time used
+    const quizId = this.localStorageService.getQuizId();
+    if (quizId != null) {
+      this.quizzesService.submitQuiz(
+        quizId,
+        this.getSelectedLabels(),
+        this.timeUsed
+      );
+    }
   }
 
   regenerateQuiz() {
@@ -123,8 +164,9 @@ export class QuizComponent implements OnInit {
         this.mapQuestionsData(res);
       },
       error: (err) => {
-        console.error('Fallo al obtener el quiz', err);
-        alert('No hay quiz para mostrar');
+        this.dialogMessage = 'No se pudo regenerar el quiz';
+        this.dialogActionText = 'Reintentar';
+        this.showDialog = true;
       },
     });
   }
@@ -140,15 +182,53 @@ export class QuizComponent implements OnInit {
         res.correct_answers as string
       ) as string[];
     }
+
+    // Array of labels for options
+    const labels = ['A', 'B', 'C', 'D'];
+
     // Transforming questions and answers
     this.questions = parsedQuestions.map((q, index) => ({
       title: q.question,
       options:
-        parsedAnswers[index]?.map((answer) => ({
+        parsedAnswers[index]?.map((answer, optionIndex) => ({
           text: answer, // Response text
           isCorrect: parsedCorrectAnswers[index] === answer, // Validate if correct
           isSelected: false, // Initially not selected
+          label: labels[optionIndex], // Add label (A, B, C, D)
         })) || [],
     }));
+  }
+
+  // Method to obtain the labels of the selected options
+  private getSelectedLabels(): string[] {
+    const selectedLabels: string[] = [];
+
+    this.questions.forEach((question, questionIndex) => {
+      // Initialize array with "Z" of the same size as the options
+      const orderedLabels = new Array(question.options.length).fill('Z');
+
+      // Counter for selection order
+      let selectionOrder = 0;
+
+      // Scroll through the options in their original order
+      question.options.forEach((option, optionIndex) => {
+        if (option.isSelected) {
+          // If the option is selected, save your label in the order of selection.
+          orderedLabels[optionIndex] = option.label;
+          selectionOrder++;
+        }
+      });
+
+      if (orderedLabels.some((label) => label !== null)) {
+        console.log(
+          `Pregunta ${
+            questionIndex + 1
+          }: Opciones seleccionadas - ${orderedLabels.join(', ')}`
+        );
+        selectedLabels.push(...orderedLabels);
+      }
+    });
+
+    return selectedLabels;
   }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { productionEnvironment } from '../../../environments/environment.prod';
 import { QuizResponseModel } from '../data/models/quiz-response.model';
+import { QuizScoreResponseModel } from '../data/models';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,13 @@ export class QuizzesService {
       productionEnvironment.coreApiUrl +
         'regenerate/resources/quiz/' +
         this.getReadingResourceId()
+    );
+  }
+
+  submitQuiz(id_quiz: string, answers: string[], time_spent: string) {
+    return this.http.post<QuizScoreResponseModel>(
+      productionEnvironment.coreApiUrl + 'submit/quiz',
+      { id_quiz, answers, time_spent }
     );
   }
 }

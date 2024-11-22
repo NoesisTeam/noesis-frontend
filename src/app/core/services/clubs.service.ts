@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Club } from '../domain/entities';
 import { productionEnvironment } from '../../../environments/environment.prod';
+import { Club } from '../domain/entities';
 
 @Injectable({
   providedIn: 'root',

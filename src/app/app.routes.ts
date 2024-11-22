@@ -15,5 +15,10 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./explore/explore.routes').then((m) => m.EXPLORE_ROUTES),
   },
+  {
+    path: 'profile',
+    loadChildren: () =>
+      import('./profile/profile.routes').then((m) => m.PROFILE_ROUTES),
+  },
   { path: '**', redirectTo: '' },
 ];

@@ -16,10 +16,16 @@
     <app-resource-list [resources]="resources"></app-resource-list>
   </div>
   <app-ranking-requests [isResource]="false"></app-ranking-requests>
+  <!-- Show the dialogue only if it is open -->
+  <app-add-resource-dialog
+    *ngIf="isDialogOpen"
+    (close)="closeDialog()"
+  ></app-add-resource-dialog>
+  <app-executed-process-dialog
+    *ngIf="showDialog"
+    [message]="dialogMessage"
+    [actionText]="dialogActionText"
+    (close)="closeExecutionDialog()"
+  >
+  </app-executed-process-dialog>
 </div>
-
-<!-- Show the dialogue only if it is open -->
-<app-add-resource-dialog
-  *ngIf="isDialogOpen"
-  (close)="closeDialog()"
-></app-add-resource-dialog>

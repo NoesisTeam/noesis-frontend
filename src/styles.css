@@ -72,6 +72,7 @@ body {
   margin-top: 90px;
   margin-left: 240px;
   background-color: var(--faded_purple);
+  border-top-left-radius: 40px;
 }
 
 /* Dialog overlay */

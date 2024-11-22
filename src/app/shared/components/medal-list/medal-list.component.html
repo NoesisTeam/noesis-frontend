@@ -1,0 +1,40 @@
+<div class="score-section">
+  <h4 class="centered-title">Puntaje Global</h4>
+  <p class="score">0 pts</p>
+
+  <!-- Carrusel de Medallas -->
+  <h4 class="centered-title">Medallas</h4>
+  <div class="carousel-container">
+    <button
+      *ngIf="showLeftButton"
+      (click)="scrollLeft()"
+      class="scroll-button left"
+    >
+      &lt;
+    </button>
+    <div class="medals-carousel">
+      <div
+        *ngFor="let medal of visibleMedals; let i = index"
+        class="medal"
+        [ngStyle]="{ 'background-color': medal.color }"
+      >
+        <div *ngIf="isCircleVisible" class="medal-circle">
+          {{ currentIndex + i + 1 }}
+        </div>
+        <img
+          src="./assets/ico/ic-golden-medal.png"
+          class="medal-icon"
+          alt="Medal Icon"
+        />
+        <p class="medal-text">{{ medal.text }}</p>
+      </div>
+    </div>
+    <button
+      *ngIf="showRightButton"
+      (click)="scrollRight()"
+      class="scroll-button right"
+    >
+      &gt;
+    </button>
+  </div>
+</div>

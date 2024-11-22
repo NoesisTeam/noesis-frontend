@@ -11,6 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ResourceListComponent } from '../resource-list/resource-list.component';
 import { AuthService } from '../../../../core/services/auth.service';
 import { ResourcesSharedService } from '../../../../core/services/resources-shared.service';
+import { ExecutedProcessDialogComponent } from '../../../../shared/components/executed-process-dialog/executed-process-dialog.component';
 
 @Component({
   selector: 'app-clubs-resources',
@@ -21,6 +22,7 @@ import { ResourcesSharedService } from '../../../../core/services/resources-shar
     AddResourceDialogComponent,
     ResourceListComponent,
     RankingRequestsComponent,
+    ExecutedProcessDialogComponent,
   ],
   templateUrl: './resources-home.component.html',
   styleUrls: ['./resources-home.component.css'],
@@ -29,6 +31,9 @@ export class ResourcesHomeComponent implements OnInit {
   userRole: string = '';
   isDialogOpen = false;
   resources: ReadingResource[] = [];
+  public dialogMessage: string = '';
+  public dialogActionText: string = '';
+  public showDialog: boolean = false;
   constructor(
     private resourcesService: ResourcesService,
     private router: Router,
@@ -51,22 +56,19 @@ export class ResourcesHomeComponent implements OnInit {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === 403) {
-            alert(
-              'Permisos insuficientes para acceder a los recursos del club'
-            );
-            this.router.navigateByUrl('/clubs');
+            this.dialogMessage =
+              'Permisos insuficientes para acceder a los recursos del club';
+            this.dialogActionText = 'Aceptar';
+            this.showDialog = true;
           }
           if (error.status === 401) {
-            alert('Sesión expirada. Inicie sesión nuevamente');
-            this.router.navigateByUrl('/login');
+            this.dialogMessage = 'Sesión expirada. Inicie sesión nuevamente';
+            this.dialogActionText = 'Aceptar';
+            this.showDialog = true;
           } else {
-            alert(
-              `Error: ${
-                error.error
-                  ? error.error
-                  : 'Ocurrió un error al obtener los recursos'
-              }`
-            );
+            this.dialogMessage = 'Ocurrió un error al obtener los recursos';
+            this.dialogActionText = 'Reintentar';
+            this.showDialog = true;
           }
           return of([]);
         })
@@ -77,5 +79,22 @@ export class ResourcesHomeComponent implements OnInit {
     this.resourcesSharedService.resourcesCreated$.subscribe((resources) => {
       this.resources = resources;
     });
+  }
+
+  public closeExecutionDialog(): void {
+    this.showDialog = false;
+    switch (this.dialogMessage) {
+      case 'Permisos insuficientes para acceder a los recursos del club':
+        this.router.navigateByUrl('/clubs');
+        break;
+      case 'Sesión expirada. Inicie sesión nuevamente':
+        this.router.navigateByUrl('/login');
+        break;
+      case 'Ocurrió un error al obtener los recursos':
+        this.ngOnInit();
+        break;
+      default:
+        break;
+    }
   }
 }

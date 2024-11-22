@@ -1,0 +1,79 @@
+<div class="purple-container">
+  <!-- User Information -->
+  <div class="user-info">
+    <h2 class="username">Bienvenido Usuario</h2>
+    <p class="quote">
+      "Aquí comienzan tus grandes logros como lector: ¡el siguiente está a tu
+      alcance!"
+    </p>
+  </div>
+
+  <!-- Título: Progreso -->
+  <h3 class="progress-title">Progreso</h3>
+
+  <!-- Sección de Progreso -->
+  <div class="score-section">
+    <h4 class="centered-title">Puntaje Global</h4>
+    <p class="score">0 pts</p>
+
+    <!-- Carrusel de Medallas -->
+    <h4 class="centered-title">Medallas</h4>
+    <div class="carousel-container">
+      <button
+        *ngIf="showLeftButton"
+        (click)="scrollLeft()"
+        class="scroll-button left"
+      >
+        &lt;
+      </button>
+      <div class="medals-carousel">
+        <div
+          *ngFor="let medal of visibleMedals; let i = index"
+          class="medal"
+          [ngStyle]="{ 'background-color': medal.color }"
+        >
+          <div *ngIf="isCircleVisible" class="medal-circle">
+            {{ currentIndex + i + 1 }}
+          </div>
+          <img
+            src="./assets/ico/ic-golden-medal.png"
+            class="medal-icon"
+            alt="Medal Icon"
+          />
+          <p class="medal-text">{{ medal.text }}</p>
+        </div>
+      </div>
+      <button
+        *ngIf="showRightButton"
+        (click)="scrollRight()"
+        class="scroll-button right"
+      >
+        &gt;
+      </button>
+    </div>
+  </div>
+
+  <h3 class="progress-title">Información Personal</h3>
+
+  <!-- Información Personal -->
+  <div class="score-section personal-info purple-bg" style="height: 27vh">
+    <form>
+      <div class="info-group">
+        <label>Nombre completo:</label>
+        <input type="text" placeholder="Próximamente" />
+      </div>
+      <div class="info-group">
+        <label>Carrera:</label>
+        <input type="text" placeholder="Próximamente" />
+      </div>
+      <div class="info-group">
+        <label>Semestre:</label>
+        <input type="text" placeholder="Próximamente" />
+      </div>
+      <div class="info-group">
+        <label>Celular:</label>
+        <input type="text" placeholder="Próximamente" />
+      </div>
+    </form>
+  </div>
+</div>
