@@ -1,3 +1,11 @@
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  align-items: center;
+  max-width: 60vw;
+}
+
 .add-resource-button {
   display: flex;
   width: 332px;
@@ -16,7 +24,6 @@
   font-weight: 600;
   line-height: normal;
   margin-left: 40px;
-  margin-top: 10px;
   cursor: pointer;
   background: linear-gradient(
     90deg,
@@ -35,4 +42,42 @@
 .add-resource-button .icon {
   width: 30px;
   height: 30px;
+}
+
+.view-achievements-button,
+.export-reports-button {
+  color: white;
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  width: 150px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: var(--blue);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.export-reports-button {
+  width: 200px;
+  margin-left: 18vw;
+}
+
+.view-achievements-button:hover,
+.export-reports-button:hover {
+  transform: scale(1.05);
+  filter: contrast(1.2);
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  margin-left: 0.5vw;
 }

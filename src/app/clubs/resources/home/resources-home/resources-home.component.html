@@ -3,14 +3,39 @@
     <img src="assets/ico/ic-back.webp" alt="Back Icon" class="icon" />
     Atrás
   </button>
-  <button
-    *ngIf="userRole === 'Founder'"
-    class="add-resource-button"
-    (click)="openDialog()"
-  >
-    Agregar recursos
-    <img src="assets/ico/ic-add-club-filled.webp" alt="Add Icon" class="icon" />
-  </button>
+  <div class="buttons-container">
+    <button
+      *ngIf="userRole === 'Founder'"
+      class="add-resource-button"
+      (click)="openDialog()"
+    >
+      Agregar recurso
+      <img
+        src="assets/ico/ic-add-club-filled.webp"
+        alt="Add Icon"
+        class="icon"
+      />
+    </button>
+    <button *ngIf="userRole === 'Founder'" class="export-reports-button">
+      Exportar reporte
+      <img
+        src="assets/ico/ic-export-report.webp"
+        alt="Export Report Icon"
+        class="icon"
+      />
+    </button>
+    <button
+      class="view-achievements-button"
+      [ngStyle]="{ 'margin-left': userRole === 'Member' ? '52vw' : 'initial' }"
+    >
+      Ver logros
+      <img
+        src="assets/ico/ic-achievements.webp"
+        alt="Achievements Icon"
+        class="icon"
+      />
+    </button>
+  </div>
   <div class="resources-container" style="width: 1100px">
     <p class="resources-text">Tus recursos</p>
     <app-resource-list [resources]="resources"></app-resource-list>
