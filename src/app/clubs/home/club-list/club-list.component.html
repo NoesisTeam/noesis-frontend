@@ -7,7 +7,7 @@
     [disabled]="currentStartIndex === 0"
   >
     <img
-      src="assets/ico/ic-back-minimal.png"
+      src="assets/ico/ic-back-minimal.webp"
       alt="Back Arrow Icon"
       class="icon"
     />
@@ -36,8 +36,8 @@
         <img
           [src]="
             club.is_private
-              ? '/assets/ico/ic-lock.png'
-              : '/assets/ico/ic-lock-open.png'
+              ? '/assets/ico/ic-lock.webp'
+              : '/assets/ico/ic-lock-open.webp'
           "
           alt="Lock Icon"
           class="lock-icon"
@@ -47,13 +47,13 @@
         <p class="founded-by-name-text">{{ club.club_code }}</p>
         <img
           *ngIf="isFounder && club.is_academic"
-          src="/assets/ico/ic-check-pink.png"
+          src="/assets/ico/ic-check-pink.webp"
           alt="Pink Check Icon"
           class="check-icon"
         />
         <img
           *ngIf="!isFounder && club.is_academic"
-          src="/assets/ico/ic-check-blue.png"
+          src="/assets/ico/ic-check-blue.webp"
           alt="Blue Check Icon"
           class="check-icon"
         />
@@ -74,9 +74,15 @@
     [disabled]="currentStartIndex + clubsPerPage >= clubs.length"
   >
     <img
-      src="assets/ico/ic-forward-minimal.png"
+      src="assets/ico/ic-forward-minimal.webp"
       alt="Forward Arrow Icon"
       class="icon"
     />
   </button>
 </div>
+<app-executed-process-dialog
+  *ngIf="showDialog"
+  [message]="dialogMessage"
+  [actionText]="dialogActionText"
+  (closeDialog)="closeDialog()"
+></app-executed-process-dialog>

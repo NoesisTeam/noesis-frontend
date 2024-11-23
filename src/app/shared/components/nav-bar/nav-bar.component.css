@@ -29,7 +29,7 @@ li {
   padding: 10px 20px;
   cursor: pointer;
   color: var(--gray_dark);
-  font-family: Poppins, sans-serif;
+  font-family: var(--font-family-primary);
   font-size: 23.04px;
   font-weight: 500;
   border-radius: 10px;
@@ -49,58 +49,58 @@ li a {
 
 /* Clubs Item */
 li.clubs .icon {
-  content: url("/assets/ico/ic-clubs.png");
+  content: url("/assets/ico/ic-clubs.webp");
 }
 
 li.clubs:hover .icon,
 li.clubs.active .icon {
-  content: url("/assets/ico/ic-clubs-filled.png");
+  content: url("/assets/ico/ic-clubs-filled.webp");
 }
 
 /* Explore Item */
 li.explore .icon {
-  content: url("/assets/ico/ic-explore.png");
+  content: url("/assets/ico/ic-explore.webp");
 }
 
 li.explore:hover .icon,
 li.explore.active .icon {
-  content: url("/assets/ico/ic-explore-filled.png");
+  content: url("/assets/ico/ic-explore-filled.webp");
 }
 
 /* Profile Item */
 li.profile .icon {
-  content: url("/assets/ico/ic-profile.png");
+  content: url("/assets/ico/ic-profile.webp");
 }
 
 li.profile:hover .icon,
 li.profile.active .icon {
-  content: url("/assets/ico/ic-profile-filled.png");
+  content: url("/assets/ico/ic-profile-filled.webp");
 }
 
 li.logout:hover .icon,
 li.logout.active .icon {
-  content: url("/assets/ico/ic-logout.png");
+  content: url("/assets/ico/ic-logout.webp");
 }
 
 li.logout:hover .icon,
 li.logout.active .icon {
-  content: url("/assets/ico/ic-logout-filled.png");
+  content: url("/assets/ico/ic-logout-filled.webp");
 }
 
 li.clubs.active .icon {
-  content: url("/assets/ico/ic-clubs-filled.png");
+  content: url("/assets/ico/ic-clubs-filled.webp");
 }
 
 li.explore.active .icon {
-  content: url("/assets/ico/ic-explore-filled.png");
+  content: url("/assets/ico/ic-explore-filled.webp");
 }
 
 li.profile.active .icon {
-  content: url("/assets/ico/ic-profile-filled.png");
+  content: url("/assets/ico/ic-profile-filled.webp");
 }
 
 li.logout.active .icon {
-  content: url("/assets/ico/ic-logout-filled.png");
+  content: url("/assets/ico/ic-logout-filled.webp");
 }
 
 /* Hover and Active States */

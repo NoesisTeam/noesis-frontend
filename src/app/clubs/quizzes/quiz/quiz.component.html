@@ -12,7 +12,12 @@
         (click)="submitQuiz()"
         class="submit-button"
       >
-        Enviar →
+        Enviar
+        <img
+          src="/assets/ico/ic-finish-quiz.webp"
+          alt="Finish Quiz Icon"
+          class="icon"
+        />
       </button>
       <button
         *ngIf="role === 'Founder' && !showStats"
@@ -20,6 +25,11 @@
         class="regenerate-button"
       >
         Regenerar
+        <img
+          src="/assets/ico/ic-ai.webp"
+          alt="Regenerate Quiz Icon"
+          class="icon"
+        />
       </button>
       <button
         *ngIf="role === 'Founder' && !isEditing"
@@ -27,6 +37,7 @@
         class="edit-button"
       >
         Editar
+        <img src="/assets/ico/ic-edit.webp" alt="Edit Quiz Icon" class="icon" />
       </button>
       <button
         *ngIf="role === 'Founder' && isEditing"
@@ -34,6 +45,7 @@
         class="save-button"
       >
         Guardar
+        <img src="/assets/ico/ic-save.webp" alt="Save Quiz Icon" class="icon" />
       </button>
     </div>
 
@@ -42,7 +54,7 @@
         class="question-card"
         *ngFor="let question of questions; let i = index"
       >
-        <h3 *ngIf="!isEditing">{{ i + 1 }}. {{ question.title }}</h3>
+        <p *ngIf="!isEditing">{{ i + 1 }}. {{ question.title }}</p>
         <input
           *ngIf="isEditing"
           [(ngModel)]="question.title"
@@ -103,10 +115,11 @@
       </div>
     </div>
   </div>
-  <app-executed-process-dialog
-    *ngIf="showDialog"
-    [message]="dialogMessage"
-    [actionText]="dialogActionText"
-    (close)="closeDialog()"
-  ></app-executed-process-dialog>
 </div>
+<app-executed-process-dialog
+  *ngIf="showDialog"
+  [message]="dialogMessage"
+  [actionText]="dialogActionText"
+  (close)="closeDialog()"
+></app-executed-process-dialog>
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>

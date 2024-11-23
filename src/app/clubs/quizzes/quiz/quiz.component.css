@@ -1,7 +1,6 @@
 .quiz-container {
   display: flex;
-  /* flex-direction: row; */
-  width: 95%;
+  width: 98%;
   margin: auto;
   background-color: #f3e9f3;
   border-radius: 8px;
@@ -14,7 +13,6 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* margin-right: 16px; */
 }
 
 .header {
@@ -24,9 +22,10 @@
   background: linear-gradient(90deg, #0073ff, #00d4ff);
   color: #ffffff;
   border-radius: 8px;
-  padding: 12px;
+  padding: 15px;
   position: relative;
   margin-top: 24px;
+  max-width: 71vw;
 }
 
 .quiz-info {
@@ -35,7 +34,12 @@
 }
 
 .quiz-title {
-  font-size: 18px;
+  font-family: var(--font-family-primary);
+  font-size: 27.65px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: white;
 }
 
 .quiz-title span {
@@ -43,37 +47,64 @@
 }
 
 .timer {
-  background-color: #003e7e;
+  font-family: var(--font-family-primary);
+  font-size: 27.65px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  background-color: rgba(108, 96, 255, 0.87);
   padding: 6px;
-  border-radius: 4px;
-  font-size: 16px;
+  border-radius: 10px;
   margin-top: 4px;
-  max-width: 60px;
+  max-width: 12vw;
 }
 
 .submit-button {
-  background: #ffffff;
-  color: #333;
+  font-family: var(--font-family-primary);
+  font-size: 19.2px;
+  font-style: normal;
+  font-weight: 500;
+  color: white;
+  line-height: normal;
+  border-radius: 10px;
+  background: #0073ff;
   border: none;
   padding: 8px 16px;
   font-size: 16px;
-  border-radius: 4px;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.submit-button:hover {
+  transform: scale(1.05);
+}
+
+.icon {
+  margin-left: 0.5vw;
+  width: 30px;
+  height: 30px;
 }
 
 .edit-button,
 .save-button,
 .regenerate-button {
-  background-color: #ffffff;
+  font-family: var(--font-family-primary);
+  font-size: 19.2px;
+  font-style: normal;
+  font-weight: 500;
   color: #333;
   border: none;
   padding: 8px 16px;
   font-size: 16px;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
+  align-items: center;
+  transition: transform 0.2s;
 }
 
 .edit-button {
@@ -82,48 +113,114 @@
 }
 
 .save-button {
-  background-color: #00d4ff;
+  background-color: #0073ff;
   color: #ffffff;
 }
 
 .regenerate-button {
   background-color: #0073ff;
   color: #ffffff;
-  margin-right: 0px;
   position: absolute;
-  right: 120px;
+  overflow: visible; /* Changed hidden to show the glow */
+  right: 9vw;
+  transition: all 0.3s ease;
+  animation: glowing 2s infinite;
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white;
+  }
+  50% {
+    box-shadow: 0 0 20px white, 0 0 25px white, 0 0 30px white;
+  }
+  100% {
+    box-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white;
+  }
+}
+
+.regenerate-button:hover {
+  filter: brightness(1.1);
+  transform: scale(1.05);
+  animation: glowing 1s infinite; /* Faster animation on hover */
+}
+
+.edit-button:hover,
+.save-button:hover,
+.regenerate-button:hover {
+  filter: brightness(1.1);
+  transform: scale(1.05);
 }
 
 .questions-container {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  max-height: 600px;
+  max-width: 73vw;
+  max-height: 62vh;
   padding-right: 8px;
-  margin-top: 16px;
+  margin-top: 10px;
 }
 
 .question-card {
   background-color: white;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 16px;
   margin-top: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #141111;
+  font-family: var(--font-family-primary);
+  font-size: 19.2px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 .option {
   display: flex;
   align-items: center;
   font-size: 16px;
-  color: #3b3b3b;
+  font-weight: 400;
   margin-top: 8px;
 }
 
-.option input[type="radio"] {
-  margin-right: 8px;
+/* Hide the original radio input */
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  position: relative;
+  margin: 0;
+  outline: none;
+}
+
+/* Base style with image */
+input[type="radio"] {
+  background: url("/assets/ico/ic-question.webp") no-repeat center center;
+  background-size: contain;
+}
+
+/* Style for hover */
+input[type="radio"]:hover {
+  filter: brightness(2);
+}
+
+/* Style for checked status */
+input[type="radio"]:checked {
+  background: url("/assets/ico/ic-tick.webp") no-repeat center center;
+  background-size: contain;
 }
 
 .question-input {
+  color: #141111;
+  font-family: var(--font-family-primary);
+  font-size: 19.2px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
   width: 100%;
   font-size: 16px;
   padding: 4px;
@@ -133,7 +230,11 @@
 }
 
 .option-input {
-  font-size: 16px;
+  color: #141111;
+  font-family: var(--font-family-primary);
+  font-size: 19.2px;
+  font-style: normal;
+  font-weight: 400;
   padding: 4px;
   margin-left: 8px;
   border: 1px solid #ccc;
@@ -150,7 +251,7 @@
 .club-info {
   position: absolute;
   right: 0px;
-  top: 16px;
+  top: 0;
   background-color: #1804ff;
   color: #ffffff;
   border-radius: 0px 0px 0px 8px;
@@ -160,10 +261,30 @@
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
   width: 200px;
+  padding: 15px;
+  border-bottom-left-radius: 25px;
+}
+
+.club-label {
+  font-family: var(--font-family-primary);
+  font-size: 19.2px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: left;
+}
+
+.club-name {
+  font-family: var(--font-family-primary);
+  font-size: 27.65px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-align: left;
 }
 
 .stats {
-  margin-top: 80px;
+  margin-top: 12vh;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -171,6 +292,11 @@
 }
 
 .stat-item {
+  font-family: var(--font-family-primary);
+  font-size: 19.2px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
   background-color: #ff00a5;
   color: #ffffff;
   padding: 8px;
@@ -179,8 +305,11 @@
 }
 
 .stat-value {
-  font-weight: bold;
-  font-size: 18px;
+  font-family: var(--font-family-primary);
+  font-size: 27.65px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 .option input[type="radio"] {
@@ -192,23 +321,6 @@
   border-bottom: 1px dashed #ccc;
   padding: 0 4px;
   cursor: text;
-}
-
-.back-button {
-  background: none;
-  border: none;
-  font-size: 16px;
-  color: #696262;
-  cursor: pointer;
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  z-index: 2;
-  transition: color 0.3s;
-}
-
-.back-button:hover {
-  color: #ff69b4; /* Pink colour for hover */
 }
 
 .option input[type="radio"] {

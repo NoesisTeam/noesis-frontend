@@ -10,7 +10,7 @@
   position: absolute;
   width: 50%;
   height: 100%;
-  background: url("/assets/img/signup-bg.png");
+  background: url("/assets/img/signup-bg.webp");
   background-size: cover;
   background-position: center;
 }
@@ -41,7 +41,7 @@
 
 .signup-text {
   color: var(--main_color);
-  font-family: Poppins, sans-serif;
+  font-family: var(--font-family-primary);
   font-size: 30px;
   font-weight: 600;
   margin-bottom: 40px;
@@ -65,7 +65,7 @@
   background: transparent;
   outline: none;
   color: #7c6c86;
-  font-family: Poppins, sans-serif;
+  font-family: var(--font-family-primary);
   font-size: 23px;
   font-weight: 500;
 }
@@ -93,7 +93,7 @@
   border-radius: 25px;
   cursor: pointer;
   font-size: 23px;
-  font-family: Poppins, sans-serif;
+  font-family: var(--font-family-primary);
   margin-top: 20px;
 }
 

@@ -53,7 +53,7 @@
   z-index: 1; /* Ensures that the text is in front of the SVG */
   margin: 0;
   padding: 0;
-  font-family: Poppins, sans-serif;
+  font-family: var(--font-family-primary);
 }
 
 .club-text {
@@ -97,7 +97,7 @@
   background-color: #1804ff;
   border-radius: 5px;
   color: #fff;
-  font-family: Poppins, sans-serif;
+  font-family: var(--font-family-primary);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;

@@ -165,7 +165,7 @@
   flex-direction: column;
   background-color: #f3e8ff;
   padding: 20px;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-family-primary);
   color: #333;
   max-width: 100%;
   margin: 0 auto;

@@ -15,7 +15,7 @@
         <div class="input-group">
           <input formControlName="username" type="text" placeholder="Usuario" />
           <img
-            src="/assets/ico/ic-profile-filled.png"
+            src="/assets/ico/ic-profile-filled.webp"
             class="icon"
             alt="Icono Usuario"
           />
@@ -38,8 +38,8 @@
           <img
             [src]="
               showPassword
-                ? '/assets/ico/ic-show-password-filled.png'
-                : '/assets/ico/ic-hidden-password-filled.png'
+                ? '/assets/ico/ic-show-password-filled.webp'
+                : '/assets/ico/ic-hidden-password-filled.webp'
             "
             class="icon"
             style="cursor: pointer"
@@ -70,8 +70,8 @@
           <img
             [src]="
               showConfirmPassword
-                ? '/assets/ico/ic-show-password-filled.png'
-                : '/assets/ico/ic-hidden-password-filled.png'
+                ? '/assets/ico/ic-show-password-filled.webp'
+                : '/assets/ico/ic-hidden-password-filled.webp'
             "
             class="icon"
             style="cursor: pointer"
@@ -109,12 +109,12 @@
       </form>
     </div>
   </div>
-  <!-- Dialog Component -->
-  <app-executed-process-dialog
-    *ngIf="showDialog"
-    [message]="dialogMessage"
-    [actionText]="dialogActionText"
-    (close)="closeDialog()"
-  >
-  </app-executed-process-dialog>
 </section>
+<!-- Dialog Component -->
+<app-executed-process-dialog
+  *ngIf="showDialog"
+  [message]="dialogMessage"
+  [actionText]="dialogActionText"
+  (close)="closeDialog()"
+>
+</app-executed-process-dialog>

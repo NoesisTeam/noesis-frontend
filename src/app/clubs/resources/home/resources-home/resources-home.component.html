@@ -1,6 +1,6 @@
 <div class="purple-container">
   <button class="back-button" [routerLink]="['/clubs']">
-    <img src="assets/ico/ic-back.png" alt="Back Icon" class="icon" />
+    <img src="assets/ico/ic-back.webp" alt="Back Icon" class="icon" />
     Atrás
   </button>
   <button
@@ -9,7 +9,7 @@
     (click)="openDialog()"
   >
     Agregar recursos
-    <img src="assets/ico/ic-add-club-filled.png" alt="Add Icon" class="icon" />
+    <img src="assets/ico/ic-add-club-filled.webp" alt="Add Icon" class="icon" />
   </button>
   <div class="resources-container" style="width: 1100px">
     <p class="resources-text">Tus recursos</p>
@@ -17,15 +17,15 @@
   </div>
   <app-ranking-requests [isResource]="false"></app-ranking-requests>
   <!-- Show the dialogue only if it is open -->
-  <app-add-resource-dialog
-    *ngIf="isDialogOpen"
-    (close)="closeDialog()"
-  ></app-add-resource-dialog>
-  <app-executed-process-dialog
-    *ngIf="showDialog"
-    [message]="dialogMessage"
-    [actionText]="dialogActionText"
-    (close)="closeExecutionDialog()"
-  >
-  </app-executed-process-dialog>
 </div>
+<app-add-resource-dialog
+  *ngIf="isDialogOpen"
+  (close)="closeDialog()"
+></app-add-resource-dialog>
+<app-executed-process-dialog
+  *ngIf="showDialog"
+  [message]="dialogMessage"
+  [actionText]="dialogActionText"
+  (close)="closeExecutionDialog()"
+>
+</app-executed-process-dialog>

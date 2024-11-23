@@ -1,22 +1,31 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateClubDialogComponent } from '../../shared/components/create-club-dialog/create-club-dialog.component';
-import { Club } from '../../core/domain/entities';
 import { PublicClubListComponent } from '../public-club-list/public-club-list.component';
 import { ClubsService } from '../../core/services/clubs.service';
 import { LocalStorageService } from '../../core/services/local-storage.service';
 import { ClubsSharedService } from '../../core/services/clubs-shared.service';
+import { Club } from '../../core/domain/entities';
+import { ExecutedProcessDialogComponent } from '../../shared/components/executed-process-dialog/executed-process-dialog.component';
 
 @Component({
   selector: 'app-explore-home',
   standalone: true,
-  imports: [CommonModule, CreateClubDialogComponent, PublicClubListComponent],
+  imports: [
+    CommonModule,
+    CreateClubDialogComponent,
+    PublicClubListComponent,
+    ExecutedProcessDialogComponent,
+  ],
   templateUrl: './explore-home.component.html',
   styleUrl: './explore-home.component.css',
 })
 export class ExploreHomeComponent implements OnInit {
   public isDialogOpen: boolean = false;
   public clubList: Club[] = [];
+  public dialogMessage: string = '';
+  public dialogActionText: string = '';
+  public showDialog: boolean = false;
 
   constructor(
     private readonly clubsService: ClubsService,
@@ -53,11 +62,17 @@ export class ExploreHomeComponent implements OnInit {
           this.clubList = data;
         },
         error: (error) => {
-          console.error('Error al cargar clubs:', error);
+          this.dialogMessage = 'Error al cargar clubs';
+          this.dialogActionText = 'Reintentar';
+          this.showDialog = true;
         },
       });
     this.clubsSharedService.publicClubs$.subscribe((clubs) => {
       this.clubList = clubs;
     });
+  }
+
+  public closeExecutedDialog(): void {
+    this.showDialog = false;
   }
 }

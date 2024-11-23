@@ -26,7 +26,7 @@
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
-  font-family: Poppins, sans-serif;
+  font-family: var(--font-family-primary);
   font-size: 16px;
   cursor: pointer;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -87,7 +87,7 @@
   margin-top: 5px;
   margin-left: 10px;
 
-  font-family: Poppins;
+  font-family: var(--font-family-primary);
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -100,7 +100,7 @@
   margin-top: 35px;
   margin-left: 10px;
 
-  font-family: Poppins;
+  font-family: var(--font-family-primary);
   font-size: 21px;
   font-style: normal;
   font-weight: 600;
@@ -113,7 +113,7 @@
   margin-top: 85px;
   margin-left: 10px;
 
-  font-family: Poppins;
+  font-family: var(--font-family-primary);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -126,7 +126,7 @@
   margin-top: 110px;
   margin-left: 10px;
 
-  font-family: Poppins;
+  font-family: var(--font-family-primary);
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -139,7 +139,7 @@
   font-weight: 500;
   color: #cccccc;
   text-align: center;
-  font-family: "Lobster Two", cursive;
+  font-family: var(--font-family-secondary);
 }
 
 .lock-icon {

@@ -1,16 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateClubDialogComponent } from '../../../shared/components/create-club-dialog/create-club-dialog.component';
-import { Club } from '../../../core/domain/entities';
 import { ClubListComponent } from '../club-list/club-list.component';
 import { ClubsService } from '../../../core/services/clubs.service';
 import { ClubsSharedService } from '../../../core/services/clubs-shared.service';
 import { LocalStorageService } from '../../../core/services/local-storage.service';
+import { Club } from '../../../core/domain/entities';
+import { ExecutedProcessDialogComponent } from '../../../shared/components/executed-process-dialog/executed-process-dialog.component';
 
 @Component({
   selector: 'app-clubs-home',
   standalone: true,
-  imports: [CommonModule, CreateClubDialogComponent, ClubListComponent],
+  imports: [
+    CommonModule,
+    CreateClubDialogComponent,
+    ClubListComponent,
+    ExecutedProcessDialogComponent,
+  ],
   templateUrl: './clubs-home.component.html',
   styleUrl: './clubs-home.component.css',
 })
@@ -23,8 +29,10 @@ export class ClubsHomeComponent implements OnInit {
 
   clubsCreated: Club[] = [];
   clubsJoined: Club[] = [];
-
-  isDialogOpen = false;
+  public isDialogOpen: boolean = false;
+  public dialogMessage: string = '';
+  public dialogActionText: string = '';
+  public showDialog: boolean = false;
 
   ngOnInit() {
     this.localstorageService.clearToken();
@@ -35,7 +43,9 @@ export class ClubsHomeComponent implements OnInit {
           this.clubsCreated = data;
         },
         error: (error) => {
-          console.error('Error al obtener los clubs fundados:', error);
+          this.dialogMessage = 'Error al obtener los clubs fundados';
+          this.dialogActionText = 'Aceptar';
+          this.showDialog = true;
         },
       });
 
@@ -46,10 +56,10 @@ export class ClubsHomeComponent implements OnInit {
           this.clubsJoined = data;
         },
         error: (error) => {
-          console.error(
-            'Error al obtener los clubs a los que te has unido:',
-            error
-          );
+          this.dialogMessage =
+            'Error al obtener los clubs a los que te has unido';
+          this.dialogActionText = 'Aceptar';
+          this.showDialog = true;
         },
       });
 
@@ -65,5 +75,9 @@ export class ClubsHomeComponent implements OnInit {
 
   closeDialog() {
     this.isDialogOpen = false;
+  }
+
+  public closeExecutedDialog(): void {
+    this.showDialog = false;
   }
 }

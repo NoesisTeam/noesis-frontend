@@ -146,8 +146,9 @@ export class LoginComponent implements OnInit, OnDestroy {
    * Handles login errors
    */
   private handleLoginError(error: any): void {
-    console.error('Login error:', error);
-    // Handle specific error cases
+    this.dialogMessage = 'Error al iniciar sesión';
+    this.dialogActionText = 'Reintentar';
+    this.showDialog = true;
   }
 
   /**

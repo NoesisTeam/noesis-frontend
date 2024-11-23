@@ -2,12 +2,12 @@
   <p class="welcoming-text">¡Qué alegría verte de nuevo!</p>
   <button class="create-club-button" (click)="openDialog()">
     Crear club
-    <img src="assets/ico/ic-add-club-filled.png" alt="Add Icon" />
+    <img src="assets/ico/ic-add-club-filled.webp" alt="Add Icon" />
   </button>
   <div class="clubs-container">
     <div class="input-wrapper">
       <img
-        src="assets/ico/ic-search.png"
+        src="assets/ico/ic-search.webp"
         alt="Search Icon"
         class="search-icon"
       />
@@ -23,3 +23,10 @@
   *ngIf="isDialogOpen"
   (close)="closeDialog()"
 ></app-create-club-dialog>
+
+<app-executed-process-dialog
+  *ngIf="showDialog"
+  [message]="dialogMessage"
+  [actionText]="dialogActionText"
+  (closeDialog)="closeExecutedDialog()"
+></app-executed-process-dialog>

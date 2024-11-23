@@ -12,7 +12,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background: url("/assets/img/welcome-bg.png") lightgray 50% / cover no-repeat;
+  background: url("/assets/img/welcome-bg.webp") lightgray 50% / cover no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -41,7 +41,7 @@
   left: 3vw;
   font-size: clamp(2rem, 4vw, 4.375rem);
   color: #fff;
-  font-family: "Lobster Two", cursive;
+  font-family: var(--font-family-secondary);
 }
 
 .title-text {
@@ -49,7 +49,7 @@
   top: 20vh;
   left: 8vw;
   color: white;
-  font-family: Poppins, sans-serif;
+  font-family: var(--font-family-primary);
   font-size: clamp(1.5rem, 3vw, 2.813rem);
   font-weight: 600;
   line-height: 1.2;
@@ -66,7 +66,7 @@
   background: var(--gradient_purple);
   font-size: clamp(1rem, 1.5vw, 1.563rem);
   font-weight: 500;
-  font-family: Poppins;
+  font-family: var(--font-family-primary);
   cursor: pointer;
 }
 
@@ -85,7 +85,7 @@
   background: var(--main_color);
   color: #fff;
   font-size: clamp(0.875rem, 1.25vw, 1.25rem);
-  font-family: Poppins;
+  font-family: var(--font-family-primary);
   font-weight: 600;
   cursor: pointer;
 }
@@ -136,7 +136,7 @@
   color: white;
   text-align: center;
   font-size: clamp(1rem, 1.5vw, 1.875rem);
-  font-family: Poppins;
+  font-family: var(--font-family-primary);
   font-weight: 600;
 }
 

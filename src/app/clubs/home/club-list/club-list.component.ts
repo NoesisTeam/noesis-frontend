@@ -11,22 +11,17 @@ import { AuthService } from '../../../core/services/auth.service';
 import { LocalStorageService } from '../../../core/services/local-storage.service';
 import { Router } from '@angular/router';
 import { motivationalPhrases } from '../../../shared/constants/motivational-phrases';
+import { ExecutedProcessDialogComponent } from '../../../shared/components/executed-process-dialog/executed-process-dialog.component';
 
 @Component({
   selector: 'app-club-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ExecutedProcessDialogComponent],
   templateUrl: './club-list.component.html',
   styleUrls: ['./club-list.component.css'],
 })
 export class ClubListComponent implements OnChanges, AfterViewInit {
-  constructor(
-    private authService: AuthService,
-    private localStorageService: LocalStorageService,
-    private router: Router,
-    private cdr: ChangeDetectorRef
-  ) {}
-
+  @Input() isFounder: boolean = false;
   @Input() color: string = '#000000';
   @Input() top: string = '0px';
   @Input() clubs: {
@@ -39,12 +34,19 @@ export class ClubListComponent implements OnChanges, AfterViewInit {
     created_at: string;
     club_status: string;
   }[] = [];
-  @Input() isFounder: boolean = false;
-
   visibleClubs: typeof this.clubs = [];
   currentStartIndex: number = 0;
   clubsPerPage: number = 4;
   randomPhrase: string = '';
+  public dialogMessage: string = '';
+  public dialogActionText: string = '';
+  public showDialog: boolean = false;
+  constructor(
+    private authService: AuthService,
+    private localStorageService: LocalStorageService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.updateVisibleClubs();
@@ -91,17 +93,27 @@ export class ClubListComponent implements OnChanges, AfterViewInit {
           this.router.navigate(['/clubs/resources']);
         },
         error: (err) => {
-          console.error('Login failed', err);
-          alert('Credenciales Incorrectas');
+          this.dialogMessage = 'Credenciales Incorrectas';
+          this.dialogActionText = 'Reintentar';
+          this.showDialog = true;
         },
       });
     } else {
-      alert('Por favor iniciar sesión');
+      this.dialogMessage = 'Por favor iniciar sesión';
+      this.dialogActionText = 'Iniciar sesión';
+      this.showDialog = true;
     }
   }
 
   getRandomPhrase(): string {
     const randomIndex = Math.floor(Math.random() * motivationalPhrases.length);
     return motivationalPhrases[randomIndex];
+  }
+
+  public closeDialog(): void {
+    this.showDialog = false;
+    if (this.dialogActionText === 'Iniciar sesión') {
+      this.router.navigate(['/login']);
+    }
   }
 }

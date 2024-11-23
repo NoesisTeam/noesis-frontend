@@ -28,7 +28,7 @@
   padding: 10px 20px;
   cursor: pointer;
 
-  font-family: Poppins;
+  font-family: var(--font-family-primary);
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -52,7 +52,7 @@
   width: 150px;
   height: 40px;
   border-radius: 10px;
-  font-family: Poppins;
+  font-family: var(--font-family-primary);
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;

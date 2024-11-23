@@ -1,4 +1,4 @@
-<div class="ranking-container">
+<div class="transparent-container">
   <div class="tabs">
     <button
       (click)="changeView('ranking')"
@@ -14,7 +14,8 @@
       Solicitudes
     </button>
   </div>
-
+</div>
+<div class="ranking-container">
   <div *ngIf="currentView === 'ranking'" class="ranking-list">
     <div
       *ngFor="let user of rankingUsers; let i = index"
@@ -33,20 +34,20 @@
   >
     <div *ngFor="let user of requestUsers" class="user-item">
       <img
-        src="./assets/ico/ic-request.png"
+        src="./assets/ico/ic-request.webp"
         class="request-icon"
         alt="Request Icon"
       />
       <span class="name">{{ user.user_name }}</span>
       <div class="actions">
         <img
-          src="./assets/ico/ic-denied-request.png"
+          src="./assets/ico/ic-denied-request.webp"
           class="reject-button"
           alt="Reject"
           (click)="rejectMembership(user.id_user)"
         />
         <img
-          src="./assets/ico/ic-accepted-request.png"
+          src="./assets/ico/ic-accepted-request.webp"
           class="accept-button"
           alt="Accept"
           (click)="approveMembership(user.id_user)"
@@ -54,11 +55,11 @@
       </div>
     </div>
   </div>
-  <app-executed-process-dialog
-    *ngIf="showDialog"
-    [message]="dialogMessage"
-    [actionText]="dialogActionText"
-    (close)="closeDialog()"
-  >
-  </app-executed-process-dialog>
 </div>
+<app-executed-process-dialog
+  *ngIf="showDialog"
+  [message]="dialogMessage"
+  [actionText]="dialogActionText"
+  (close)="closeDialog()"
+>
+</app-executed-process-dialog>

@@ -83,7 +83,6 @@ export class CreateClubDialogComponent {
           this.dialogActionText = 'Reintentar';
           this.showDialog = true;
           this.isSubmitting = false;
-          console.log(error.message);
         },
       });
   }

@@ -24,7 +24,7 @@ export class MedalListComponent {
     { text: 'Special Achievement', color: '#2a9d8f' },
   ];
 
-  isCircleVisible: boolean = true; // Controla la visibilidad del círculo
+  isCircleVisible: boolean = true; // Controls the visibility of the circle
 
   get showLeftButton(): boolean {
     return this.currentIndex > 0;

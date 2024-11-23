@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginResponseModel, SignupResponse } from '../data/models';
 import { productionEnvironment } from '../../../environments/environment.prod';
 import { LocalStorageService } from './local-storage.service';
+import { LoginResponseModel, SignupResponse } from '../data/models';
 
 @Injectable({
   providedIn: 'root',

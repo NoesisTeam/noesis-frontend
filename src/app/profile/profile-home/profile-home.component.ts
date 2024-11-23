@@ -12,7 +12,7 @@ interface Medal {
   styleUrl: './profile-home.component.css',
 })
 export class ProfileHomeComponent {
-  genericMedalIcon: string = '/assets/icons/generic-medal.png';
+  genericMedalIcon: string = '/assets/ico/ic-default-medal.webp';
 
   medals: Medal[] = [
     { text: 'Reached 15 pts', color: '#cd7f32' },

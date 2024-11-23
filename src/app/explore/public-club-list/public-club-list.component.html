@@ -19,8 +19,8 @@
     <img
       [src]="
         club.is_private
-          ? '/assets/ico/ic-lock.png'
-          : '/assets/ico/ic-lock-open.png'
+          ? '/assets/ico/ic-lock.webp'
+          : '/assets/ico/ic-lock-open.webp'
       "
       alt="Lock Icon"
       class="lock-icon"
@@ -31,17 +31,17 @@
     <div class="join-button">
       <img
         *ngIf="club.is_academic"
-        src="/assets/ico/ic-check.png"
+        src="/assets/ico/ic-check.webp"
         alt="Check Icon"
         class="check-icon"
       />
       Unirte
     </div>
   </button>
-  <app-executed-process-dialog
-    *ngIf="showDialog"
-    [message]="dialogMessage"
-    [actionText]="dialogActionText"
-    (close)="closeDialog()"
-  ></app-executed-process-dialog>
 </div>
+<app-executed-process-dialog
+  *ngIf="showDialog"
+  [message]="dialogMessage"
+  [actionText]="dialogActionText"
+  (close)="closeDialog()"
+></app-executed-process-dialog>

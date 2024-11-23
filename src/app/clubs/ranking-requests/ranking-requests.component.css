@@ -1,17 +1,18 @@
 .ranking-container {
-  background-color: #f9f3ff;
-  border: 2px solid #6200ea;
-  border-radius: 8px;
   padding: 16px;
   width: 20vw;
   max-width: 400px;
   min-height: 400px;
   max-height: 400px;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-family-primary);
   position: absolute;
   right: 20px;
   top: 20vh;
   overflow-y: auto;
+  border-radius: 10px;
+  border: 2px solid var(--blue);
+  background: rgba(250, 245, 245, 0.93);
+  backdrop-filter: blur(50px);
 }
 
 .ranking-list,
@@ -21,17 +22,24 @@
 }
 
 .user-item.top-three:nth-child(1) {
-  background-color: #1804ff;
+  border: none;
+  background-color: var(--blue);
   color: white;
 }
 
+.user-item.top-three:hover {
+  filter: contrast(1.5);
+}
+
 .user-item.top-three:nth-child(2) {
-  background-color: #5b7fff;
+  border: none;
+  background-color: var(--saturated_light_blue);
   color: white;
 }
 
 .user-item.top-three:nth-child(3) {
-  background-color: #a0b8ff;
+  border: none;
+  background-color: var(--pastel_blue);
   color: white;
 }
 
@@ -41,26 +49,39 @@
   color: white;
 }
 
+.transparent-container {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  width: 22vw;
+  right: 1.1vw;
+  top: 12vh;
+  text-align: center;
+}
+
 .tabs {
-  display: flex;
+  right: 6vw;
+  top: 12.5vh;
   justify-content: space-around;
   margin-bottom: 12px;
 }
 
 .tabs button {
+  font-family: var(--font-family-primary);
   background-color: transparent;
   border: none;
   padding: 8px;
   cursor: pointer;
   font-weight: bold;
   color: #6b6b6b;
-  font-size: 1.2em;
+  font-size: 1.3em;
+  transition: all 0.1s;
 }
 
 .tabs button.active {
   color: #6200ea;
   border-bottom: 2px solid #6200ea;
-  font-size: 1.3em;
+  transform: scale(1.1);
 }
 
 .ranking-list,
@@ -101,28 +122,27 @@
 .accept-button {
   width: 24px;
   height: 24px;
-  background-image: url("/assets/ico/ic-accepted-request.png"); /* Image normal */
   background-size: cover;
   cursor: pointer;
 }
 
 .accept-button:hover {
-  background-image: url("/assets/ico/ic-accepted-request-filled.png"); /* Imagen de hover */
+  background-image: url("/assets/ico/ic-accepted-request-filled.webp");
 }
 
 .reject-button {
   width: 24px;
   height: 24px;
-  background-image: url("/assets/ico/ic-denied-request.png"); /* Image normal */
   background-size: cover;
   cursor: pointer;
 }
 
 .reject-button:hover {
-  background-image: url("/assets/ico/ic-denied-request-filled.png"); /* Imagen de hover */
+  background-image: url("/assets/ico/ic-denied-request-filled.webp");
 }
 
 .position {
+  font: var(--font-family-primary);
   font-weight: bold;
   margin-right: 8px;
 }
@@ -132,6 +152,7 @@
 }
 
 .points {
+  font: var(--font-family-primary);
   font-weight: bold;
   color: #6200ea;
 }

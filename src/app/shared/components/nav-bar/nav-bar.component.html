@@ -3,7 +3,7 @@
     <nav *ngIf="shouldDisplayNavBar()">
       <a href="/clubs">
         <img
-          src="/assets/ico/noesis-website-logo.png"
+          src="/assets/ico/noesis-website-logo.webp"
           alt="Noesis"
           style="width: 240px; height: auto"
         />
@@ -21,7 +21,11 @@
           "
         >
           <a [routerLink]="['/clubs']">
-            <img src="/assets/ico/ic-clubs.png" alt="Clubs Icon" class="icon" />
+            <img
+              src="/assets/ico/ic-clubs.webp"
+              alt="Clubs Icon"
+              class="icon"
+            />
             &nbsp;&nbsp;Clubes
           </a>
         </li>
@@ -32,7 +36,7 @@
         >
           <a [routerLink]="['/explore']">
             <img
-              src="/assets/ico/ic-explore.png"
+              src="/assets/ico/ic-explore.webp"
               alt="Explore Icon"
               class="icon"
             />
@@ -46,7 +50,7 @@
         >
           <a [routerLink]="['/profile']">
             <img
-              src="/assets/ico/ic-profile.png"
+              src="/assets/ico/ic-profile.webp"
               alt="Profile Icon"
               class="icon"
             />
@@ -62,7 +66,7 @@
         >
           <a>
             <img
-              src="/assets/ico/ic-logout.png"
+              src="/assets/ico/ic-logout.webp"
               alt="Logout Icon"
               class="icon"
             />
@@ -72,11 +76,11 @@
       </ul>
     </nav>
   </div>
-  <app-executed-process-dialog
-    *ngIf="showDialog"
-    [message]="dialogMessage"
-    [actionText]="dialogActionText"
-    (close)="closeDialog()"
-  >
-  </app-executed-process-dialog>
 </section>
+<app-executed-process-dialog
+  *ngIf="showDialog"
+  [message]="dialogMessage"
+  [actionText]="dialogActionText"
+  (close)="closeDialog()"
+>
+</app-executed-process-dialog>

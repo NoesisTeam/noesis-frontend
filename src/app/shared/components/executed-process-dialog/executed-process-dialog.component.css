@@ -28,7 +28,7 @@
 
 .dialog-content p {
   color: var(--main_color);
-  font-family: Poppins;
+  font-family: var(--font-family-primary);
   font-size: 23.04px;
   font-style: normal;
   font-weight: 600;
@@ -45,7 +45,7 @@
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-  font-family: Poppins;
+  font-family: var(--font-family-primary);
   font-size: 16px;
   font-style: normal;
   font-weight: 600;

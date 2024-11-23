@@ -53,7 +53,9 @@ export class RankingRequestsComponent implements OnInit {
         this.rankingUsers = data;
       },
       error: (error) => {
-        console.log('Error: ', error);
+        this.dialogMessage = 'Error al obtener el ranking de usuarios';
+        this.dialogActionText = 'Reintentar';
+        this.showDialog = true;
       },
     });
   }
@@ -64,7 +66,9 @@ export class RankingRequestsComponent implements OnInit {
         this.rankingUsers = data;
       },
       error: (error) => {
-        console.log('Error: ', error);
+        this.dialogMessage = 'Error al obtener el ranking del club';
+        this.dialogActionText = 'Reintentar';
+        this.showDialog = true;
       },
     });
   }
@@ -75,7 +79,9 @@ export class RankingRequestsComponent implements OnInit {
         this.requestUsers = data;
       },
       error: (error) => {
-        console.log('Error: ', error);
+        this.dialogMessage = 'Error al obtener las solicitudes de membresía';
+        this.dialogActionText = 'Reintentar';
+        this.showDialog = true;
       },
     });
   }
@@ -87,10 +93,14 @@ export class RankingRequestsComponent implements OnInit {
   approveMembership(user_id: number) {
     this.requestsService.approveMembership(user_id).subscribe({
       next: (data) => {
-        alert(data.message);
+        this.dialogMessage = 'Solicitud de membresía aprobada';
+        this.dialogActionText = 'Aceptar';
+        this.showDialog = true;
       },
       error: (error) => {
-        console.log('Error: ', error);
+        this.dialogMessage = 'Error al aprobar la solicitud de membresía';
+        this.dialogActionText = 'Reintentar';
+        this.showDialog = true;
       },
     });
   }
@@ -98,16 +108,22 @@ export class RankingRequestsComponent implements OnInit {
   rejectMembership(user_id: number) {
     this.requestsService.rejectMembership(user_id).subscribe({
       next: (data) => {
-        alert(data.message);
+        this.dialogMessage = 'Solicitud de membresía rechazada';
+        this.dialogActionText = 'Aceptar';
+        this.showDialog = true;
       },
       error: (error) => {
-        console.log('Error: ', error);
+        this.dialogMessage = 'Error al rechazar la solicitud de membresía';
+        this.dialogActionText = 'Reintentar';
+        this.showDialog = true;
       },
     });
   }
 
   closeDialog(): void {
     this.showDialog = false;
-    this.router.navigate(['/login']);
+    if (this.dialogMessage === 'Sesión expirada. Inicie sesión nuevamente') {
+      this.router.navigate(['/login']);
+    }
   }
 }

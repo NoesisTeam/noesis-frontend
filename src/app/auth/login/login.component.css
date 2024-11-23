@@ -13,7 +13,7 @@
   border-radius: 50px;
   mask-image: linear-gradient(to left, black 70%, transparent 80%);
   -webkit-mask-image: linear-gradient(to left, black 98%, transparent 100%);
-  background: url("/assets/img/login-bg.png") lightgray -250px / 177.453% 100% no-repeat;
+  background: url("/assets/img/login-bg.webp") lightgray -250px / 177.453% 100% no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -44,7 +44,7 @@
 
 .login-text {
   color: var(--main_color);
-  font-family: Poppins, sans-serif;
+  font-family: var(--font-family-primary);
   font-size: 30px;
   font-weight: 600;
   margin-bottom: 40px;
@@ -68,7 +68,7 @@
   background: transparent;
   outline: none;
   color: #7c6c86;
-  font-family: Poppins, sans-serif;
+  font-family: var(--font-family-primary);
   font-size: 23px;
   font-weight: 500;
 }
@@ -96,7 +96,7 @@
   border-radius: 25px;
   cursor: pointer;
   font-size: 23px;
-  font-family: Poppins, sans-serif;
+  font-family: var(--font-family-primary);
   margin-top: 20px;
 }
 

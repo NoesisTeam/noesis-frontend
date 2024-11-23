@@ -1,0 +1,48 @@
+.view-quiz-button {
+  position: absolute;
+  bottom: 120px;
+  right: 55px;
+  background: linear-gradient(90deg, #1804ff 0%, #23d4df 100%);
+  color: #ffffff;
+  overflow: visible; /* Changed hidden to show the glow */
+  transition: all 0.3s ease;
+  animation: glowing 2s infinite;
+  display: flex;
+  width: 332px;
+  height: 65px;
+  padding: 12px 16px;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 5px;
+  border: none;
+  font-family: var(--font-family-primary);
+  font-size: 23.04px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  cursor: pointer;
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 5px #23d4df , 0 0 10px #23d4df , 0 0 15px #23d4df ;
+  }
+  50% {
+    box-shadow: 0 0 20px #23d4df , 0 0 25px #23d4df , 0 0 30px #23d4df ;
+  }
+  100% {
+    box-shadow: 0 0 5px #23d4df , 0 0 10px #23d4df , 0 0 15px #23d4df ;
+  }
+}
+
+.view-quiz-button:hover {
+  filter: brightness(1.1);
+  transform: scale(1.05);
+  animation: glowing 1s infinite; /* Faster animation on hover */
+}
+
+.icon {
+  width: 35px;
+  height: 35px;
+}

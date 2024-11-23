@@ -5,9 +5,10 @@
   top: 40px;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  max-height: 100%;
-  overflow-y: inherit;
+  max-height: 45vh;
+  overflow-y: auto;
   width: 95%;
+  padding: 10px;
 }
 
 .resource-card {
@@ -55,7 +56,7 @@
   margin: 0;
   padding: 0;
   color: #fff;
-  font-family: Poppins, sans-serif;
+  font-family: var(--font-family-primary);
   font-size: 23.04px;
   font-style: normal;
   font-weight: 500;
