@@ -130,4 +130,12 @@ export class LocalStorageService {
       console.error('Error removing quizId from localStorage', error);
     }
   }
+
+  clearAll(): void {
+    try {
+      localStorage.clear();
+    } catch (error) {
+      console.error('Error clearing localStorage', error);
+    }
+  }
 }

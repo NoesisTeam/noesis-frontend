@@ -4,6 +4,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
+import { LocalStorageService } from './core/services';
 
 @Component({
   selector: 'app-root',
@@ -18,16 +19,28 @@ export class AppComponent implements OnInit {
 
   hiddenRoutes: string[] = ['/', '/login', '/signup'];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private localStorageService: LocalStorageService
+  ) {}
 
   ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // Checks if the current route is in the hidden routes list
         this.shouldShowNavBar = !this.hiddenRoutes.includes(
           event.urlAfterRedirects
         );
       }
     });
+
+    window.addEventListener('beforeunload', this.clearLocalStorage);
   }
+
+  ngOnDestroy() {
+    window.removeEventListener('beforeunload', this.clearLocalStorage);
+  }
+
+  private clearLocalStorage = () => {
+    this.localStorageService.clearAll();
+  };
 }
