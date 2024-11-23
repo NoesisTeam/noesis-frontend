@@ -1,7 +1,7 @@
 <section class="default-section">
   <div class="nav-bar-container">
     <nav *ngIf="shouldDisplayNavBar()">
-      <a href="/clubs">
+      <a href="/clubs" (click)="goClubsHome()">
         <img
           src="/assets/ico/noesis-website-logo.webp"
           alt="Noesis"

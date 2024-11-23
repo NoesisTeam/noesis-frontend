@@ -47,6 +47,12 @@ export class NavBarComponent {
 
   // Custom function to determine if the route is active
   isActive(urls: string[]): boolean {
-    return urls.some(url => this.router.url.startsWith(url));
+    return urls.some((url) => this.router.url.startsWith(url));
+  }
+
+  goClubsHome() {
+    this.localStorageService.clearQuizId();
+    this.localStorageService.clearResourceId();
+    this.localStorageService.clearToken();
   }
 }
