@@ -28,7 +28,7 @@ export class QuizzesService {
     );
   }
 
-  submitQuiz(id_quiz: string, answers: string[], time_spent: string) {
+  submitQuiz(id_quiz: number, answers: string[], time_spent: number) {
     return this.http.post<QuizScoreResponseModel>(
       productionEnvironment.coreApiUrl + 'submit/quiz',
       { id_quiz, answers, time_spent }

@@ -7,4 +7,5 @@ export interface Club {
   is_academic: boolean;
   created_at: string;
   club_status: string;
+  [key: string]: any;
 }

@@ -1,4 +1,20 @@
 <div class="club-list-container">
+  <div class="row">
+    <div class="col">
+      <select class="from-select" [(ngModel)]="properties" multiple>
+        <option value="club_code">Codigo</option>
+        <option value="club_name">Nombre</option>
+      </select>
+    </div>
+  </div>
+  <div class="input">
+    <img
+      src="assets/ico/ic-search.webp"
+      alt="Search Icon"
+      class="search-icon"
+    />
+    <input id="search" [(ngModel)]="filterProperty" class="form-control" name="filter" type="text" placeholder="Buscar club" />
+  </div>
   <!-- Back button -->
   <button
     class="carousel-button prev-button"
@@ -18,7 +34,7 @@
     <ng-container *ngIf="clubs.length > 0; else noClubs">
       <button
         class="club-card"
-        *ngFor="let club of visibleClubs"
+        *ngFor="let club of visibleClubs | filter: filterProperty: properties"
         (click)="getTokenClub(club.id_club)"
       >
         <svg

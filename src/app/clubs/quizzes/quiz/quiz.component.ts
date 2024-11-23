@@ -46,7 +46,7 @@ export class QuizComponent implements OnInit {
   showStats = false;
   score = 0;
   correctAnswers = 0;
-  timeUsed = '4:30';
+  timeUsed: number = 0;
   hoverBack = false;
   questions: Question[] = [];
   public dialogMessage = '';
@@ -55,9 +55,10 @@ export class QuizComponent implements OnInit {
   public isLoading: boolean = false;
 
   // Timer
-  timeRemaining = '05:00';
+  timeRemaining = '';
   private timer: any;
-  private totalSeconds = 5 * 60;
+  private totalTime = 5 * 60;
+  private secondsRemaining = 0;
 
   ngOnInit() {
     this.isLoading = true;
@@ -105,17 +106,26 @@ export class QuizComponent implements OnInit {
   }
 
   private startTimer(): void {
-    this.timer = setInterval(() => {
-      this.totalSeconds--;
+    this.totalTime = this.questions.length * 60
 
-      if (this.totalSeconds <= 0) {
-        this.stopTimer();
+    this.secondsRemaining = this.totalTime; // Tiempo en segundos
+    this.timeRemaining = ''; // Inicializa como string
+  
+    // Inicia el temporizador
+    this.timer = setInterval(() => {
+      if (this.secondsRemaining <= 0) {
+        this.stopTimer(); // Detén el temporizador cuando llegue a cero
         return;
       }
-
-      const minutes = Math.floor(this.totalSeconds / 60);
-      const seconds = this.totalSeconds % 60;
-
+  
+      // Decrementa el total de segundos
+      this.secondsRemaining--;
+  
+      // Calcula minutos y segundos
+      const minutes = Math.floor(this.secondsRemaining / 60);
+      const seconds = this.secondsRemaining % 60;
+  
+      // Actualiza la variable de tiempo restante en formato MM:SS
       this.timeRemaining = `${minutes.toString().padStart(2, '0')}:${seconds
         .toString()
         .padStart(2, '0')}`;
@@ -138,7 +148,7 @@ export class QuizComponent implements OnInit {
   }
 
   selectOption(questionIndex: number, optionIndex: number) {
-    if (this.role === 'usuario' && !this.showStats) {
+    if (this.role === 'Member' && !this.showStats) {
       this.questions[questionIndex].options.forEach(
         (option) => (option.isSelected = false)
       );
@@ -154,8 +164,7 @@ export class QuizComponent implements OnInit {
 
   submitQuiz() {
     clearInterval(this.timer); // Stop the timer when sending
-    // this.calculateScore();
-    this.showStats = true;
+    this.calculateScore();
   }
 
   regenerateQuiz() {
@@ -203,47 +212,56 @@ export class QuizComponent implements OnInit {
   }
 
   calculateScore() {
-    this.timeUsed = this.timeRemaining; // Saves the time used
+    this.timeUsed = this.totalTime - this.secondsRemaining; // Saves the time used
+    console.log(this.timeUsed);
     const quizId = this.localStorageService.getQuizId();
-    if (quizId != null) {
-      this.quizzesService.submitQuiz(
-        quizId,
-        this.getSelectedLabels(),
-        this.timeUsed
-      );
+    if (quizId){
+      const quizIdNumber = parseInt(quizId);
+      if (quizId != null) {
+        this.quizzesService.submitQuiz(
+          quizIdNumber,
+          this.getSelectedLabels(),
+          this.timeUsed
+        ).subscribe({
+          next: (data) => {
+            this.score = data.score;
+            this.correctAnswers = data.quantity_correct_answers
+            this.showStats = true;
+          },
+          error: (error) => {
+            this.dialogMessage =
+              'No se ha podido calcular tu puntaje';
+            this.dialogActionText = 'Aceptar';
+            this.showDialog = true;
+          },
+        });
+      }
+    }else{
+      alert("No hay quiz seleccionado")
     }
+    
   }
 
   // Method to obtain the labels of the selected options
   private getSelectedLabels(): string[] {
-    const selectedLabels: string[] = [];
+    
+    // Initialize array with "Z" of the same size as the questions
+    const orderedLabels = new Array(this.questions.length).fill('Z');
 
     this.questions.forEach((question, questionIndex) => {
-      // Initialize array with "Z" of the same size as the options
-      const orderedLabels = new Array(question.options.length).fill('Z');
-
-      // Counter for selection order
-      let selectionOrder = 0;
 
       // Scroll through the options in their original order
       question.options.forEach((option, optionIndex) => {
         if (option.isSelected) {
           // If the option is selected, save your label in the order of selection.
-          orderedLabels[optionIndex] = option.label;
-          selectionOrder++;
+          orderedLabels[questionIndex] = option.label;
+          console.log(orderedLabels);
+          return
         }
       });
 
-      if (orderedLabels.some((label) => label !== null)) {
-        console.log(
-          `Pregunta ${
-            questionIndex + 1
-          }: Opciones seleccionadas - ${orderedLabels.join(', ')}`
-        );
-        selectedLabels.push(...orderedLabels);
-      }
     });
 
-    return selectedLabels;
-  }
+    return orderedLabels;
+  }
 }

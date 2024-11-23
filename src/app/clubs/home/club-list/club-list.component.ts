@@ -12,11 +12,14 @@ import { LocalStorageService } from '../../../core/services/local-storage.servic
 import { Router } from '@angular/router';
 import { motivationalPhrases } from '../../../shared/constants/motivational-phrases';
 import { ExecutedProcessDialogComponent } from '../../../shared/components/executed-process-dialog/executed-process-dialog.component';
+import { FilterPipe } from "../../../pipes/filter-by-pipe";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-club-list',
   standalone: true,
-  imports: [CommonModule, ExecutedProcessDialogComponent],
+  imports: [CommonModule, ExecutedProcessDialogComponent, FilterPipe,
+    FormsModule],
   templateUrl: './club-list.component.html',
   styleUrls: ['./club-list.component.css'],
 })
@@ -34,13 +37,19 @@ export class ClubListComponent implements OnChanges, AfterViewInit {
     created_at: string;
     club_status: string;
   }[] = [];
+
   visibleClubs: typeof this.clubs = [];
   currentStartIndex: number = 0;
   clubsPerPage: number = 4;
   randomPhrase: string = '';
+
   public dialogMessage: string = '';
   public dialogActionText: string = '';
   public showDialog: boolean = false;
+
+  properties!: string;
+  filterProperty = '';
+
   constructor(
     private authService: AuthService,
     private localStorageService: LocalStorageService,
@@ -93,7 +102,7 @@ export class ClubListComponent implements OnChanges, AfterViewInit {
           this.router.navigate(['/clubs/resources']);
         },
         error: (err) => {
-          this.dialogMessage = 'Credenciales Incorrectas';
+          this.dialogMessage = 'No se pudo ingresar al club';
           this.dialogActionText = 'Reintentar';
           this.showDialog = true;
         },

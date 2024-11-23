@@ -1,7 +1,24 @@
 <div class="carousel-container">
+  <div class="row">
+    <div class="col">
+      <select class="from-select" [(ngModel)]="properties" multiple>
+        <option value="club_code">Codigo</option>
+        <option value="club_name">Nombre</option>
+        
+      </select>
+    </div>
+  </div>
+  <div class="input">
+    <img
+      src="assets/ico/ic-search.webp"
+      alt="Search Icon"
+      class="search-icon"
+    />
+    <input id="search" [(ngModel)]="filterProperty" class="form-control" name="filter" type="text" placeholder="Buscar club" />
+  </div>
   <button
     class="club-card"
-    *ngFor="let club of clubs"
+    *ngFor="let club of clubs | filter: filterProperty: properties"
     (click)="clubRequest(club.id_club, club.is_private)"
   >
     <svg

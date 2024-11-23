@@ -18,7 +18,9 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
+    "date-fns": "^4.1.0",
     "ng2-pdf-viewer": "^10.3.4",
+    "noesis-frontend": "file:",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

@@ -6,19 +6,27 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from '../../core/services/local-storage.service';
 import { ExecutedProcessDialogComponent } from '../../shared/components/executed-process-dialog/executed-process-dialog.component';
 import { ClubsSharedService } from '../../core/services/clubs-shared.service';
+import { FormsModule } from '@angular/forms';
+import { FilterPipe } from "../../pipes/filter-by-pipe";
 
 @Component({
   selector: 'app-public-club-list',
   standalone: true,
-  imports: [CommonModule, ExecutedProcessDialogComponent],
+  imports: [CommonModule, ExecutedProcessDialogComponent, FormsModule, FilterPipe],
   templateUrl: './public-club-list.component.html',
   styleUrl: './public-club-list.component.css',
 })
 export class PublicClubListComponent {
+
+  properties!: string;
+  filterProperty = '';
+
   public dialogMessage: string = '';
   public dialogActionText: string = '';
+
   public showDialog: boolean = false;
   private isPublicClub: boolean = false;
+  
   constructor(
     private clubsService: ClubsService,
     private router: Router,
