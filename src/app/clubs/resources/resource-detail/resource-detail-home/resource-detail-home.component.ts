@@ -5,11 +5,13 @@ import { ResourcesService } from '../../../../core/services/resources.service';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../../../../core/services/local-storage.service';
 import { ExecutedProcessDialogComponent } from '../../../../shared/components/executed-process-dialog/executed-process-dialog.component';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-resource-detail-home',
   standalone: true,
   imports: [
+    NgIf,
     RankingRequestsComponent,
     PdfViewerComponent,
     ExecutedProcessDialogComponent,
