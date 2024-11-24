@@ -54,4 +54,7 @@ export class ClubsService {
       { id_user, id_club }
     );
   }
+
+  
+
 }

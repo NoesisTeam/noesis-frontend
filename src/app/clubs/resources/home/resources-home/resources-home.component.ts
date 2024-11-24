@@ -13,6 +13,8 @@ import { AuthService } from '../../../../core/services/auth.service';
 import { ResourcesSharedService } from '../../../../core/services/resources-shared.service';
 import { ExecutedProcessDialogComponent } from '../../../../shared/components/executed-process-dialog/executed-process-dialog.component';
 import { MedalListDialogComponent } from '../medal-list-dialog/medal-list-dialog.component';
+import { RequestsService } from '../../../../core/services/requests.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-clubs-resources',
@@ -42,7 +44,8 @@ export class ResourcesHomeComponent implements OnInit {
     private resourcesService: ResourcesService,
     private router: Router,
     private authService: AuthService,
-    private resourcesSharedService: ResourcesSharedService
+    private resourcesSharedService: ResourcesSharedService,
+    private requestsService: RequestsService
   ) {}
 
   ngOnInit(): void {
@@ -108,5 +111,27 @@ export class ResourcesHomeComponent implements OnInit {
 
   protected closeMedalListDialog(): void {
     this.isMedalListDialogOpen = false;
+  }
+
+  exportToExcel(): void{
+    this.requestsService.getClubRankingUsers().subscribe({
+      next: (data) => {
+        // Crea una hoja de trabajo
+        const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
+          
+        // Crea un libro de trabajo
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Puntuaciones');
+          
+        // Genera y descarga el archivo Excel
+        XLSX.writeFile(wb, 'ReporteRankingClub.xlsx');
+        
+      },
+      error: (error) => {
+        alert("No se pudo exportar");
+        console.log(error);
+      },
+    });
+
   }
 }

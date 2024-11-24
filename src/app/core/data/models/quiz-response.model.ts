@@ -4,4 +4,5 @@ export interface QuizResponseModel {
   answers: string;
   correct_answers?: string;
   quantity_questions: number;
+  
 }

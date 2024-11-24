@@ -14,7 +14,7 @@
   <!-- Progress Section -->
   <div class="score-section">
     <h4 class="centered-title">Puntaje Global</h4>
-    <p class="score">0 pts</p>
+    <p class="score">{{globalScore}} pts</p>
     <app-medal-list [isUserProfile]="true" [medals]="medals"></app-medal-list>
   </div>
 
@@ -25,19 +25,33 @@
     <form>
       <div class="info-group">
         <label>Nombre completo:</label>
-        <input type="text" placeholder="Próximamente" />
+        <input 
+          type="text" 
+          placeholder="Vacío" 
+          [value]="fullName" 
+        />
       </div>
       <div class="info-group">
-        <label>Carrera:</label>
-        <input type="text" placeholder="Próximamente" />
+        <label for="career">Carrera:</label>
+        <select id="career" name="career">
+            <option value="" disabled selected>{{career_name}}</option>
+            <option *ngFor="let career of careers" [value]="career.id_career">{{ career.career_name }}</option>
+        </select>
       </div>
       <div class="info-group">
         <label>Semestre:</label>
-        <input type="text" placeholder="Próximamente" />
+        <input type="text" placeholder="Vacio" [value]="semester" />
       </div>
       <div class="info-group">
         <label>Celular:</label>
-        <input type="text" placeholder="Próximamente" />
+        <input type="text" placeholder="Vacio" [value]="phoneNumber" />
+      </div>
+      <div class="info-group">
+        <label for="sex">Sexo:</label>
+        <select id="sex" name="sex">
+            <option value="" disabled selected>{{sex}}</option>
+            <option *ngFor="let sex of sexs" [value]="sex.id_sex">{{ sex.sex_name }}</option>
+        </select>
       </div>
     </form>
   </div>

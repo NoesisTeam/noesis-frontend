@@ -12,7 +12,7 @@
         (click)="submitQuiz()"
         class="submit-button"
       >
-        Enviar
+        {{ solved ? 'Revisar' : 'Enviar' }}
         <img
           src="/assets/ico/ic-finish-quiz.webp"
           alt="Finish Quiz Icon"

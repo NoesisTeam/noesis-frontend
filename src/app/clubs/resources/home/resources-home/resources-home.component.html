@@ -16,7 +16,7 @@
         class="icon"
       />
     </button>
-    <button *ngIf="userRole === 'Founder'" class="export-reports-button">
+    <button *ngIf="userRole === 'Founder'" class="export-reports-button" (click)="exportToExcel()">
       Exportar reporte
       <img
         src="assets/ico/ic-export-report.webp"

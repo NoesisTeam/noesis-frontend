@@ -49,6 +49,7 @@ export class QuizComponent implements OnInit {
   timeUsed: number = 0;
   hoverBack = false;
   questions: Question[] = [];
+  solved = false;
   public dialogMessage = '';
   public dialogActionText = '';
   public showDialog = false;
@@ -60,39 +61,66 @@ export class QuizComponent implements OnInit {
   private totalTime = 5 * 60;
   private secondsRemaining = 0;
 
+  // refactor zone
+
   ngOnInit() {
     this.isLoading = true;
-    if (!this.authService.isTokenExpired()) {
-      this.role = this.authService.getRoleFromToken();
-      const resource_id = this.quizzesService.getReadingResourceId();
-      if (resource_id != null) {
-        this.quizzesService.getQuiz(resource_id).subscribe({
-          next: (res: QuizResponseModel) => {
-            this.mapQuestionsData(res);
-            this.localStorageService.setQuizId(String(res.id_quiz));
-            this.isLoading = false;
-            this.startTimer();
-          },
-          error: (err) => {
-            this.isLoading = false;
-            this.dialogMessage = 'No hay quiz para mostrar';
-            this.dialogActionText = 'Reintentar';
-            this.showDialog = true;
-          },
-        });
-      } else {
-        this.isLoading = false;
-        this.dialogMessage = 'No hay recurso seleccionado';
-        this.dialogActionText = 'Seleccionar recurso';
-        this.showDialog = true;
-      }
-    } else {
-      this.isLoading = false;
-      this.dialogMessage = 'Debes iniciar sesión para ver el quiz';
-      this.dialogActionText = 'Iniciar sesión';
-      this.showDialog = true;
+  
+    if (this.authService.isTokenExpired()) {
+      this.showDialogWithMessage('Debes iniciar sesión para ver el quiz', 'Iniciar sesión');
+      return;
     }
+  
+    this.role = this.authService.getRoleFromToken();
+    const resource_id = this.quizzesService.getReadingResourceId();
+  
+    if (!resource_id) {
+      this.showDialogWithMessage('No hay recurso seleccionado', 'Vuelve a ingresar al recurso');
+      return;
+    }
+  
+    this.loadQuiz(resource_id);
   }
+  
+  private loadQuiz(resource_id: string) {
+    this.quizzesService.getQuiz(resource_id).subscribe({
+      next: (res: QuizResponseModel) => {
+        this.mapQuestionsData(res);
+        this.localStorageService.setQuizId(String(res.id_quiz));
+        this.verifyQuiz(String(res.id_quiz));
+      },
+      error: () => {
+        this.showDialogWithMessage('No hay quiz para mostrar', 'Regresa mas tarde');
+      },
+    });
+  }
+  
+  private verifyQuiz(quizId: string) {
+    this.quizzesService.checkQuiz(String(quizId)).subscribe({
+      next: (res) => {
+        if (res.answered) {
+          this.solved = true;
+          this.showDialogWithMessage('Ya has presentado este quiz - ¡Ve a por el siguiente!', 'Aceptar');
+        } else {
+          this.startTimer();
+        }
+        this.isLoading = false;
+      },
+      error: () => {
+        this.showDialogWithMessage('No se ha podido verificar el quiz', 'Aceptar');
+        this.isLoading = false;
+      },
+    });
+  }
+  
+  private showDialogWithMessage(message: string, actionText: string) {
+    this.isLoading = false;
+    this.dialogMessage = message;
+    this.dialogActionText = actionText;
+    this.showDialog = true;
+  }
+
+  // Refactor zone
 
   public closeDialog(): void {
     this.showDialog = false;
@@ -225,7 +253,8 @@ export class QuizComponent implements OnInit {
         ).subscribe({
           next: (data) => {
             this.score = data.score;
-            this.correctAnswers = data.quantity_correct_answers
+            this.correctAnswers = data.quantity_correct_answers;
+            this.fillCorrectsOptions(data.correct_answers);
             this.showStats = true;
           },
           error: (error) => {
@@ -242,6 +271,23 @@ export class QuizComponent implements OnInit {
     
   }
 
+  private fillCorrectsOptions(correct_answers: string[]): void {
+
+    if (correct_answers.length !== this.questions.length) {
+      console.error("La cantidad de respuestas correctas no coincide con la cantidad de preguntas.");
+      return;
+    }
+  
+    // Iterar con un índice para mantener sincronización entre respuestas y preguntas.
+    this.questions.forEach((question, index) => {
+      const correctAnswer = correct_answers[index]; // Toma la respuesta correspondiente a la pregunta.
+      question.options.forEach(option => {
+        if (option.label === correctAnswer) {
+          option.isCorrect = true;
+        }
+      });
+    });
+  }
   // Method to obtain the labels of the selected options
   private getSelectedLabels(): string[] {
     

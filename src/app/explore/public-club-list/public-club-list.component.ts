@@ -37,6 +37,9 @@ export class PublicClubListComponent {
 
   public clubRequest(id_club: number, is_private: boolean) {
     const userId = Number(this.localStorageService.getUserId());
+    
+    
+
     if (is_private) {
       this.clubsService.privateClubRequest(userId, id_club).subscribe({
         next: (res) => {

@@ -8,8 +8,17 @@ import { QuizScoreResponseModel } from '../data/models';
   providedIn: 'root',
 })
 export class QuizzesService {
+  
+  
   constructor(private http: HttpClient) {}
 
+  checkQuiz(quiz_id: string) {
+    return this.http.get<{ answered: boolean }>(
+      productionEnvironment.coreApiUrl + 'check/resources/quiz/' + quiz_id
+    );
+  }
+
+  
   getReadingResourceId(): string | null {
     return localStorage.getItem('resourceId');
   }
