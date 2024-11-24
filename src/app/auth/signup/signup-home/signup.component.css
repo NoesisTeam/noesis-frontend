@@ -41,7 +41,7 @@
 
 .signup-text {
   color: var(--main_color);
-  font-family: var(--font-family-primary);
+  font-family: var(--font_family_primary);
   font-size: 30px;
   font-weight: 600;
   margin-bottom: 40px;
@@ -65,7 +65,7 @@
   background: transparent;
   outline: none;
   color: #7c6c86;
-  font-family: var(--font-family-primary);
+  font-family: var(--font_family_primary);
   font-size: 23px;
   font-weight: 500;
 }
@@ -93,7 +93,7 @@
   border-radius: 25px;
   cursor: pointer;
   font-size: 23px;
-  font-family: var(--font-family-primary);
+  font-family: var(--font_family_primary);
   margin-top: 20px;
 }
 

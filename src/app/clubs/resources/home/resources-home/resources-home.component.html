@@ -7,7 +7,7 @@
     <button
       *ngIf="userRole === 'Founder'"
       class="add-resource-button"
-      (click)="openDialog()"
+      (click)="openAddResourceDialog()"
     >
       Agregar recurso
       <img
@@ -27,6 +27,7 @@
     <button
       class="view-achievements-button"
       [ngStyle]="{ 'margin-left': userRole === 'Member' ? '52vw' : 'initial' }"
+      (click)="openMedalListDialog()"
     >
       Ver logros
       <img
@@ -44,13 +45,17 @@
   <!-- Show the dialogue only if it is open -->
 </div>
 <app-add-resource-dialog
-  *ngIf="isDialogOpen"
-  (close)="closeDialog()"
+  *ngIf="isAddResourceDialogOpen"
+  (close)="closeAddResourceDialog()"
 ></app-add-resource-dialog>
 <app-executed-process-dialog
-  *ngIf="showDialog"
+  *ngIf="isExecutedProcessDialogOpen"
   [message]="dialogMessage"
   [actionText]="dialogActionText"
   (close)="closeExecutionDialog()"
 >
 </app-executed-process-dialog>
+<app-medal-list-dialog
+  *ngIf="isMedalListDialogOpen"
+  (close)="closeMedalListDialog()"
+></app-medal-list-dialog>

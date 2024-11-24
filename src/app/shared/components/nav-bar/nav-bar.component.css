@@ -29,7 +29,7 @@ li {
   padding: 10px 20px;
   cursor: pointer;
   color: var(--gray_dark);
-  font-family: var(--font-family-primary);
+  font-family: var(--font_family_primary);
   font-size: 23.04px;
   font-weight: 500;
   border-radius: 10px;

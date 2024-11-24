@@ -16,23 +16,13 @@
   padding: 13px 42px 34px 42px;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 300px;
+  max-width: auto;
   gap: 14px;
-
   display: flex;
   flex-direction: column; /* Aligns items in a column */
   justify-content: center; /* Centres elements vertically */
   align-items: center; /* Centres elements horizontally */
   text-align: center;
-}
-
-.dialog-content p {
-  color: var(--main_color);
-  font-family: var(--font_family_primary);
-  font-size: 23.04px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
 }
 
 .dialog-content button {
@@ -52,10 +42,4 @@
   line-height: normal;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s, transform 0.2s;
-}
-
-.dialog-content button:hover {
-  background-color: #581c87;
-  transform: scale(1.05);
-  filter: brightness(1.2);
 }

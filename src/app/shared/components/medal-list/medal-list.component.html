@@ -1,40 +1,29 @@
-<div class="score-section">
-  <h4 class="centered-title">Puntaje Global</h4>
-  <p class="score">0 pts</p>
-
-  <!-- Carrusel de Medallas -->
+<div class="main-container">
   <h4 class="centered-title">Medallas</h4>
-  <div class="carousel-container">
-    <button
-      *ngIf="showLeftButton"
-      (click)="scrollLeft()"
-      class="scroll-button left"
-    >
-      &lt;
-    </button>
-    <div class="medals-carousel">
+  <div class="medals-carousel">
+    <ng-container *ngIf="medals.length > 0; else noMedals">
       <div
-        *ngFor="let medal of visibleMedals; let i = index"
+        *ngFor="let medal of medals"
         class="medal"
-        [ngStyle]="{ 'background-color': medal.color }"
+        [ngStyle]="{
+          'background-color': getBackgroundColor(medal.medal_q_name)
+        }"
       >
-        <div *ngIf="isCircleVisible" class="medal-circle">
-          {{ currentIndex + i + 1 }}
+        <div *ngIf="isUserProfile" class="medal-circle">
+          {{ medal.quantity }}
         </div>
         <img
-          src="./assets/ico/ic-golden-medal.webp"
+          src="./assets/ico/ic-medal.webp"
           class="medal-icon"
           alt="Medal Icon"
         />
-        <p class="medal-text">{{ medal.text }}</p>
+        <p class="medal-text">{{ medal.medal_type_name }}</p>
       </div>
-    </div>
-    <button
-      *ngIf="showRightButton"
-      (click)="scrollRight()"
-      class="scroll-button right"
-    >
-      &gt;
-    </button>
+    </ng-container>
+    <ng-template #noMedals>
+      <div class="no-medals-text">
+        "Tu próxima medalla está a una respuesta de distancia." 🚀
+      </div>
+    </ng-template>
   </div>
 </div>

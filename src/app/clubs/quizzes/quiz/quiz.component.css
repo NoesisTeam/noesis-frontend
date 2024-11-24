@@ -34,7 +34,7 @@
 }
 
 .quiz-title {
-  font-family: var(--font-family-primary);
+  font-family: var(--font_family_primary);
   font-size: 27.65px;
   font-style: normal;
   font-weight: 600;
@@ -47,7 +47,7 @@
 }
 
 .timer {
-  font-family: var(--font-family-primary);
+  font-family: var(--font_family_primary);
   font-size: 27.65px;
   font-style: normal;
   font-weight: 600;
@@ -60,7 +60,7 @@
 }
 
 .submit-button {
-  font-family: var(--font-family-primary);
+  font-family: var(--font_family_primary);
   font-size: 19.2px;
   font-style: normal;
   font-weight: 500;
@@ -91,7 +91,7 @@
 .edit-button,
 .save-button,
 .regenerate-button {
-  font-family: var(--font-family-primary);
+  font-family: var(--font_family_primary);
   font-size: 19.2px;
   font-style: normal;
   font-weight: 500;
@@ -169,7 +169,7 @@
   margin-top: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   color: #141111;
-  font-family: var(--font-family-primary);
+  font-family: var(--font_family_primary);
   font-size: 19.2px;
   font-style: normal;
   font-weight: 600;
@@ -216,7 +216,7 @@ input[type="radio"]:checked {
 
 .question-input {
   color: #141111;
-  font-family: var(--font-family-primary);
+  font-family: var(--font_family_primary);
   font-size: 19.2px;
   font-style: normal;
   font-weight: 400;
@@ -231,7 +231,7 @@ input[type="radio"]:checked {
 
 .option-input {
   color: #141111;
-  font-family: var(--font-family-primary);
+  font-family: var(--font_family_primary);
   font-size: 19.2px;
   font-style: normal;
   font-weight: 400;
@@ -266,7 +266,7 @@ input[type="radio"]:checked {
 }
 
 .club-label {
-  font-family: var(--font-family-primary);
+  font-family: var(--font_family_primary);
   font-size: 19.2px;
   font-style: normal;
   font-weight: 400;
@@ -275,7 +275,7 @@ input[type="radio"]:checked {
 }
 
 .club-name {
-  font-family: var(--font-family-primary);
+  font-family: var(--font_family_primary);
   font-size: 27.65px;
   font-style: normal;
   font-weight: 500;
@@ -292,7 +292,7 @@ input[type="radio"]:checked {
 }
 
 .stat-item {
-  font-family: var(--font-family-primary);
+  font-family: var(--font_family_primary);
   font-size: 19.2px;
   font-style: normal;
   font-weight: 500;
@@ -305,7 +305,7 @@ input[type="radio"]:checked {
 }
 
 .stat-value {
-  font-family: var(--font-family-primary);
+  font-family: var(--font_family_primary);
   font-size: 27.65px;
   font-style: normal;
   font-weight: 600;

@@ -12,6 +12,7 @@ import { ResourceListComponent } from '../resource-list/resource-list.component'
 import { AuthService } from '../../../../core/services/auth.service';
 import { ResourcesSharedService } from '../../../../core/services/resources-shared.service';
 import { ExecutedProcessDialogComponent } from '../../../../shared/components/executed-process-dialog/executed-process-dialog.component';
+import { MedalListDialogComponent } from '../medal-list-dialog/medal-list-dialog.component';
 
 @Component({
   selector: 'app-clubs-resources',
@@ -23,31 +24,26 @@ import { ExecutedProcessDialogComponent } from '../../../../shared/components/ex
     ResourceListComponent,
     RankingRequestsComponent,
     ExecutedProcessDialogComponent,
+    MedalListDialogComponent,
   ],
   templateUrl: './resources-home.component.html',
   styleUrls: ['./resources-home.component.css'],
 })
 export class ResourcesHomeComponent implements OnInit {
-  userRole: string = '';
-  isDialogOpen = false;
-  resources: ReadingResource[] = [];
-  public dialogMessage: string = '';
-  public dialogActionText: string = '';
-  public showDialog: boolean = false;
+  protected userRole: string = '';
+  protected isAddResourceDialogOpen = false;
+  protected resources: ReadingResource[] = [];
+  protected dialogMessage: string = '';
+  protected dialogActionText: string = '';
+  protected isExecutedProcessDialogOpen: boolean = false;
+  protected isMedalListDialogOpen: boolean = false;
+
   constructor(
     private resourcesService: ResourcesService,
     private router: Router,
     private authService: AuthService,
     private resourcesSharedService: ResourcesSharedService
   ) {}
-
-  openDialog(): void {
-    this.isDialogOpen = true;
-  }
-
-  closeDialog(): void {
-    this.isDialogOpen = false;
-  }
 
   ngOnInit(): void {
     this.userRole = this.authService.getRoleFromToken();
@@ -59,16 +55,16 @@ export class ResourcesHomeComponent implements OnInit {
             this.dialogMessage =
               'Permisos insuficientes para acceder a los recursos del club';
             this.dialogActionText = 'Aceptar';
-            this.showDialog = true;
+            this.isExecutedProcessDialogOpen = true;
           }
           if (error.status === 401) {
             this.dialogMessage = 'Sesión expirada. Inicie sesión nuevamente';
             this.dialogActionText = 'Aceptar';
-            this.showDialog = true;
+            this.isExecutedProcessDialogOpen = true;
           } else {
             this.dialogMessage = 'Ocurrió un error al obtener los recursos';
             this.dialogActionText = 'Reintentar';
-            this.showDialog = true;
+            this.isExecutedProcessDialogOpen = true;
           }
           return of([]);
         })
@@ -81,8 +77,16 @@ export class ResourcesHomeComponent implements OnInit {
     });
   }
 
-  public closeExecutionDialog(): void {
-    this.showDialog = false;
+  protected openAddResourceDialog(): void {
+    this.isAddResourceDialogOpen = true;
+  }
+
+  protected closeAddResourceDialog(): void {
+    this.isAddResourceDialogOpen = false;
+  }
+
+  protected closeExecutionDialog(): void {
+    this.isExecutedProcessDialogOpen = false;
     switch (this.dialogMessage) {
       case 'Permisos insuficientes para acceder a los recursos del club':
         this.router.navigateByUrl('/clubs');
@@ -96,5 +100,13 @@ export class ResourcesHomeComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  protected openMedalListDialog(): void {
+    this.isMedalListDialogOpen = true;
+  }
+
+  protected closeMedalListDialog(): void {
+    this.isMedalListDialogOpen = false;
   }
 }

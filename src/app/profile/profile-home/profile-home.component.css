@@ -3,20 +3,31 @@
 }
 
 .username {
-  font-weight: bold;
-  font-size: 1.5em;
-  color: #333;
+  color: var(--main_color);
+  font-family: var(--font_family_primary);
+  font-size: 27.65px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
   margin-bottom: 5px;
 }
 
 .quote {
-  color: #666;
+  color: var(--gray_dark);
+  font-family: var(--font_family_primary);
+  font-size: 23.04px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 .progress-title {
-  color: #6200ea;
-  font-weight: bold;
-  font-size: 1.2em;
+  color: var(--main_color);
+  font-family: var(--font_family_primary);
+  font-size: 27.65px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
   margin: 20px 0 16px 20px;
 }
 
@@ -28,103 +39,28 @@
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   margin-left: 8vw;
-  overflow-y: auto;
+  height: auto;
 }
 
 .centered-title {
+  color: black;
+  font-family: var(--font_family_primary);
   text-align: center;
-  font-weight: normal;
-  color: #333;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
   margin: 10px 0;
 }
 
 .score {
-  font-size: 2em;
-  color: #6200ea;
-  font-weight: bold;
+  color: var(--main_color);
+  font-family: var(--font_family_primary);
+  font-size: 33.18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
   text-align: center;
-}
-
-.carousel-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 100%;
-}
-
-.medals-carousel {
-  display: flex;
-  gap: 16px;
-  overflow: hidden;
-  padding: 0 10px;
-  max-width: calc(120px * 4 + 16px * 3);
-  flex-grow: 1;
-}
-
-.medal {
-  width: 120px;
-  height: 140px;
-  border-radius: 8px;
-  text-align: center;
-  color: #fff;
-  font-weight: bold;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.medal-circle {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 30px;
-  height: 30px;
-  background-color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: black;
-  font-weight: bold;
-  font-size: 1em;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-.scroll-button {
-  background-color: #6200ea;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  font-size: 1.2em;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  z-index: 1;
-}
-
-.scroll-button.left {
-  left: 28%;
-}
-
-.scroll-button.right {
-  right: 28%;
-}
-
-.scroll-button:hover {
-  background-color: #4b0082;
-}
-
-/* Información Personal */
-.personal-info {
-  margin-top: 20px;
 }
 
 .info-group {
@@ -135,39 +71,24 @@
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
-  color: #333;
+  color: black;
+  font-family: var(--font_family_primary);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 .info-group input {
+  color: var(--gray_dark);
+  font-family: var(--font_family_primary);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
   width: 100%;
   padding: 10px;
-  font-size: 1em;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.medal-icon {
-  width: 80%; /* Ocupa el 80% del ancho del contenedor */
-  height: auto;
-  margin-top: 10px;
-  flex-grow: 1; /* Expande la imagen sin afectar el texto */
-}
-
-.medal-text {
-  margin-top: 5px;
-  font-size: 0.85em;
-  flex-shrink: 0; /* Texto fijo, no se encoge */
-}
-
-.progress-container {
-  display: flex;
-  flex-direction: column;
-  background-color: #f3e8ff;
-  padding: 20px;
-  font-family: var(--font-family-primary);
-  color: #333;
-  max-width: 100%;
-  margin: 0 auto;
   box-sizing: border-box;
 }

@@ -4,7 +4,7 @@
   max-width: 400px;
   min-height: 400px;
   max-height: 400px;
-  font-family: var(--font-family-primary);
+  font-family: var(--font_family_primary);
   position: absolute;
   right: 20px;
   top: 20vh;
@@ -67,7 +67,7 @@
 }
 
 .tabs button {
-  font-family: var(--font-family-primary);
+  font-family: var(--font_family_primary);
   background-color: transparent;
   border: none;
   padding: 8px;
@@ -142,7 +142,7 @@
 }
 
 .position {
-  font: var(--font-family-primary);
+  font: var(--font_family_primary);
   font-weight: bold;
   margin-right: 8px;
 }
@@ -152,7 +152,7 @@
 }
 
 .points {
-  font: var(--font-family-primary);
+  font: var(--font_family_primary);
   font-weight: bold;
   color: #6200ea;
 }
