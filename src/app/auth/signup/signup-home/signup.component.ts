@@ -41,6 +41,7 @@ export class SignupComponent implements OnDestroy {
   public dialogMessage = '';
   public dialogActionText = 'Aceptar';
   public showDialog = false;
+  public isSubmitting = false;
   public formErrors: SignupFormErrorsModel = {};
 
   // Private properties
@@ -85,6 +86,8 @@ export class SignupComponent implements OnDestroy {
       return;
     }
 
+    this.isSubmitting = true;
+
     const { username, password } = this.signupForm.value;
 
     this.authService
@@ -92,7 +95,10 @@ export class SignupComponent implements OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: () => this.handleSignupSuccess(username, password),
-        error: (error) => this.handleSignupError(error),
+        error: (error) => {
+          this.isSubmitting = false;
+          this.handleSignupError(error);
+        },
       });
   }
 

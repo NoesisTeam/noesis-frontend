@@ -98,9 +98,9 @@
         <button
           type="submit"
           class="submit-btn"
-          [disabled]="signupForm.invalid"
+          [disabled]="signupForm.invalid || isSubmitting"
         >
-          Regístrese
+          {{ isSubmitting ? "Registrando..." : "Registrarse" }}
         </button>
         <p class="auth-link">
           ¿Ya tienes una cuenta?
