@@ -16,7 +16,11 @@
         class="icon"
       />
     </button>
-    <button *ngIf="userRole === 'Founder'" class="export-reports-button" (click)="exportToExcel()">
+    <button
+      *ngIf="userRole === 'Founder'"
+      class="export-reports-button"
+      (click)="exportToExcel()"
+    >
       Exportar reporte
       <img
         src="assets/ico/ic-export-report.webp"
@@ -25,6 +29,7 @@
       />
     </button>
     <button
+      *ngIf="userRole === 'Member'"
       class="view-achievements-button"
       [ngStyle]="{ 'margin-left': userRole === 'Member' ? '52vw' : 'initial' }"
       (click)="openMedalListDialog()"
