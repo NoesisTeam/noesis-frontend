@@ -88,9 +88,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (response) => {
           this.localStorageService.setUserId(response.user.id.toString());
-          this.dialogMessage = 'Ingreso exitoso';
-          this.dialogActionText = 'Aceptar';
-          this.showDialog = true;
+          this.router.navigate(['/clubs']);
         },
         error: (err) => {
           this.dialogMessage = err.error?.message || 'Credenciales inválidas';
@@ -165,8 +163,5 @@ export class LoginComponent implements OnInit, OnDestroy {
    */
   public closeDialog(): void {
     this.showDialog = false;
-    if (this.dialogMessage === 'Ingreso exitoso') {
-      this.router.navigate(['/clubs']);
-    }
   }
 }

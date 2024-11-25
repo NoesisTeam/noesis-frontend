@@ -51,8 +51,12 @@
             Campo obligatorio con al menos 6 caracteres
           </p>
         </div>
-        <button type="submit" class="submit-btn" [disabled]="loginForm.invalid">
-          Ingresa
+        <button
+          type="submit"
+          class="submit-btn"
+          [disabled]="loginForm.invalid || isLoading"
+        >
+          {{ isLoading ? "Ingresando..." : "Ingresar" }}
         </button>
         <p class="auth-link">
           ¿Aún no tienes una cuenta?
