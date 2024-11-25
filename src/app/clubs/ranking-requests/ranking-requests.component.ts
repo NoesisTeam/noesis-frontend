@@ -6,6 +6,7 @@ import { AuthService } from '../../core/services/auth.service';
 import { ExecutedProcessDialogComponent } from '../../shared/components/executed-process-dialog/executed-process-dialog.component';
 import { ClubRanking } from '../../core/data/models';
 import { ClubRequest } from '../../core/domain/entities';
+import { RequestsSharedService } from '../../core/services/requests-shared.service';
 
 @Component({
   selector: 'app-ranking-requests',
@@ -26,7 +27,8 @@ export class RankingRequestsComponent implements OnInit {
   constructor(
     private requestsService: RequestsService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private requestsSharedService: RequestsSharedService
   ) {}
 
   ngOnInit(): void {
@@ -84,6 +86,9 @@ export class RankingRequestsComponent implements OnInit {
         this.showDialog = true;
       },
     });
+    this.requestsSharedService.requests$.subscribe((requests) => {
+      this.requestUsers = requests;
+    });
   }
 
   changeView(view: 'ranking' | 'requests') {
@@ -93,6 +98,7 @@ export class RankingRequestsComponent implements OnInit {
   approveMembership(user_id: number) {
     this.requestsService.approveMembership(user_id).subscribe({
       next: (data) => {
+        this.updateSharedRequests();
         this.dialogMessage = 'Solicitud de membresía aprobada';
         this.dialogActionText = 'Aceptar';
         this.showDialog = true;
@@ -108,6 +114,7 @@ export class RankingRequestsComponent implements OnInit {
   rejectMembership(user_id: number) {
     this.requestsService.rejectMembership(user_id).subscribe({
       next: (data) => {
+        this.updateSharedRequests();
         this.dialogMessage = 'Solicitud de membresía rechazada';
         this.dialogActionText = 'Aceptar';
         this.showDialog = true;
@@ -115,6 +122,19 @@ export class RankingRequestsComponent implements OnInit {
       error: (error) => {
         this.dialogMessage = 'Error al rechazar la solicitud de membresía';
         this.dialogActionText = 'Reintentar';
+        this.showDialog = true;
+      },
+    });
+  }
+
+  private updateSharedRequests() {
+    this.requestsService.getAllMemberRequests().subscribe({
+      next: (requests) => {
+        this.requestsSharedService.updateRequests(requests);
+      },
+      error: (error) => {
+        this.dialogMessage = 'Error al obtener las solicitudes de membresía';
+        this.dialogActionText = 'Aceptar';
         this.showDialog = true;
       },
     });
