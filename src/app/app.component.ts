@@ -41,6 +41,6 @@ export class AppComponent implements OnInit {
   }
 
   private clearLocalStorage = () => {
-    // this.localStorageService.clearAll();
+    this.localStorageService.clearAll();
   };
 }

@@ -280,6 +280,18 @@ body {
   top: 5vh;
 }
 
+.explore-clubs-text {
+  color: rgba(0, 0, 0, 0.75);
+  font-family: var(--font_family_primary);
+  font-size: 23.04px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 30px;
+  position: absolute;
+  top: 200px;
+}
+
 .back-button {
   display: inline-flex;
   align-items: center;

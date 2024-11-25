@@ -1,60 +1,72 @@
-<div class="carousel-container">
-  <div class="row">
-    <div class="col">
-      <select class="from-select" [(ngModel)]="properties" multiple>
-        <option value="club_code">Codigo</option>
-        <option value="club_name">Nombre</option>
-        
-      </select>
+<div class="club-list-container">
+  <div class="search-filter-container">
+    <div class="row">
+      <div class="col">
+        <select class="form-select" [(ngModel)]="properties" multiple>
+          <option value="club_code">Código</option>
+          <option value="club_name">Nombre</option>
+        </select>
+      </div>
     </div>
-  </div>
-  <div class="input">
-    <img
-      src="assets/ico/ic-search.webp"
-      alt="Search Icon"
-      class="search-icon"
-    />
-    <input id="search" [(ngModel)]="filterProperty" class="form-control" name="filter" type="text" placeholder="Buscar club" />
-  </div>
-  <button
-    class="club-card"
-    *ngFor="let club of clubs | filter: filterProperty: properties"
-    (click)="clubRequest(club.id_club, club.is_private)"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="280"
-      height="79"
-      viewBox="0 0 280 79"
-    >
-      <path
-        d="M238.204 69.5C204.448 81.631 22 82 0 69.5V0H280C269.929 35 270.204 58 238.204 69.5Z"
-        fill="var(--blue)"
-      />
-    </svg>
-    <p class="club-text">Club</p>
-    <img
-      [src]="
-        club.is_private
-          ? '/assets/ico/ic-lock.webp'
-          : '/assets/ico/ic-lock-open.webp'
-      "
-      alt="Lock Icon"
-      class="lock-icon"
-    />
-    <p class="club-name-text">{{ club.club_name }}</p>
-    <p class="founded-by-text" style="color: var(--blue)">Código</p>
-    <p class="founded-by-name-text">{{ club.club_code }}</p>
-    <div class="join-button">
+    <div class="input">
       <img
-        *ngIf="club.is_academic"
-        src="/assets/ico/ic-check.webp"
-        alt="Check Icon"
-        class="check-icon"
+        src="assets/ico/ic-search.webp"
+        alt="Search Icon"
+        class="search-icon"
       />
-      Unirte
+      <input
+        id="search"
+        [(ngModel)]="filterProperty"
+        class="form-control"
+        name="filter"
+        type="text"
+        placeholder="Buscar club"
+      />
     </div>
-  </button>
+  </div>
+  <!-- Carousel -->
+   <div class="carousel-container">
+     <button
+       class="club-card"
+       *ngFor="let club of clubs | filter : filterProperty : properties"
+       (click)="clubRequest(club.id_club, club.is_private)"
+     >
+       <svg
+         xmlns="http://www.w3.org/2000/svg"
+         width="280"
+         height="79"
+         viewBox="0 0 280 79"
+       >
+         <path
+           d="M238.204 69.5C204.448 81.631 22 82 0 69.5V0H280C269.929 35 270.204 58 238.204 69.5Z"
+           fill="var(--blue)"
+         />
+       </svg>
+       <p class="club-text">Club</p>
+       <img
+         [src]="
+           club.is_private
+             ? '/assets/ico/ic-lock.webp'
+             : '/assets/ico/ic-lock-open.webp'
+         "
+         alt="Lock Icon"
+         class="lock-icon"
+       />
+       <p class="club-name-text">{{ club.club_name }}</p>
+       <p class="founded-by-text" style="color: var(--blue)">Código</p>
+       <p class="founded-by-name-text">{{ club.club_code }}</p>
+       <div class="join-button">
+         <img
+           *ngIf="club.is_academic"
+           src="/assets/ico/ic-check.webp"
+           alt="Check Icon"
+           class="check-icon"
+         />
+         Unirte
+       </div>
+     </button>
+     
+   </div>
 </div>
 <app-executed-process-dialog
   *ngIf="showDialog"

@@ -5,13 +5,13 @@
     <img src="assets/ico/ic-add-club-filled.webp" alt="Add Icon" class="icon" />
   </button>
   <div class="clubs-container">
-    
     <p class="clubs-text">Clubs creados</p>
     <app-club-list
       [color]="'var(--pink)'"
       [top]="'130px'"
       [clubs]="clubsCreated"
       [isFounder]="true"
+      [topSearch]="'3vh'"
     ></app-club-list>
     <p class="clubs-text" style="top: 480px">Clubs a los que Perteneces</p>
     <app-club-list
@@ -19,6 +19,7 @@
       [top]="'220px'"
       [clubs]="clubsJoined"
       [isFounder]="false"
+      [topSearch]="'14.5vh'"
     ></app-club-list>
   </div>
 </div>
@@ -28,10 +29,3 @@
   *ngIf="isDialogOpen"
   (close)="closeDialog()"
 ></app-create-club-dialog>
-
-<app-executed-process-dialog
-  *ngIf="showDialog"
-  [message]="dialogMessage"
-  [actionText]="dialogActionText"
-  (closeDialog)="closeExecutedDialog()"
-></app-executed-process-dialog>

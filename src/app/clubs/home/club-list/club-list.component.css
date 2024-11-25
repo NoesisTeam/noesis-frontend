@@ -1,11 +1,121 @@
 .club-list-container {
   display: flex;
+  position: relative;
+  width: 100%;
+  justify-content: flex-end; /* Aligns elements to the right */
+}
+
+.search-filter-container {
+  position: absolute;
+  right: 3vw;
+  top: 2vh;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.col {
+  margin-right: 1rem;
+}
+
+/* Styles for select */
+.form-select {
+  padding: 0.8rem;
+  border-radius: 10px;
+  border: 2px solid var(--main_color);
+  background: white;
+  min-width: 150px;
+  height: 6vh;
+  font-family: var(--font_family_primary);
+  font-size: 10px;
+  color: var(--main_color);
+  cursor: pointer;
+  appearance: none;
+}
+
+.form-select:hover {
+  border-color: var(--main_color);
+  box-shadow: 0 0 0 3px rgba(98, 0, 234, 0.1);
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: var(--main_color);
+  box-shadow: 0 0 0 3px rgba(98, 0, 234, 0.2);
+}
+
+/* Styles for the options */
+.form-select option {
+  font-family: var(--font_family_primary);
+  font-size: 16px;
+  color: var(--main_color);
+  background-color: white;
+}
+
+.form-select option:checked {
+  background: linear-gradient(
+    90deg,
+    rgba(217, 0, 208, 0.89) 0%,
+    rgba(100, 8, 156, 0.89) 98.61%
+  );
+  color: white;
+}
+
+.form-select option:hover {
+  background-color: rgba(98, 0, 234, 0.1);
+}
+
+/* Styles for multiple select */
+.form-select[multiple] {
+  padding: 0;
+  overflow: hidden;
+}
+
+.form-select[multiple] option {
+  border-bottom: 1px solid rgba(98, 0, 234, 0.1);
+}
+
+.form-select[multiple] option:last-child {
+  border-bottom: none;
+}
+
+.input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.form-control {
+  padding: 0.5rem 0.5rem 0.5rem 2.5rem;
+  width: 300px;
+  height: auto;
+  border-radius: 5px;
+  border: none;
+  font-family: var(--font_family_primary);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  background-color: #e8e8e8;
 }
 
 .carousel-container {
   position: relative;
   overflow: hidden;
-  width: 1500px;
+  width: 100%; /* Adjust the width to 100% */
   display: flex;
   transition: transform 0.3s ease-in-out;
   gap: 2rem;
@@ -65,11 +175,13 @@
   transition: background-color 0.3s, transform 0.2s; /* Ensures that no content leaves the edge */
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  z-index: 1; /* Ensures that the cards are above other items */
 }
 
 .club-card:hover {
   background: var(--gradient_purple_hover);
   transform: scale(1.05);
+  z-index: 2; /* Ensures that the hover cards are above other cards */
 }
 
 .club-card svg {

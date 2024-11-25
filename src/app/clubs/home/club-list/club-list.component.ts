@@ -12,14 +12,18 @@ import { LocalStorageService } from '../../../core/services/local-storage.servic
 import { Router } from '@angular/router';
 import { motivationalPhrases } from '../../../shared/constants/motivational-phrases';
 import { ExecutedProcessDialogComponent } from '../../../shared/components/executed-process-dialog/executed-process-dialog.component';
-import { FilterPipe } from "../../../pipes/filter-by-pipe";
+import { FilterPipe } from '../../../pipes/filter-by-pipe';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-club-list',
   standalone: true,
-  imports: [CommonModule, ExecutedProcessDialogComponent, FilterPipe,
-    FormsModule],
+  imports: [
+    CommonModule,
+    ExecutedProcessDialogComponent,
+    FilterPipe,
+    FormsModule,
+  ],
   templateUrl: './club-list.component.html',
   styleUrls: ['./club-list.component.css'],
 })
@@ -37,6 +41,7 @@ export class ClubListComponent implements OnChanges, AfterViewInit {
     created_at: string;
     club_status: string;
   }[] = [];
+  @Input() topSearch: string = '0px';
 
   visibleClubs: typeof this.clubs = [];
   currentStartIndex: number = 0;

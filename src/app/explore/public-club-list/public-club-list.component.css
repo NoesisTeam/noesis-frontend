@@ -1,26 +1,139 @@
-.carousel-container {
-  display: flex;
+.club-list-container {
   position: relative;
-  left: 70px;
-  top: 150px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+  grid-template-rows: repeat(3, 1fr);
   gap: 2rem;
-  max-height: calc(150px * 2 + 3rem); /* Height for 2 rows plus space */
-  overflow-y: auto; /* Scrollbar if there are more than 2 rows */
-  width: 90%;
-  padding: 10px;
+  padding: 6rem 2rem 2rem 2rem; /* Increase top padding for the search container */
+  width: 100%;
+  max-width: 70vw;
+  margin: 0 auto;
+  height: calc(100vh - 200px); /* Dynamic height based on the window */
+  overflow-y: auto; /* Add vertical scroll */
+  max-height: 35vh;
+  top: 7vh;
+}
+
+.search-filter-container {
+  position: absolute;
+  top: 0;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 10;
+  background-color: transparent;
+  padding: 1rem;
+  width: fit-content;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.col {
+  margin-right: 1rem;
+}
+
+/* Styles for select */
+.form-select {
+  padding: 0.8rem;
+  border-radius: 10px;
+  border: 2px solid var(--main_color);
+  background: white;
+  min-width: 150px;
+  height: 6vh;
+  font-family: var(--font_family_primary);
+  font-size: 10px;
+  color: var(--main_color);
+  cursor: pointer;
+  appearance: none;
+}
+
+.form-select:hover {
+  border-color: var(--main_color);
+  box-shadow: 0 0 0 3px rgba(98, 0, 234, 0.1);
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: var(--main_color);
+  box-shadow: 0 0 0 3px rgba(98, 0, 234, 0.2);
+}
+
+/* Styles for the options */
+.form-select option {
+  font-family: var(--font_family_primary);
+  font-size: 16px;
+  color: var(--main_color);
+  background-color: white;
+}
+
+.form-select option:checked {
+  background: linear-gradient(
+    90deg,
+    rgba(217, 0, 208, 0.89) 0%,
+    rgba(100, 8, 156, 0.89) 98.61%
+  );
+  color: white;
+}
+
+.form-select option:hover {
+  background-color: rgba(98, 0, 234, 0.1);
+}
+
+/* Styles for multiple select */
+.form-select[multiple] {
+  padding: 0;
+  overflow: hidden;
+}
+
+.form-select[multiple] option {
+  border-bottom: 1px solid rgba(98, 0, 234, 0.1);
+}
+
+.form-select[multiple] option:last-child {
+  border-bottom: none;
+}
+
+.input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.form-control {
+  padding: 0.5rem 0.5rem 0.5rem 2.5rem;
+  width: 300px;
+  height: auto;
+  border-radius: 5px;
+  border: none;
+  font-family: var(--font_family_primary);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  background-color: #e8e8e8;
 }
 
 .club-card {
+  width: 100%;
+  height: 150px;
+  margin: 0; /* Eliminate margins that can affect the grid */
   position: relative; /* Allows to position absolute elements within the card */
   display: flex;
   flex-direction: column;
   align-items: center; /* Horizontally centers the content */
   justify-content: space-between; /* Distributes content vertically */
   padding: 5px; /* Internal spacing */
-  width: 300px;
-  height: 150px;
   border: none;
   background: var(--gradient_purple);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -37,11 +150,11 @@
 }
 
 .club-card svg {
+  width: 100%;
+  height: auto;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; /* Ensures that the SVG occupies the full width of the card */
-  height: auto;
   z-index: 0; /* Sends the SVG behind the content */
 }
 
@@ -119,4 +232,25 @@
   position: relative;
   width: 35px;
   height: 35px;
+}
+
+/* Adjust the carousel container */
+.carousel-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  width: 100%;
+}
+
+.club-list-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.club-list-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.club-list-container::-webkit-scrollbar-thumb {
+  background-color: var(--main_color);
+  border-radius: 4px;
 }
