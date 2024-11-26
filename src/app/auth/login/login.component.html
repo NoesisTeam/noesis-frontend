@@ -21,7 +21,12 @@
             "
             class="error-text"
           >
-            Campo obligatorio
+            <span *ngIf="loginForm.get('username')?.errors?.['required']"
+              >Campo obligatorio.
+            </span>
+            <span *ngIf="loginForm.get('username')?.errors?.['noSpaces']"
+              >No debe contener espacios.
+            </span>
           </p>
         </div>
         <div class="input-group">
@@ -48,7 +53,15 @@
             "
             class="error-text"
           >
-            Campo obligatorio con al menos 6 caracteres
+            <span *ngIf="loginForm.get('password')?.errors?.['required']"
+              >Campo obligatorio.
+            </span>
+            <span *ngIf="loginForm.get('password')?.errors?.['minlength']"
+              >Debe tener al menos 6 caracteres.
+            </span>
+            <span *ngIf="loginForm.get('password')?.errors?.['noSpaces']"
+              >No debe contener espacios.</span
+            >
           </p>
         </div>
         <button
