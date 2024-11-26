@@ -8,6 +8,7 @@ import { ExecutedProcessDialogComponent } from '../../shared/components/executed
 import { ClubsSharedService } from '../../core/services/clubs-shared.service';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from "../../pipes/filter-by-pipe";
+import { UsersService } from '../../core/services/user.service';
 
 @Component({
   selector: 'app-public-club-list',
@@ -31,45 +32,79 @@ export class PublicClubListComponent {
     private clubsService: ClubsService,
     private router: Router,
     private localStorageService: LocalStorageService,
-    private clubsSharedService: ClubsSharedService
+    private clubsSharedService: ClubsSharedService,
+    private usersService : UsersService
   ) {}
   @Input() clubs: Club[] = [];
 
-  public clubRequest(id_club: number, is_private: boolean) {
+  public clubRequest(id_club: number, is_private: boolean, is_academic: boolean) {
     const userId = Number(this.localStorageService.getUserId());
-    
-    
-
-    if (is_private) {
-      this.clubsService.privateClubRequest(userId, id_club).subscribe({
+    let isValidUserRequest = false;
+    if(is_academic){
+      this.usersService.checkIsAcademicUser(String(userId)).subscribe({
         next: (res) => {
-          this.updatePublicClubs();
-          this.dialogMessage = 'Solicitud enviada correctamente';
+          if(res.complete){
+            isValidUserRequest = true;
+            this.handleRequest(isValidUserRequest, is_private, userId, id_club);
+          }else{
+            this.dialogMessage = 'Por favor completa tus datos para unirte a un club academico';
+            this.dialogActionText = 'Aceptar';
+            this.showDialog = true;
+            this.router.navigate(['/profile']);
+          }
+        },
+        error: (err) => {
+          this.dialogMessage = 'No se ha podido verificar si cumples los requisitos para un club academico';
           this.dialogActionText = 'Aceptar';
           this.showDialog = true;
         },
-        error: (err) => {
-          this.dialogMessage = 'No se ha podido enviar la solicitud';
-          this.dialogActionText = 'Reintentar';
-          this.showDialog = true;
-        },
       });
-    } else {
-      this.clubsService.publicClubRequest(userId, id_club).subscribe({
-        next: (res) => {
-          this.updatePublicClubs();
-          this.isPublicClub = true;
-          this.dialogMessage = 'Te has unido al club correctamente';
-          this.dialogActionText = 'Aceptar';
-          this.showDialog = true;
-        },
-        error: (err) => {
-          this.dialogMessage = 'No se ha podido unir al club';
-          this.dialogActionText = 'Reintentar';
-          this.showDialog = true;
-        },
-      });
+    }else{
+      isValidUserRequest = true;
     }
+
+    this.handleRequest(isValidUserRequest, is_private, userId, id_club);
+  }
+
+  private handleRequest(isValidUserRequest: boolean, is_private: boolean, userId: number, id_club: number) {
+    if (isValidUserRequest && is_private) {
+      this.handlePrivateRequest(userId, id_club);
+    } else if (isValidUserRequest && !is_private) {
+      this.handlePublicRequest(userId, id_club);
+    }
+  }
+
+  private handlePublicRequest(userId: number, id_club: number) {
+    this.clubsService.publicClubRequest(userId, id_club).subscribe({
+      next: (res) => {
+        this.updatePublicClubs();
+        this.isPublicClub = true;
+        this.dialogMessage = 'Te has unido al club correctamente';
+        this.dialogActionText = 'Aceptar';
+        this.showDialog = true;
+      },
+      error: (err) => {
+        this.dialogMessage = 'No se ha podido unir al club';
+        this.dialogActionText = 'Reintentar';
+        this.showDialog = true;
+      },
+    });
+  }
+
+  private handlePrivateRequest(userId: number, id_club: number) {
+    this.clubsService.privateClubRequest(userId, id_club).subscribe({
+      next: (res) => {
+        this.updatePublicClubs();
+        this.dialogMessage = 'Solicitud enviada correctamente';
+        this.dialogActionText = 'Aceptar';
+        this.showDialog = true;
+      },
+      error: (err) => {
+        this.dialogMessage = 'No se ha podido enviar la solicitud';
+        this.dialogActionText = 'Reintentar';
+        this.showDialog = true;
+      },
+    });
   }
 
   private updatePublicClubs(): void {

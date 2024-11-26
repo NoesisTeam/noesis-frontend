@@ -29,7 +29,7 @@
      <button
        class="club-card"
        *ngFor="let club of clubs | filter : filterProperty : properties"
-       (click)="clubRequest(club.id_club, club.is_private)"
+       (click)="clubRequest(club.id_club, club.is_private, club.is_academic)"
      >
        <svg
          xmlns="http://www.w3.org/2000/svg"
