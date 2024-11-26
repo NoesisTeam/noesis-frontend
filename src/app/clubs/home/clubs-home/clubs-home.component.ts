@@ -6,25 +6,18 @@ import { ClubsService } from '../../../core/services/clubs.service';
 import { ClubsSharedService } from '../../../core/services/clubs-shared.service';
 import { LocalStorageService } from '../../../core/services/local-storage.service';
 import { Club } from '../../../core/domain/entities';
-import { ExecutedProcessDialogComponent } from '../../../shared/components/executed-process-dialog/executed-process-dialog.component';
-
 
 @Component({
   selector: 'app-clubs-home',
   standalone: true,
-  imports: [
-    CommonModule,
-    CreateClubDialogComponent,
-    ClubListComponent,
-    ExecutedProcessDialogComponent
-  ],
+  imports: [CommonModule, CreateClubDialogComponent, ClubListComponent],
   templateUrl: './clubs-home.component.html',
   styleUrl: './clubs-home.component.css',
 })
 export class ClubsHomeComponent implements OnInit {
   properties!: string;
   filterProperty = '';
-  
+
   constructor(
     private clubsService: ClubsService,
     private clubsSharedService: ClubsSharedService,
