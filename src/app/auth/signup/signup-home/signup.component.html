@@ -22,11 +22,17 @@
           <p
             *ngIf="
               signupForm.get('username')?.invalid &&
-              signupForm.get('username')?.touched
+              (signupForm.get('username')?.dirty ||
+                signupForm.get('username')?.touched)
             "
             class="error-text"
           >
-            Campo obligatorio
+            <span *ngIf="signupForm.get('username')?.errors?.['required']"
+              >Campo obligatorio.
+            </span>
+            <span *ngIf="signupForm.get('username')?.errors?.['noSpaces']"
+              >No debe contener espacios.
+            </span>
           </p>
         </div>
         <div class="input-group">
@@ -46,19 +52,23 @@
             alt="Icono Contraseña"
             (click)="togglePasswordVisibility()"
           />
-          <!-- Error de longitud mínima -->
           <p
-            *ngIf="signupForm.get('password')?.errors?.['minLength'] && signupForm.get('password')?.touched"
+            *ngIf="
+              signupForm.get('password')?.invalid &&
+              (signupForm.get('password')?.dirty ||
+                signupForm.get('password')?.touched)
+            "
             class="error-text"
           >
-            Campo obligatorio con al menos 6 caracteres
-          </p>
-          <!-- Error de coincidencia -->
-          <p
-            *ngIf="signupForm.get('password')?.errors?.['mismatch'] && signupForm.get('password')?.touched"
-            class="error-text"
-          >
-            Las contraseñas deben coincidir
+            <span *ngIf="signupForm.get('password')?.errors?.['required']"
+              >Campo obligatorio.
+            </span>
+            <span *ngIf="signupForm.get('password')?.errors?.['minlength']"
+              >Debe tener al menos 6 caracteres.
+            </span>
+            <span *ngIf="signupForm.get('password')?.errors?.['noSpaces']"
+              >No debe contener espacios.</span
+            >
           </p>
         </div>
         <div class="input-group">
@@ -78,22 +88,32 @@
             alt="Icono Confirmar Contraseña"
             (click)="toggleConfirmPasswordVisibility()"
           />
-          <!-- Error de longitud mínima -->
           <p
-            *ngIf="signupForm.get('confirmPassword')?.errors?.['minLength'] && signupForm.get('confirmPassword')?.touched"
+            *ngIf="
+              signupForm.get('confirmPassword')?.invalid &&
+              (signupForm.get('confirmPassword')?.dirty ||
+                signupForm.get('confirmPassword')?.touched)
+            "
             class="error-text"
           >
-            Campo obligatorio con al menos 6 caracteres
-          </p>
-          <!-- Error de coincidencia -->
-          <p
-            *ngIf="signupForm.get('confirmPassword')?.errors?.['mismatch'] && signupForm.get('confirmPassword')?.touched"
-            class="error-text"
-          >
-            Las contraseñas deben coincidir
+            <span
+              *ngIf="signupForm.get('confirmPassword')?.errors?.['required']"
+              >Campo obligatorio.
+            </span>
+            <span
+              *ngIf="signupForm.get('confirmPassword')?.errors?.['minlength']"
+              >Debe tener al menos 6 caracteres.
+            </span>
+            <span
+              *ngIf="signupForm.get('confirmPassword')?.errors?.['noSpaces']"
+              >No debe contener espacios.
+            </span>
+            <span
+              *ngIf="signupForm.get('confirmPassword')?.errors?.['passwordsMismatch']"
+              >Las contraseñas deben coincidir.</span
+            >
           </p>
         </div>
-
         <!-- The button is enabled only when the form is valid -->
         <button
           type="submit"

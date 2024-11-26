@@ -12,13 +12,13 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService } from '../../../core/services/auth.service';
 import { LocalStorageService } from '../../../core/services/local-storage.service';
-import {
-  signupPasswordValidator,
-  signupPasswordMatchValidator,
-} from '../validators/signup-password.validator';
 import { CommonModule } from '@angular/common';
 import { ExecutedProcessDialogComponent } from '../../../shared/components/executed-process-dialog/executed-process-dialog.component';
 import { SignupFormErrorsModel } from '../../../core/data/models';
+import {
+  noSpacesValidator,
+  passwordsMatchValidator,
+} from '../../../core/validators/custom-validators';
 
 @Component({
   selector: 'app-signup',
@@ -62,14 +62,17 @@ export class SignupComponent implements OnDestroy {
   private initializeForm(): void {
     this.signupForm = this.formBuilder.group(
       {
-        username: ['', [Validators.required]],
-        password: ['', [Validators.required, signupPasswordValidator]],
-        confirmPassword: ['', [Validators.required, signupPasswordValidator]],
+        username: ['', [Validators.required, noSpacesValidator()]],
+        password: [
+          '',
+          [Validators.required, Validators.minLength(6), noSpacesValidator()],
+        ],
+        confirmPassword: [
+          '',
+          [Validators.required, Validators.minLength(6), noSpacesValidator()],
+        ],
       },
-      {
-        validators: signupPasswordMatchValidator,
-        updateOn: 'change',
-      }
+      { validators: passwordsMatchValidator }
     );
 
     this.signupForm.valueChanges
@@ -188,15 +191,24 @@ export class SignupComponent implements OnDestroy {
   private onFormValueChanges(): void {
     if (!this.signupForm) return;
 
-    Object.keys(this.formErrors).forEach((field) => {
-      this.formErrors[field as keyof SignupFormErrorsModel] = '';
+    Object.keys(this.signupForm.controls).forEach((field) => {
       const control = this.signupForm.get(field);
+      this.formErrors[field as keyof SignupFormErrorsModel] = '';
 
-      if (control?.invalid && control.touched) {
+      if (control && control.invalid && (control.dirty || control.touched)) {
         const messages = this.getValidationMessages(field, control.errors);
         this.formErrors[field as keyof SignupFormErrorsModel] = messages[0];
       }
     });
+
+    // Check for form-level errors
+    if (this.signupForm.errors) {
+      this.formErrors['confirmPassword'] = this.signupForm.errors[
+        'passwordsMismatch'
+      ]
+        ? 'Las contraseñas deben coincidir.'
+        : '';
+    }
   }
 
   /**
