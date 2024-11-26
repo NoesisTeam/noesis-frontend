@@ -100,3 +100,44 @@
   padding: 10px;
   border-radius: 10px;
 }
+
+.save-button {
+  width: 10%;
+  height: 5%;
+  font-family: var(--font_family_primary);
+  font-size: 19.2px;
+  font-style: normal;
+  font-weight: 500;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s;
+  background-color: #0073ff;
+  color: #ffffff;
+  margin-top: 2%;
+  margin-left: 45%;
+}
+
+.save-button:hover {
+  filter: brightness(1.1);
+  transform: scale(1.05);
+}
+
+.save-button:disabled {
+  background-color: #b0b0b0;
+  cursor: not-allowed;
+  color: #ffffff;
+  opacity: 0.6;
+}
+
+.icon {
+  margin-left: 0.5vw;
+  width: 30px;
+  height: 30px;
+}

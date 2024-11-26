@@ -22,14 +22,41 @@
 
   <!-- Personal Information -->
   <div class="score-section">
-    <form>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
       <div class="info-group">
         <label>Nombre completo:</label>
-        <input type="text" placeholder="Vacío" [value]="fullName" />
+        <input
+          formControlName="fullName"
+          type="text"
+          placeholder="Vacío"
+          [value]="fullName"
+        />
+        <p
+          *ngIf="
+            profileForm.get('fullName')?.invalid &&
+            (profileForm.get('fullName')?.dirty ||
+              profileForm.get('fullName')?.touched)
+          "
+          class="error-text"
+        >
+          <span *ngIf="profileForm.get('fullName')?.errors?.['required']"
+            >Campo obligatorio o debe ser modificado.
+          </span>
+          <span *ngIf="profileForm.get('fullName')?.errors?.['alphabetic']"
+            >Debe contener solo letras. Evite espacios al inicio, final y
+            seguidos. Evite caracteres especiales.
+          </span>
+        </p>
       </div>
+
       <div class="info-group">
         <label for="career">Carrera:</label>
-        <select class="form-select" id="career" name="career">
+        <select
+          formControlName="careerName"
+          class="form-select"
+          id="career"
+          name="career"
+        >
           <option value="" disabled selected>{{ career_name }}</option>
           <option *ngFor="let career of careers" [value]="career.id_career">
             {{ career.career_name }}
@@ -38,20 +65,75 @@
       </div>
       <div class="info-group">
         <label>Semestre:</label>
-        <input type="text" placeholder="Vacio" [value]="semester" />
+        <input
+          formControlName="semester"
+          type="text"
+          placeholder="Vacio"
+          [value]="semester"
+        />
+        <p
+          *ngIf="
+            profileForm.get('semester')?.invalid &&
+            (profileForm.get('semester')?.dirty ||
+              profileForm.get('semester')?.touched)
+          "
+          class="error-text"
+        >
+          <span *ngIf="profileForm.get('semester')?.errors?.['required']"
+            >Campo obligatorio o debe ser modificado.
+          </span>
+          <span *ngIf="profileForm.get('semester')?.errors?.['semesterNumeric']"
+            >Debe contener solo números. Máximo dos dígitos.
+          </span>
+        </p>
       </div>
+
       <div class="info-group">
         <label>Celular:</label>
-        <input type="text" placeholder="Vacio" [value]="phoneNumber" />
+        <input
+          formControlName="phoneNumber"
+          type="text"
+          placeholder="Vacio"
+          [value]="phoneNumber"
+        />
+        <p
+          *ngIf="
+            profileForm.get('phoneNumber')?.invalid &&
+            (profileForm.get('phoneNumber')?.dirty ||
+              profileForm.get('phoneNumber')?.touched)
+          "
+          class="error-text"
+        >
+          <span *ngIf="profileForm.get('phoneNumber')?.errors?.['required']"
+            >Campo obligatorio o debe ser modificado.
+          </span>
+          <span *ngIf="profileForm.get('phoneNumber')?.errors?.['phoneNumeric']"
+            >Debe contener solo números.
+          </span>
+        </p>
       </div>
       <div class="info-group">
         <label for="sex">Sexo:</label>
-        <select class="form-select" id="sex" name="sex">
+        <select formControlName="sex" class="form-select" id="sex" name="sex">
           <option value="" disabled selected>{{ sex }}</option>
           <option *ngFor="let sex of sexs" [value]="sex.id_sex">
             {{ sex.sex_name }}
           </option>
         </select>
+      </div>
+      <div class="info-group">
+        <button
+          type="submit"
+          class="save-button"
+          [disabled]="profileForm.invalid || isSubmitting"
+        >
+          Guardar
+          <img
+            src="/assets/ico/ic-save.webp"
+            alt="Save Quiz Icon"
+            class="icon"
+          />
+        </button>
       </div>
     </form>
   </div>

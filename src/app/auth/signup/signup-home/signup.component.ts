@@ -81,6 +81,46 @@ export class SignupComponent implements OnDestroy {
   }
 
   /**
+   * Handles form value changes
+   */
+  private onFormValueChanges(): void {
+    if (!this.signupForm) return;
+
+    Object.keys(this.signupForm.controls).forEach((field) => {
+      const control = this.signupForm.get(field);
+      this.formErrors[field as keyof SignupFormErrorsModel] = '';
+
+      if (control && control.invalid && (control.dirty || control.touched)) {
+        const messages = this.getValidationMessages(field, control.errors);
+        this.formErrors[field as keyof SignupFormErrorsModel] = messages[0];
+      }
+    });
+
+    // Check for form-level errors
+    if (this.signupForm.errors) {
+      this.formErrors['confirmPassword'] = this.signupForm.errors[
+        'passwordsMismatch'
+      ]
+        ? 'Las contraseñas deben coincidir.'
+        : '';
+    }
+  }
+
+  /**
+   * Gets validation messages for form fields
+   */
+  private getValidationMessages(field: string, errors: any): string[] {
+    const messages: string[] = [];
+
+    if (errors?.required) messages.push('Campo obligatorio');
+    if (errors?.minLength)
+      messages.push('Campo obligatorio con al menos 6 caracteres');
+    if (errors?.mismatch) messages.push('Las contraseñas deben coincidir');
+
+    return messages;
+  }
+
+  /**
    * Handles form submission
    */
   public onSubmit(): void {
@@ -106,6 +146,16 @@ export class SignupComponent implements OnDestroy {
   }
 
   /**
+   * Validates all form fields
+   */
+  private validateAllFormFields(): void {
+    Object.keys(this.signupForm.controls).forEach((field) => {
+      const control = this.signupForm.get(field);
+      control?.markAsTouched();
+    });
+  }
+
+  /**
    * Handles successful signup
    */
   private handleSignupSuccess(username: string, password: string): void {
@@ -114,11 +164,14 @@ export class SignupComponent implements OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response) => {
+          this.isSubmitting = false;
           this.localStorageService.setUserId(response.user.id.toString());
           this.showSuccessDialog();
         },
-        error: () =>
-          this.showErrorDialog('Error al iniciar sesión después del registro'),
+        error: () => {
+          this.isSubmitting = false;
+          this.showErrorDialog('Error al iniciar sesión después del registro');
+        },
       });
   }
 
@@ -173,56 +226,6 @@ export class SignupComponent implements OnDestroy {
     if (this.dialogMessage === 'Registro exitoso') {
       this.router.navigate(['/clubs']);
     }
-  }
-
-  /**
-   * Validates all form fields
-   */
-  private validateAllFormFields(): void {
-    Object.keys(this.signupForm.controls).forEach((field) => {
-      const control = this.signupForm.get(field);
-      control?.markAsTouched();
-    });
-  }
-
-  /**
-   * Handles form value changes
-   */
-  private onFormValueChanges(): void {
-    if (!this.signupForm) return;
-
-    Object.keys(this.signupForm.controls).forEach((field) => {
-      const control = this.signupForm.get(field);
-      this.formErrors[field as keyof SignupFormErrorsModel] = '';
-
-      if (control && control.invalid && (control.dirty || control.touched)) {
-        const messages = this.getValidationMessages(field, control.errors);
-        this.formErrors[field as keyof SignupFormErrorsModel] = messages[0];
-      }
-    });
-
-    // Check for form-level errors
-    if (this.signupForm.errors) {
-      this.formErrors['confirmPassword'] = this.signupForm.errors[
-        'passwordsMismatch'
-      ]
-        ? 'Las contraseñas deben coincidir.'
-        : '';
-    }
-  }
-
-  /**
-   * Gets validation messages for form fields
-   */
-  private getValidationMessages(field: string, errors: any): string[] {
-    const messages: string[] = [];
-
-    if (errors?.required) messages.push('Campo obligatorio');
-    if (errors?.minLength)
-      messages.push('Campo obligatorio con al menos 6 caracteres');
-    if (errors?.mismatch) messages.push('Las contraseñas deben coincidir');
-
-    return messages;
   }
 
   /**
