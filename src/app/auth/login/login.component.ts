@@ -14,6 +14,10 @@ import { ExecutedProcessDialogComponent } from '../../shared/components/executed
 import { Subject } from 'rxjs';
 import { takeUntil, finalize } from 'rxjs/operators';
 import { LoginFormErrorsModel } from '../../core/data/models';
+import {
+  noLeadingSpaceValidator,
+  noMultipleSpacesValidator,
+} from '../../core/validators/custom-validators';
 
 @Component({
   selector: 'app-login',
@@ -104,8 +108,23 @@ export class LoginComponent implements OnInit, OnDestroy {
    */
   private initializeForm(): void {
     this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      username: [
+        '',
+        [
+          Validators.required,
+          noLeadingSpaceValidator(),
+          noMultipleSpacesValidator(),
+        ],
+      ],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          noLeadingSpaceValidator(),
+          noMultipleSpacesValidator(),
+        ],
+      ],
     });
 
     this.loginForm.valueChanges

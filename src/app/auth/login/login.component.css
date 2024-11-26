@@ -23,7 +23,7 @@
   top: 250px;
   right: 150px;
   width: 597px;
-  height: 455px;
+  height: auto;
   border-radius: 40px;
   background: rgba(255, 245, 245, 0.48);
   backdrop-filter: blur(40px);
