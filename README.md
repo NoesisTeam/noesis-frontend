@@ -76,7 +76,7 @@ The application follows Angular's modular architecture with clear separation of 
 
 The following diagram illustrates the high-level architecture of the Noesis Frontend application, showing the relationship between modules, components, services, and external systems:
 
-[![Architecture Diagram](./rsc/img/dgr/noesis-frontend-architecture-diagram.png)](https://raw.githubusercontent.com/danieltorrez29/MonteCarloArcheryGameSimulator/refs/heads/master/resources/images/diagrams/monte-carlo-archery-game-simulator-class-diagram.jpg)
+[![Architecture Diagram](./rsc/img/dgr/noesis-frontend-architecture-diagram.png)](https://raw.githubusercontent.com/NoesisTeam/noesis-frontend/refs/heads/master/rsc/img/dgr/noesis-frontend-architecture-diagram.png)
 
 ### Module Structure
 - **Auth Module** - Handles user authentication and registration
@@ -120,7 +120,7 @@ The following diagram illustrates the high-level architecture of the Noesis Fron
 
 The following sequence diagram illustrates the main data flow and user interactions within the Noesis Frontend application:
 
-[![Sequence Diagram](./rsc/img/dgr/noesis-frontend-sequence-diagram.png)](https://raw.githubusercontent.com/danieltorrez29/MonteCarloArcheryGameSimulator/refs/heads/master/resources/images/diagrams/monte-carlo-archery-game-simulator-class-diagram.jpg)
+[![Sequence Diagram](./rsc/img/dgr/noesis-frontend-sequence-diagram.png)](https://raw.githubusercontent.com/NoesisTeam/noesis-frontend/refs/heads/master/rsc/img/dgr/noesis-frontend-sequence-diagram.png)
 
 ## 🚀 Core Features
 
