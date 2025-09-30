@@ -362,15 +362,15 @@ The application uses environment-specific configurations:
 
 Here are some representative snaps of the application:
 
-[![Welcome Page](./rsc/img/snp/welcome-page-thumb.jpg)](https://raw.githubusercontent.com/danieltorrez29/TriviaClient/refs/heads/master/rsc/img/snp/home.png)
-[![Login Page](./rsc/img/snp/login-page-thumb.jpg)](https://raw.githubusercontent.com/danieltorrez29/TriviaClient/refs/heads/master/rsc/img/snp/game.png)
-[![Signup Page](./rsc/img/snp/signup-page-thumb.jpg)](https://raw.githubusercontent.com/danieltorrez29/TriviaClient/refs/heads/master/rsc/img/snp/stats.png)
-[![Clubs Page](./rsc/img/snp/clubs-page-thumb.jpg)](https://raw.githubusercontent.com/danieltorrez29/TriviaClient/refs/heads/master/rsc/img/snp/home.png)
-[![Explore Clubs Page](./rsc/img/snp/explore-clubs-page-thumb.jpg)](https://raw.githubusercontent.com/danieltorrez29/TriviaClient/refs/heads/master/rsc/img/snp/game.png)
-[![Profile Page](./rsc/img/snp/profile-page-thumb.jpg)](https://raw.githubusercontent.com/danieltorrez29/TriviaClient/refs/heads/master/rsc/img/snp/stats.png)
-[![Clubs Requests Page](./rsc/img/snp/club-requests-page-thumb.jpg)](https://raw.githubusercontent.com/danieltorrez29/TriviaClient/refs/heads/master/rsc/img/snp/home.png)
-[![Explore Clubs Page](./rsc/img/snp/view-resource-page-thumb.jpg)](https://raw.githubusercontent.com/danieltorrez29/TriviaClient/refs/heads/master/rsc/img/snp/game.png)
-[![Profile Page](./rsc/img/snp/solve-quiz-resource-page-thumb.jpg)](https://raw.githubusercontent.com/danieltorrez29/TriviaClient/refs/heads/master/rsc/img/snp/stats.png)
+[![Welcome Page](./rsc/img/snp/welcome-page-thumb.jpg)](https://raw.githubusercontent.com/NoesisTeam/noesis-frontend/refs/heads/master/rsc/img/snp/welcome-page.jpg)
+[![Login Page](./rsc/img/snp/login-page-thumb.jpg)](https://raw.githubusercontent.com/NoesisTeam/noesis-frontend/refs/heads/master/rsc/img/snp/login-page.jpg)
+[![Signup Page](./rsc/img/snp/signup-page-thumb.jpg)](https://raw.githubusercontent.com/NoesisTeam/noesis-frontend/refs/heads/master/rsc/img/snp/signup-page.jpg)
+[![Clubs Page](./rsc/img/snp/clubs-page-thumb.jpg)](https://raw.githubusercontent.com/NoesisTeam/noesis-frontend/refs/heads/master/rsc/img/snp/clubs-page.jpg)
+[![Explore Clubs Page](./rsc/img/snp/explore-clubs-page-thumb.jpg)](https://raw.githubusercontent.com/NoesisTeam/noesis-frontend/refs/heads/master/rsc/img/snp/explore-clubs-page.jpg)
+[![Profile Page](./rsc/img/snp/profile-page-thumb.jpg)](https://raw.githubusercontent.com/NoesisTeam/noesis-frontend/refs/heads/master/rsc/img/snp/profile-page.jpg)
+[![Clubs Requests Page](./rsc/img/snp/club-requests-page-thumb.jpg)](https://raw.githubusercontent.com/NoesisTeam/noesis-frontend/refs/heads/master/rsc/img/snp/club-requests-page.jpg)
+[![View Resource Page](./rsc/img/snp/view-resource-page-thumb.jpg)](https://raw.githubusercontent.com/NoesisTeam/noesis-frontend/refs/heads/master/rsc/img/snp/view-resource-page.jpg)
+[![Solve Quiz Resource Page](./rsc/img/snp/solve-quiz-resource-page-thumb.jpg)](https://raw.githubusercontent.com/NoesisTeam/noesis-frontend/refs/heads/master/rsc/img/snp/solve-quiz-resource-page.jpg)
 
 ## 🔮 Future Enhancements
 
