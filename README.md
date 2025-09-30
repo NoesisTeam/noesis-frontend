@@ -11,10 +11,10 @@ A comprehensive Angular 17 web application for the Noesis platform - an AI-power
   - [Module Structure](#module-structure)
   - [Key Architectural Patterns](#key-architectural-patterns)
   - [Architecture Layers](#architecture-layers)
-    - [1. **Presentation Layer**](#1-presentation-layer)
-    - [2. **Business Logic Layer**](#2-business-logic-layer)
-    - [3. **Data Access Layer**](#3-data-access-layer)
-    - [4. **Security Layer**](#4-security-layer)
+    - [1. Presentation Layer](#1-presentation-layer)
+    - [2. Business Logic Layer](#2-business-logic-layer)
+    - [3. Data Access Layer](#3-data-access-layer)
+    - [4. Security Layer](#4-security-layer)
   - [Data Flow \& User Journey](#data-flow--user-journey)
 - [🚀 Core Features](#-core-features)
   - [📚 Book Club Management](#-book-club-management)
@@ -47,9 +47,6 @@ A comprehensive Angular 17 web application for the Noesis platform - an AI-power
 - [📈 Performance Features](#-performance-features)
   - [Optimization Strategies](#optimization-strategies)
   - [Bundle Size Management](#bundle-size-management)
-- [🧪 Testing Strategy](#-testing-strategy)
-  - [Unit Testing](#unit-testing)
-  - [Test Coverage](#test-coverage)
 - [🔗 API Integration](#-api-integration)
   - [Backend Services](#backend-services)
   - [API Communication Patterns](#api-communication-patterns)
@@ -95,22 +92,22 @@ The following diagram illustrates the high-level architecture of the Noesis Fron
 
 ### Architecture Layers
 
-#### 1. **Presentation Layer**
+#### 1. Presentation Layer
 - **Components**: UI components implementing Angular's reactive patterns
 - **Templates**: HTML templates with data binding and directives
 - **Routing**: Client-side navigation with lazy-loaded modules
 
-#### 2. **Business Logic Layer**
+#### 2. Business Logic Layer
 - **Services**: Injectable services handling business operations
 - **State Management**: RxJS observables for reactive data flow
 - **Form Management**: Reactive forms with custom validators
 
-#### 3. **Data Access Layer**
+#### 3. Data Access Layer
 - **HTTP Client**: RESTful API communication with interceptors
 - **Local Storage**: Browser storage for session persistence
 - **Error Handling**: Comprehensive error management and user feedback
 
-#### 4. **Security Layer**
+#### 4. Security Layer
 - **Authentication Guards**: Route protection based on login status
 - **Authorization Guards**: Role-based access control (Founder/Member)
 - **JWT Interceptors**: Automatic token injection for API calls
@@ -171,7 +168,6 @@ The following sequence diagram illustrates the main data flow and user interacti
 
 ### Development Tools
 - **Angular CLI 17.3** - Project scaffolding and build tools
-- **Karma & Jasmine** - Unit testing framework
 - **TypeScript Compiler** - Code compilation and type checking
 - **ESLint** - Code quality and style enforcement
 
@@ -328,20 +324,6 @@ The application uses environment-specific configurations:
 - **Compression** - Gzip compression support
 - **Caching** - Browser and CDN caching strategies
 
-## 🧪 Testing Strategy
-
-### Unit Testing
-- **Jasmine Framework** - Test specification and assertions
-- **Karma Test Runner** - Browser-based test execution
-- **Component Testing** - Isolated component behavior verification
-- **Service Testing** - Business logic validation
-
-### Test Coverage
-- Form validation testing
-- Component interaction testing
-- Service method testing
-- Error handling validation
-
 ## 🔗 API Integration
 
 ### Backend Services
@@ -379,6 +361,16 @@ The application uses environment-specific configurations:
 ### Snapshots
 
 Here are some representative snaps of the application:
+
+[![Welcome Page](./rsc/img/snp/welcome-page-thumb.jpg)](https://raw.githubusercontent.com/danieltorrez29/TriviaClient/refs/heads/master/rsc/img/snp/home.png)
+[![Login Page](./rsc/img/snp/login-page-thumb.jpg)](https://raw.githubusercontent.com/danieltorrez29/TriviaClient/refs/heads/master/rsc/img/snp/game.png)
+[![Signup Page](./rsc/img/snp/signup-page-thumb.jpg)](https://raw.githubusercontent.com/danieltorrez29/TriviaClient/refs/heads/master/rsc/img/snp/stats.png)
+[![Clubs Page](./rsc/img/snp/clubs-page-thumb.jpg)](https://raw.githubusercontent.com/danieltorrez29/TriviaClient/refs/heads/master/rsc/img/snp/home.png)
+[![Explore Clubs Page](./rsc/img/snp/explore-clubs-page-thumb.jpg)](https://raw.githubusercontent.com/danieltorrez29/TriviaClient/refs/heads/master/rsc/img/snp/game.png)
+[![Profile Page](./rsc/img/snp/profile-page-thumb.jpg)](https://raw.githubusercontent.com/danieltorrez29/TriviaClient/refs/heads/master/rsc/img/snp/stats.png)
+[![Clubs Requests Page](./rsc/img/snp/club-requests-page-thumb.jpg)](https://raw.githubusercontent.com/danieltorrez29/TriviaClient/refs/heads/master/rsc/img/snp/home.png)
+[![Explore Clubs Page](./rsc/img/snp/view-resource-page-thumb.jpg)](https://raw.githubusercontent.com/danieltorrez29/TriviaClient/refs/heads/master/rsc/img/snp/game.png)
+[![Profile Page](./rsc/img/snp/solve-quiz-resource-page-thumb.jpg)](https://raw.githubusercontent.com/danieltorrez29/TriviaClient/refs/heads/master/rsc/img/snp/stats.png)
 
 ## 🔮 Future Enhancements
 
