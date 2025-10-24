@@ -1,6 +1,6 @@
 <h1 align="center">Noesis Frontend</h1>
 <p align="center">
-A comprehensive Angular web application for the Noesis platform - an AI-powered interactive platform designed to strengthen reading comprehension through gamified learning experiences. The platform facilitates book club management, reading resource sharing, and interactive quiz-based assessment with intelligent scoring systems.
+A comprehensive Angular 17 web application for the Noesis platform - an AI-powered interactive platform designed to strengthen reading comprehension through gamified learning experiences. The platform facilitates book club management, reading resource sharing, and interactive quiz-based assessment with intelligent scoring systems.
 </p>
 
 <h2 align="left">Index</h2>
